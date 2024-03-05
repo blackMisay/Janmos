@@ -37,5 +37,10 @@ namespace App
         {
             this.openFormModule(new App.Customer());
         }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Dashboard.Dashboard());
+        }
     }
 }
