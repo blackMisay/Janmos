@@ -14,7 +14,7 @@ namespace Core
 
 
         /// <summary>
-        /// This constructor initializes the DBConnection object with default connection parameters.
+        /// This constructor initializes the UpgradeManager object with default connection parameters.
         /// </summary>
         /// <returns>None</returns>
         public UpgradeManager()
