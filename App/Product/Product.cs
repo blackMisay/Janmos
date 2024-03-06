@@ -25,5 +25,14 @@ namespace App.Product
             }
             this.Show();
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            using (ProductModal info = new ProductModal())
+            {
+                info.ShowDialog();
+            }
+            this.Show();
+        }
     }
 }
