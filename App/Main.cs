@@ -35,7 +35,7 @@ namespace App
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Customer());
+            this.openFormModule(new App.Customer.Customer());
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
