@@ -73,7 +73,6 @@
     <Compile Include="System\Security\SecureHash.cs" />
     <Compile Include="System\Security\UserAuthentication.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
