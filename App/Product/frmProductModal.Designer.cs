@@ -1,6 +1,6 @@
 ﻿namespace App.Product
 {
-    partial class ProductModal
+    partial class frmProductModal
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblDesc = new System.Windows.Forms.Label();
-            this.txtDesc = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -50,19 +50,19 @@
             this.lblDesc.Location = new System.Drawing.Point(130, 199);
             this.lblDesc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDesc.Name = "lblDesc";
-            this.lblDesc.Size = new System.Drawing.Size(96, 21);
+            this.lblDesc.Size = new System.Drawing.Size(123, 27);
             this.lblDesc.TabIndex = 76;
             this.lblDesc.Text = "Description";
             this.lblDesc.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // txtDesc
+            // txtDescription
             // 
-            this.txtDesc.Location = new System.Drawing.Point(29, 224);
-            this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDesc.Multiline = true;
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(300, 140);
-            this.txtDesc.TabIndex = 75;
+            this.txtDescription.Location = new System.Drawing.Point(29, 224);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(300, 140);
+            this.txtDescription.TabIndex = 75;
             // 
             // btnCancel
             // 
@@ -90,6 +90,7 @@
             this.btnSave.TabIndex = 73;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblCategory
             // 
@@ -99,7 +100,7 @@
             this.lblCategory.Location = new System.Drawing.Point(139, 145);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(78, 21);
+            this.lblCategory.Size = new System.Drawing.Size(100, 27);
             this.lblCategory.TabIndex = 72;
             this.lblCategory.Text = "Category";
             this.lblCategory.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -110,7 +111,7 @@
             this.cmbCategory.Location = new System.Drawing.Point(49, 170);
             this.cmbCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(265, 25);
+            this.cmbCategory.Size = new System.Drawing.Size(265, 29);
             this.cmbCategory.TabIndex = 71;
             // 
             // lblUnit
@@ -121,7 +122,7 @@
             this.lblUnit.Location = new System.Drawing.Point(222, 91);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(94, 21);
+            this.lblUnit.Size = new System.Drawing.Size(123, 27);
             this.lblUnit.TabIndex = 70;
             this.lblUnit.Text = "Metric Unit";
             this.lblUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,7 +135,7 @@
             this.lblValue.Location = new System.Drawing.Point(45, 91);
             this.lblValue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(103, 21);
+            this.lblValue.Size = new System.Drawing.Size(135, 27);
             this.lblValue.TabIndex = 69;
             this.lblValue.Text = "Metric Value";
             this.lblValue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,7 +146,7 @@
             this.cmbUnit.Location = new System.Drawing.Point(189, 116);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(4);
             this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Size = new System.Drawing.Size(140, 25);
+            this.cmbUnit.Size = new System.Drawing.Size(140, 29);
             this.cmbUnit.TabIndex = 68;
             // 
             // txtValue
@@ -165,7 +166,7 @@
             this.lblProductName.Location = new System.Drawing.Point(117, 28);
             this.lblProductName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(118, 21);
+            this.lblProductName.Size = new System.Drawing.Size(151, 27);
             this.lblProductName.TabIndex = 66;
             this.lblProductName.Text = "Product Name";
             this.lblProductName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -179,14 +180,14 @@
             this.txtProductName.Size = new System.Drawing.Size(300, 26);
             this.txtProductName.TabIndex = 65;
             // 
-            // ProductModal
+            // frmProductModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
             this.ClientSize = new System.Drawing.Size(359, 446);
             this.Controls.Add(this.lblDesc);
-            this.Controls.Add(this.txtDesc);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblCategory);
@@ -200,9 +201,8 @@
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ProductModal";
+            this.Name = "frmProductModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.ProductInfo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +211,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblDesc;
-        private System.Windows.Forms.TextBox txtDesc;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblCategory;

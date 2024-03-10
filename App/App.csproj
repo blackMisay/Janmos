@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer\Customer.cs">
+    <Compile Include="Customer\frmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer\Customer.Designer.cs">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <Compile Include="Customer\frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customer\CustomerModal.cs">
+    <Compile Include="Customer\frmCustomerModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer\CustomerModal.Designer.cs">
-      <DependentUpon>CustomerModal.cs</DependentUpon>
+    <Compile Include="Customer\frmCustomerModal.Designer.cs">
+      <DependentUpon>frmCustomerModal.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard\Dashboard.cs">
       <SubType>Form</SubType>
@@ -76,25 +76,25 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product\Product.cs">
+    <Compile Include="Product\frmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product\Product.Designer.cs">
-      <DependentUpon>Product.cs</DependentUpon>
+    <Compile Include="Product\frmProduct.Designer.cs">
+      <DependentUpon>frmProduct.cs</DependentUpon>
     </Compile>
-    <Compile Include="Product\ProductModal.cs">
+    <Compile Include="Product\frmProductModal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Product\ProductModal.Designer.cs">
-      <DependentUpon>ProductModal.cs</DependentUpon>
+    <Compile Include="Product\frmProductModal.Designer.cs">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Customer\Customer.resx">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <EmbeddedResource Include="Customer\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer\CustomerModal.resx">
-      <DependentUpon>CustomerModal.cs</DependentUpon>
+    <EmbeddedResource Include="Customer\frmCustomerModal.resx">
+      <DependentUpon>frmCustomerModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
@@ -105,11 +105,11 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product\Product.resx">
-      <DependentUpon>Product.cs</DependentUpon>
+    <EmbeddedResource Include="Product\frmProduct.resx">
+      <DependentUpon>frmProduct.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product\ProductModal.resx">
-      <DependentUpon>ProductModal.cs</DependentUpon>
+    <EmbeddedResource Include="Product\frmProductModal.resx">
+      <DependentUpon>frmProductModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

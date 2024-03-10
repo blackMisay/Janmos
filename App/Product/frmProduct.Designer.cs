@@ -1,6 +1,6 @@
 ﻿namespace App.Product
 {
-    partial class Product
+    partial class frmProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -48,18 +48,24 @@
             this.panel1.Controls.Add(this.dgvProduct);
             this.panel1.Location = new System.Drawing.Point(12, 72);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(751, 382);
+            this.panel1.Size = new System.Drawing.Size(1150, 654);
             this.panel1.TabIndex = 55;
             // 
             // dgvProduct
             // 
+            this.dgvProduct.AllowUserToAddRows = false;
+            this.dgvProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProduct.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvProduct.Location = new System.Drawing.Point(0, 0);
             this.dgvProduct.Name = "dgvProduct";
+            this.dgvProduct.RowHeadersVisible = false;
+            this.dgvProduct.RowHeadersWidth = 51;
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(751, 382);
+            this.dgvProduct.Size = new System.Drawing.Size(1150, 654);
             this.dgvProduct.TabIndex = 3;
+            this.dgvProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
             // 
             // btnAdd
             // 
@@ -67,7 +73,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.Lime;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(492, 460);
+            this.btnAdd.Location = new System.Drawing.Point(891, 732);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 40);
             this.btnAdd.TabIndex = 58;
@@ -81,7 +87,7 @@
             this.btnEdit.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(587, 460);
+            this.btnEdit.Location = new System.Drawing.Point(986, 732);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(80, 40);
             this.btnEdit.TabIndex = 59;
@@ -95,12 +101,13 @@
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(682, 460);
+            this.btnDelete.Location = new System.Drawing.Point(1081, 732);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 40);
             this.btnDelete.TabIndex = 60;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblModule
             // 
@@ -109,7 +116,7 @@
             this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModule.Location = new System.Drawing.Point(12, 9);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(152, 25);
+            this.lblModule.Size = new System.Drawing.Size(551, 25);
             this.lblModule.TabIndex = 63;
             this.lblModule.Text = "Products Record";
             // 
@@ -117,28 +124,29 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSearch.Location = new System.Drawing.Point(563, 24);
+            this.txtSearch.Location = new System.Drawing.Point(962, 24);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 25);
+            this.txtSearch.Size = new System.Drawing.Size(200, 29);
             this.txtSearch.TabIndex = 61;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblSearch
             // 
             this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(496, 25);
+            this.lblSearch.Location = new System.Drawing.Point(895, 25);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(61, 21);
+            this.lblSearch.Size = new System.Drawing.Size(77, 27);
             this.lblSearch.TabIndex = 62;
             this.lblSearch.Text = "Search";
             // 
-            // Product
+            // frmProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(775, 509);
+            this.ClientSize = new System.Drawing.Size(1174, 781);
             this.Controls.Add(this.lblModule);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblSearch);
@@ -148,8 +156,9 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Product";
+            this.Name = "frmProduct";
             this.Text = "Product";
+            this.Load += new System.EventHandler(this.frmProduct_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
             this.ResumeLayout(false);
