@@ -22,11 +22,18 @@ namespace App.Product
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            using (frmProductModal info = new frmProductModal(this.selectedProductId))
+            if (selectedProductId != 0)
             {
-                info.ShowDialog();
+                using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                {
+                    info.ShowDialog();
+                }
+                this.LoadProductData();
             }
-            this.LoadProductData();
+            else
+            {
+                MessageBox.Show("Please select a product to update.", "Update product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void frmProduct_Load(object sender, EventArgs e)
