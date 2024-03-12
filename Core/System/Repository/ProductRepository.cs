@@ -17,7 +17,7 @@ namespace Core.System.Repository
 
         public DataTable LoadProductData(string searchValue)
         {
-            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category` FROM product JOIN category ON product.category = category.id WHERE product.name LIKE @val ORDER BY product.id DESC;";
+            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category` FROM product JOIN category ON product.category = category.id WHERE product.name LIKE @val OR product.id LIKE @val OR category.description LIKE @val ORDER BY product.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> productParams = new Dictionary<string, string>()
