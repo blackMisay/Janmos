@@ -20,7 +20,6 @@ namespace App
         private static readonly int MAX_WIDTH = 230;
 
         private Form activeFormModule = null;
-        bool sidebarExpand = false;
 
         public Main()
         {
