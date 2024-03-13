@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="sidebarTransition.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>27, 20</value>
+  <metadata name="tpMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 20</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnToggle.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        qgAAAKoBBgpwTwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHmSURBVEhLrZVN
+        qAAAAKgBefSzxgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHmSURBVEhLrZVN
         LwNhEIA3/AISP6QrHBBaB8TBQVIn3P0BcUAbjUolbu4OrGgliEgJWl8VFUQaiRAuQqVVu1uUIGW8s3ZF
         uxPefkzypId9Z56d2bcZwQi7D0ptktptlZSgTVIUBuQIy5EDjZLa5XRCiV72O5p9D+XswGZWQt7gS9ZJ
         yTKt+PebF6+4AUq0TnAs1IFiYJ1WOgV95uSBwpHXWQeKan6gQKtXhbZZPvAsVYMho8D0YOPqDXKN1TMZ
@@ -136,4 +136,7 @@
         jdRZQH8AAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="tpMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>200, 20</value>
+  </metadata>
 </root>
