@@ -48,7 +48,7 @@
             this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModule.Location = new System.Drawing.Point(12, 9);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(159, 25);
+            this.lblModule.Size = new System.Drawing.Size(201, 32);
             this.lblModule.TabIndex = 0;
             this.lblModule.Text = "Customer Record";
             // 
@@ -60,7 +60,7 @@
             this.pnlCustomer.Controls.Add(this.dataGridView1);
             this.pnlCustomer.Location = new System.Drawing.Point(12, 72);
             this.pnlCustomer.Name = "pnlCustomer";
-            this.pnlCustomer.Size = new System.Drawing.Size(751, 382);
+            this.pnlCustomer.Size = new System.Drawing.Size(1143, 650);
             this.pnlCustomer.TabIndex = 1;
             // 
             // dataGridView1
@@ -69,13 +69,14 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(751, 382);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1143, 650);
             this.dataGridView1.TabIndex = 0;
             // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(563, 24);
+            this.textBox1.Location = new System.Drawing.Point(955, 24);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 25);
@@ -86,9 +87,9 @@
             this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(496, 25);
+            this.lblSearch.Location = new System.Drawing.Point(888, 25);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(61, 21);
+            this.lblSearch.Size = new System.Drawing.Size(77, 27);
             this.lblSearch.TabIndex = 63;
             this.lblSearch.Text = "Search";
             // 
@@ -98,7 +99,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.Lime;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(492, 460);
+            this.btnAdd.Location = new System.Drawing.Point(884, 728);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(80, 40);
             this.btnAdd.TabIndex = 64;
@@ -112,7 +113,7 @@
             this.btnEdit.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(587, 460);
+            this.btnEdit.Location = new System.Drawing.Point(979, 728);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(80, 40);
             this.btnEdit.TabIndex = 65;
@@ -126,7 +127,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(682, 460);
+            this.btnDelete.Location = new System.Drawing.Point(1074, 728);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(80, 40);
             this.btnDelete.TabIndex = 66;
@@ -135,10 +136,10 @@
             // 
             // Customer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(775, 509);
+            this.ClientSize = new System.Drawing.Size(1167, 777);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);

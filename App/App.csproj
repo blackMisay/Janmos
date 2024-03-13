@@ -119,6 +119,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -138,6 +139,36 @@
       <Project>{62708236-1ea0-4985-98ac-aae83be0f8bf}</Project>
       <Name>Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dashboard_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu-bar_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\product_24p.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reports_24px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
