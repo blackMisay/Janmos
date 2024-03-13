@@ -170,5 +170,23 @@
   <ItemGroup>
     <None Include="Resources\reports_24px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\previouspage_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-page-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lastpage_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\firstpage_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-page-16 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-next-page-16 %282%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -93,6 +93,16 @@ namespace App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap firstpage_16px {
+            get {
+                object obj = ResourceManager.GetObject("firstpage_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap inventory_24px {
             get {
                 object obj = ResourceManager.GetObject("inventory_24px", resourceCulture);
@@ -103,9 +113,39 @@ namespace App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lastpage_16px {
+            get {
+                object obj = ResourceManager.GetObject("lastpage_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap menu_bar_24px {
             get {
                 object obj = ResourceManager.GetObject("menu_bar_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nextpage_16px {
+            get {
+                object obj = ResourceManager.GetObject("nextpage_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap previouspage_16px {
+            get {
+                object obj = ResourceManager.GetObject("previouspage_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
