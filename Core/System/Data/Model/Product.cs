@@ -12,5 +12,18 @@ namespace Core.System.Data.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public Category Category { get; set; }
+        public MetricUnit MetricUnit { get; set; }
+
+        private double _double;
+        public string MetricValue 
+        { 
+            get { return _double.ToString(); } 
+            set 
+            { if (double.TryParse(value,out double result)) 
+                {
+                    _double = result;
+                }
+            }
+        }
     }
 }

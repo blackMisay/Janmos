@@ -35,6 +35,8 @@ namespace App.Product
             product.Name = this.txtProductName.Text;
             product.Description = this.txtDescription.Text;
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
+            product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbUnit.SelectedValue) };
+            product.MetricValue = this.txtValue.Text;
 
             productController = new ProductRepository();
             if (productController.Save(product))
@@ -54,6 +56,10 @@ namespace App.Product
             cmbCategory.DataSource = productController.LoadDataList("SELECT id, CONCAT(`name`,'-',`description`) AS `name` FROM dbjanmos.category;");
             cmbCategory.ValueMember = "id";
             cmbCategory.DisplayMember = "name";
+
+            cmbUnit.DataSource = productController.LoadDataList("SELECT id, CONCAT(`name`,' (',`symbol`,')') AS `name` FROM dbjanmos.metricunit;");
+            cmbUnit.ValueMember = "id";
+            cmbUnit.DisplayMember = "name";
         }
 
         private void InitializeSelectedProductData()
@@ -68,6 +74,8 @@ namespace App.Product
             this.txtProductName.Text = product.Name;
             this.txtDescription.Text = product.Description;
             cmbCategory.SelectedValue = product.Category.Id;
+            cmbUnit.SelectedValue = product.MetricUnit.Id;
+            this.txtValue.Text = product.MetricValue;
         }
     }
 }
