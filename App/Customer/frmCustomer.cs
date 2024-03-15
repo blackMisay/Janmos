@@ -18,6 +18,11 @@ namespace App.Customer
             InitializeComponent();
         }
 
+        private void Customer_Load(object sender, EventArgs e)
+        {
+            cmbRecordCount.SelectedItem = "20";
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             using (CustomerModal cmodal = new CustomerModal())
@@ -25,11 +30,6 @@ namespace App.Customer
                 cmodal.ShowDialog();
             }
             this.Show();
-        }
-
-        private void Customer_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEdit_Click(object sender, EventArgs e)

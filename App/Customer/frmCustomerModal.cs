@@ -17,9 +17,15 @@ namespace App.Customer
             InitializeComponent();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
+        }
+
+        private void CustomerModal_Load(object sender, EventArgs e)
+        {
+            this.txtCustomerName.Focus();
+            cmbStatus.SelectedItem = "Active";
         }
     }
 }
