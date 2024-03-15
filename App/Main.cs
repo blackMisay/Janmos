@@ -45,7 +45,7 @@ namespace App
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Product.frmProduct());
+            this.openFormModule(new App.Product.Product());
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
