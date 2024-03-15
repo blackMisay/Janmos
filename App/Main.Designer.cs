@@ -78,7 +78,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label1.Size = new System.Drawing.Size(412, 27);
+            this.label1.Size = new System.Drawing.Size(334, 23);
             this.label1.TabIndex = 5;
             this.label1.Text = "J-anmos - Sales and Inventory Management System";
             // 
@@ -105,7 +105,7 @@
             this.pnlModule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlModule.Location = new System.Drawing.Point(70, 42);
             this.pnlModule.Name = "pnlModule";
-            this.pnlModule.Size = new System.Drawing.Size(1126, 689);
+            this.pnlModule.Size = new System.Drawing.Size(1126, 664);
             this.pnlModule.TabIndex = 3;
             // 
             // pnlProductContainer
@@ -147,7 +147,7 @@
             this.pnlMenuSidebar.Location = new System.Drawing.Point(0, 42);
             this.pnlMenuSidebar.Name = "pnlMenuSidebar";
             this.pnlMenuSidebar.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
-            this.pnlMenuSidebar.Size = new System.Drawing.Size(70, 732);
+            this.pnlMenuSidebar.Size = new System.Drawing.Size(70, 707);
             this.pnlMenuSidebar.TabIndex = 4;
             // 
             // btnReports
@@ -184,7 +184,7 @@
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.Image = global::App.Properties.Resources.account_24px;
-            this.btnAccount.Location = new System.Drawing.Point(10, 627);
+            this.btnAccount.Location = new System.Drawing.Point(10, 602);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(50, 45);
             this.btnAccount.TabIndex = 18;
@@ -194,7 +194,7 @@
             // panel5
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(10, 672);
+            this.panel5.Location = new System.Drawing.Point(10, 647);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
             this.panel5.Size = new System.Drawing.Size(50, 10);
@@ -209,7 +209,7 @@
             this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetting.Image = global::App.Properties.Resources.settings_24px;
-            this.btnSetting.Location = new System.Drawing.Point(10, 682);
+            this.btnSetting.Location = new System.Drawing.Point(10, 657);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(50, 45);
             this.btnSetting.TabIndex = 16;
@@ -338,17 +338,17 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(70, 731);
+            this.panel1.Location = new System.Drawing.Point(70, 706);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1126, 43);
             this.panel1.TabIndex = 5;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1196, 774);
+            this.ClientSize = new System.Drawing.Size(1196, 749);
             this.Controls.Add(this.pnlModule);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlMenuSidebar);

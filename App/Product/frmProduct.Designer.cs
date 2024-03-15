@@ -126,7 +126,7 @@
             this.txtSearch.BackColor = System.Drawing.SystemColors.Window;
             this.txtSearch.Location = new System.Drawing.Point(962, 24);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 29);
+            this.txtSearch.Size = new System.Drawing.Size(200, 25);
             this.txtSearch.TabIndex = 61;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -137,16 +137,16 @@
             this.lblSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearch.Location = new System.Drawing.Point(895, 25);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(77, 27);
+            this.lblSearch.Size = new System.Drawing.Size(61, 21);
             this.lblSearch.TabIndex = 62;
             this.lblSearch.Text = "Search";
             // 
             // frmProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(1174, 781);
+            this.ClientSize = new System.Drawing.Size(1174, 749);
             this.Controls.Add(this.lblModule);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblSearch);

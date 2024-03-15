@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Core.System.Data.Model
 {
-    public class MetricUnit
+    public class MetricUnitCategory
     {
         public int Id { get; set; }
-        public string Symbol { get; set; }
-        public string Name { get; set; }
-        public MetricUnitCategory Category { get; set; }
+        public string Description { get; set; }
     }
 }
