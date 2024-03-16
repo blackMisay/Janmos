@@ -54,7 +54,7 @@
             this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModule.Location = new System.Drawing.Point(-6, 0);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(225, 32);
+            this.lblModule.Size = new System.Drawing.Size(178, 25);
             this.lblModule.TabIndex = 0;
             this.lblModule.Text = "Manage Customers";
             // 
@@ -76,6 +76,7 @@
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomers.Size = new System.Drawing.Size(1127, 534);
             this.dgvCustomers.TabIndex = 0;
+            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
             // lblSearch
             // 
@@ -84,7 +85,7 @@
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearch.Location = new System.Drawing.Point(860, 107);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(61, 23);
+            this.lblSearch.Size = new System.Drawing.Size(49, 19);
             this.lblSearch.TabIndex = 63;
             this.lblSearch.Text = "Search";
             // 
@@ -123,7 +124,7 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(927, 104);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 30);
+            this.txtSearch.Size = new System.Drawing.Size(200, 26);
             this.txtSearch.TabIndex = 65;
             // 
             // cmbRecordCount
@@ -132,7 +133,7 @@
             this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRecordCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbRecordCount.FormattingEnabled = true;
-            this.cmbRecordCount.ItemHeight = 23;
+            this.cmbRecordCount.ItemHeight = 19;
             this.cmbRecordCount.Items.AddRange(new object[] {
             "5",
             "10",
@@ -142,7 +143,7 @@
             "200"});
             this.cmbRecordCount.Location = new System.Drawing.Point(1085, 718);
             this.cmbRecordCount.Name = "cmbRecordCount";
-            this.cmbRecordCount.Size = new System.Drawing.Size(61, 31);
+            this.cmbRecordCount.Size = new System.Drawing.Size(61, 27);
             this.cmbRecordCount.TabIndex = 68;
             // 
             // btnLastPage
@@ -207,10 +208,10 @@
             // 
             // Customer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1167, 777);
+            this.ClientSize = new System.Drawing.Size(1167, 749);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.btnPrevious);
