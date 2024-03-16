@@ -22,7 +22,7 @@ namespace Core.System.Repository
 
             Dictionary<string, string> productParams = new Dictionary<string, string>()
             { 
-                { "@val", searchValue + "%" }
+                { "@val", "%" + searchValue + "%" }
             };
             
             return upgradeManager.Load(query, productParams);

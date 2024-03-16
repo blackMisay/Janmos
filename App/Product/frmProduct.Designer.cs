@@ -28,152 +28,265 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAdd = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProduct));
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.lblModule = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
-            this.panel1.SuspendLayout();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.cmbRecordCount = new System.Windows.Forms.ComboBox();
+            this.tipProduct = new System.Windows.Forms.ToolTip(this.components);
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnAdd
+            // panel2
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.BackColor = System.Drawing.Color.Lime;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(891, 697);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(80, 40);
-            this.btnAdd.TabIndex = 58;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.panel2.Controls.Add(this.btnEdit);
+            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.txtSearch);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.btnNew);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(20, 25);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1127, 140);
+            this.panel2.TabIndex = 68;
             // 
             // btnEdit
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(986, 697);
+            this.btnEdit.Location = new System.Drawing.Point(149, 92);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(80, 40);
-            this.btnEdit.TabIndex = 59;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Size = new System.Drawing.Size(79, 45);
+            this.btnEdit.TabIndex = 67;
+            this.btnEdit.Text = "&Edit";
+            this.tipProduct.SetToolTip(this.btnEdit, "Update a product");
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(1081, 697);
+            this.btnDelete.Location = new System.Drawing.Point(234, 92);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(80, 40);
-            this.btnDelete.TabIndex = 60;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Size = new System.Drawing.Size(79, 45);
+            this.btnDelete.TabIndex = 66;
+            this.btnDelete.Text = "&Delete";
+            this.tipProduct.SetToolTip(this.btnDelete, "Delete a product");
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // lblModule
-            // 
-            this.lblModule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModule.Location = new System.Drawing.Point(12, 9);
-            this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(551, 25);
-            this.lblModule.TabIndex = 63;
-            this.lblModule.Text = "Products Record";
-            // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSearch.Location = new System.Drawing.Point(962, 24);
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(927, 104);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 25);
-            this.txtSearch.TabIndex = 61;
+            this.txtSearch.Size = new System.Drawing.Size(200, 30);
+            this.txtSearch.TabIndex = 65;
+            this.tipProduct.SetToolTip(this.txtSearch, "Search a product by name");
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // lblSearch
+            // label1
             // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(895, 25);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(61, 21);
-            this.lblSearch.TabIndex = 62;
-            this.lblSearch.Text = "Search";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.dgvProduct);
-            this.panel1.Location = new System.Drawing.Point(12, 72);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1150, 619);
-            this.panel1.TabIndex = 55;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(-6, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 38);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Manage Products";
+            // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(195)))), ((int)(((byte)(112)))));
+            this.btnNew.FlatAppearance.BorderSize = 0;
+            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.ForeColor = System.Drawing.Color.White;
+            this.btnNew.Location = new System.Drawing.Point(0, 92);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(143, 45);
+            this.btnNew.TabIndex = 64;
+            this.btnNew.Text = "&New Product";
+            this.tipProduct.SetToolTip(this.btnNew, "Create a new product");
+            this.btnNew.UseVisualStyleBackColor = false;
+            this.btnNew.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(923, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(207, 23);
+            this.label2.TabIndex = 63;
+            this.label2.Text = "Search by (Product name)";
             // 
             // dgvProduct
             // 
             this.dgvProduct.AllowUserToAddRows = false;
+            this.dgvProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProduct.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProduct.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvProduct.Location = new System.Drawing.Point(0, 0);
+            this.dgvProduct.Location = new System.Drawing.Point(20, 171);
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.RowHeadersVisible = false;
             this.dgvProduct.RowHeadersWidth = 51;
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(1150, 619);
-            this.dgvProduct.TabIndex = 3;
+            this.dgvProduct.Size = new System.Drawing.Size(1127, 557);
+            this.dgvProduct.TabIndex = 66;
             this.dgvProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnLastPage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLastPage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLastPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
+            this.btnLastPage.Location = new System.Drawing.Point(622, 739);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
+            this.btnLastPage.TabIndex = 76;
+            this.tipProduct.SetToolTip(this.btnLastPage, "Last page");
+            this.btnLastPage.UseVisualStyleBackColor = false;
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnFirstPage.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnFirstPage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFirstPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
+            this.btnFirstPage.Location = new System.Drawing.Point(490, 738);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
+            this.btnFirstPage.TabIndex = 75;
+            this.tipProduct.SetToolTip(this.btnFirstPage, "First page");
+            this.btnFirstPage.UseVisualStyleBackColor = false;
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPrevious.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPrevious.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
+            this.btnPrevious.Location = new System.Drawing.Point(534, 738);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.TabIndex = 74;
+            this.tipProduct.SetToolTip(this.btnPrevious, "Previous page");
+            this.btnPrevious.UseVisualStyleBackColor = false;
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnNext.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
+            this.btnNext.Location = new System.Drawing.Point(578, 739);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.TabIndex = 73;
+            this.tipProduct.SetToolTip(this.btnNext, "Next page");
+            this.btnNext.UseVisualStyleBackColor = false;
+            // 
+            // cmbRecordCount
+            // 
+            this.cmbRecordCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRecordCount.BackColor = System.Drawing.Color.LightGray;
+            this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecordCount.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRecordCount.FormattingEnabled = true;
+            this.cmbRecordCount.ItemHeight = 25;
+            this.cmbRecordCount.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20",
+            "50",
+            "100",
+            "200"});
+            this.cmbRecordCount.Location = new System.Drawing.Point(1085, 739);
+            this.cmbRecordCount.Name = "cmbRecordCount";
+            this.cmbRecordCount.Size = new System.Drawing.Size(61, 33);
+            this.cmbRecordCount.TabIndex = 77;
+            this.tipProduct.SetToolTip(this.cmbRecordCount, "Record count");
             // 
             // frmProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PowderBlue;
-            this.ClientSize = new System.Drawing.Size(1174, 749);
-            this.Controls.Add(this.lblModule);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.lblSearch);
-            this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.panel1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
+            this.ClientSize = new System.Drawing.Size(1167, 777);
+            this.Controls.Add(this.cmbRecordCount);
+            this.Controls.Add(this.btnLastPage);
+            this.Controls.Add(this.btnFirstPage);
+            this.Controls.Add(this.btnPrevious);
+            this.Controls.Add(this.btnNext);
+            this.Controls.Add(this.dgvProduct);
+            this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProduct";
+            this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
             this.Text = "Product";
             this.Load += new System.EventHandler(this.frmProduct_Load);
-            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label lblModule;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvProduct;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.ComboBox cmbRecordCount;
+        private System.Windows.Forms.ToolTip tipProduct;
     }
 }
