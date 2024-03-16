@@ -10,14 +10,14 @@ namespace Core.System.Repository
         UpgradeManager upgradeManager;
         public DataTable LoadProductData()
         {
-            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CASE WHEN product.metricUnit = 1 THEN CONCAT(product.metricValue * 1000, ' (', metricunit.symbol, ')') ELSE CONCAT(product.metricValue, ' (', metricunit.symbol, ')') END AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id ORDER BY product.id DESC;";
+            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id ORDER BY product.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadProductData(string searchValue)
         {
-            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CASE WHEN product.metricUnit = 1 THEN CONCAT(product.metricValue * 1000, ' (', metricunit.symbol, ')') ELSE CONCAT(product.metricValue, ' (', metricunit.symbol, ')') END AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.name LIKE @val ORDER BY product.id DESC;";
+            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.name LIKE @val ORDER BY product.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> productParams = new Dictionary<string, string>()

@@ -14,14 +14,14 @@ namespace Core.System.Data.Model
         public Category Category { get; set; }
         public MetricUnit MetricUnit { get; set; }
 
-        private double _double;
+        private double _metricValue;
         public string MetricValue 
         { 
-            get { return _double.ToString(); } 
+            get { return _metricValue.ToString(); } 
             set 
             { if (double.TryParse(value,out double result)) 
                 {
-                    _double = result;
+                    _metricValue = result;
                 }
             }
         }

@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="System\Data\Model\Category.cs" />
+    <Compile Include="System\Data\Model\MetricUnitCategory.cs" />
     <Compile Include="System\Data\Model\MetricUnit.cs" />
     <Compile Include="System\Data\Model\Product.cs" />
     <Compile Include="System\Data\Model\User.cs" />
