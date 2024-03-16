@@ -60,6 +60,7 @@ namespace App.Product
         {
             ProductRepository productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData();
+            this.dgvProduct.Columns["Metric Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
