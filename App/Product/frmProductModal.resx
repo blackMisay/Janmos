@@ -117,4 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="tipProducts.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAotJREFUaEPtls1qFEEURsuAvoK+gRudTbbqop10GX9QJONKjfgO7pRRUDC60ZUT
+        QqyWuND4EIpPoCsFfxbJE8i4E7nWTW6PbfF1V1d6TNViDhwITdXtM6G7KTVjxowZ6UGvjp2l171t2uxR
+        EnLLm+OLkucnqfi/bkmeH7A5CSXPD9qcgpLnB21OQcnzgzanoOT5QZtTUPL8oM0pKHntoZGiFJSccNCw
+        GEpOOGhYDCUnHDQshpITDhoWQ8kJBw2LoeSEg4bFUHLCQcNiKDnhoGExlJxw0LAYSk44aFgMJSccNCyG
+        khMOGhZDyQkHDYuh5ISDhv0Pf43m6O3aEXqw3qMb5gSdK/o78t98rV/oK4PNwSHJag+62bR9v3aYrppT
+        dLrQzZr8a/+5vixp7UA3/HBH0cfb/ms+f48O0Gj9KI5t0ujHw+FwThKbcW/686miexcU3bWOn9Rfa+Oe
+        4ifmK5LYjHvTjZuKbuW7Fsv113zyY4PDNLmgNWxm8kuSWQ+6eRnru1Ynv7DXzEkYxbqgNWxm9Hfvi40C
+        uv4A/tqgoFIXtKY0M2cGkopBAV1/wH37WUQxpS5oTWlW6JeSikEBXb3uPD6hVPfal/mzpGLcm5f/6Sbd
+        Pa7nTf+fiFCqe+0ndSypGBTQ1Wn+APsl+iGpGBTQ1WV7PKhGhFLda9+BT5KKoWdqG0V0kc821QhXF7Rm
+        osk3JBVDq2rR3nTLjejiu2l+RouFJUndP+ZX5w/al+8LCmJd0BrWPj7f9nRCnQZ8qkRRrAtas+MLfVHG
+        xYFPlTCsjUY/lDHx4CNxVuSPYGCj+Urr4/R+wKfKpndiIq+J/djUwS82H8z4bMPfdhs7Zvnv3WsLS7xG
+        lldQ6g8Xe5L9XnVMhwAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

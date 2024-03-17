@@ -7,9 +7,11 @@ namespace App.Product
     public partial class frmProduct : Form
     {
         private int selectedProductId = 0;
+        private readonly int defaultRowCount = 20;
         public frmProduct()
         {
             InitializeComponent();
+            cmbRecordCount.SelectedItem = defaultRowCount.ToString();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

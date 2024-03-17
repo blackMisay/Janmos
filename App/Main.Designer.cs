@@ -78,7 +78,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label1.Size = new System.Drawing.Size(334, 23);
+            this.label1.Size = new System.Drawing.Size(412, 27);
             this.label1.TabIndex = 5;
             this.label1.Text = "J-anmos - Sales and Inventory Management System";
             // 
@@ -105,7 +105,7 @@
             this.pnlModule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlModule.Location = new System.Drawing.Point(70, 42);
             this.pnlModule.Name = "pnlModule";
-            this.pnlModule.Size = new System.Drawing.Size(1126, 664);
+            this.pnlModule.Size = new System.Drawing.Size(1126, 692);
             this.pnlModule.TabIndex = 3;
             // 
             // pnlProductContainer
@@ -338,14 +338,14 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(70, 706);
+            this.panel1.Location = new System.Drawing.Point(70, 734);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1126, 43);
+            this.panel1.Size = new System.Drawing.Size(1126, 15);
             this.panel1.TabIndex = 5;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 749);

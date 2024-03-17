@@ -74,7 +74,7 @@
             this.dgvCustomers.RowHeadersVisible = false;
             this.dgvCustomers.RowHeadersWidth = 51;
             this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(1127, 534);
+            this.dgvCustomers.Size = new System.Drawing.Size(1127, 563);
             this.dgvCustomers.TabIndex = 0;
             // 
             // lblSearch
@@ -128,7 +128,7 @@
             // 
             // cmbRecordCount
             // 
-            this.cmbRecordCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRecordCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRecordCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbRecordCount.FormattingEnabled = true;
@@ -140,20 +140,20 @@
             "50",
             "100",
             "200"});
-            this.cmbRecordCount.Location = new System.Drawing.Point(1085, 718);
+            this.cmbRecordCount.Location = new System.Drawing.Point(1085, 740);
             this.cmbRecordCount.Name = "cmbRecordCount";
             this.cmbRecordCount.Size = new System.Drawing.Size(61, 31);
             this.cmbRecordCount.TabIndex = 68;
             // 
             // btnLastPage
             // 
-            this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnLastPage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLastPage.FlatAppearance.BorderSize = 0;
             this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
-            this.btnLastPage.Location = new System.Drawing.Point(634, 726);
+            this.btnLastPage.Location = new System.Drawing.Point(634, 740);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(30, 30);
             this.btnLastPage.TabIndex = 72;
@@ -162,13 +162,13 @@
             // 
             // btnFirstPage
             // 
-            this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnFirstPage.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnFirstPage.FlatAppearance.BorderSize = 0;
             this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirstPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
-            this.btnFirstPage.Location = new System.Drawing.Point(502, 726);
+            this.btnFirstPage.Location = new System.Drawing.Point(502, 740);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
             this.btnFirstPage.TabIndex = 71;
@@ -177,13 +177,13 @@
             // 
             // btnPrevious
             // 
-            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPrevious.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnPrevious.FlatAppearance.BorderSize = 0;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(546, 726);
+            this.btnPrevious.Location = new System.Drawing.Point(546, 740);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 70;
@@ -192,13 +192,13 @@
             // 
             // btnNext
             // 
-            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnNext.FlatAppearance.BorderSize = 0;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(590, 726);
+            this.btnNext.Location = new System.Drawing.Point(590, 740);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 69;
