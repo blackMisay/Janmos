@@ -2,22 +2,51 @@
 using Core.System.Data.Model;
 using System.Data;
 using System;
+using System.Data.SqlClient;
 
 namespace Core.System.Repository
 {
     public class CustomerRepository
     {
         UpgradeManager upgradeManager;
+        private string connectionString = "YourConnectionStringw"; // Replace with your connection string
+
+        public List<entity> GetEnumValuesFromDatabase()
+        {
+            List<entity> enumValues = new List<entity>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT EnumColumn FROM EnumTable"; // Adjust the query accordingly
+                SqlCommand command = new SqlCommand(query, connection);
+
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        entity enumValue;
+                        if (Enum.TryParse(reader["EnumColumn"].ToString(), out enumValue))
+                        {
+                            enumValues.Add(enumValue);
+                        }
+                    }
+                }
+            }
+
+            return enumValues;
+        }
         public DataTable LoadCustomerData()
         {
-            string query = "SELECT customer.id AS `Customer Number`,customer.name AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', customer.region AS 'Region', customer.municipality AS 'Municipality', customer.baranggay AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' FROM customer ORDER BY customer.id DESC;";
+            string query = "SELECT customer.id AS `Customer Number`,customer.`name` AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', region.`name` AS 'Region', province.`name` AS 'Province', municipality.`name` AS 'Municipality', baranggay.`name` AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id ORDER BY customer.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadCustomerData(string searchValue)
         {
-            string query = "SELECT customer.id AS `Customer Number`,customer.name AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', customer.region AS 'Region', customer.municipality AS 'Municipality', customer.baranggay AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' WHERE customer.name LIKE @val ORDER BY customer.id DESC;";
+            string query = "SELECT customer.id AS `Customer Number`,customer.name AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id',  region.`name` AS 'Region', province.`name` AS 'Province', municipality.`name` AS 'Municipality', baranggay.`name` AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.name LIKE @val ORDER BY customer.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> customerParams = new Dictionary<string, string>()
@@ -40,16 +69,17 @@ namespace Core.System.Repository
                 foreach (DataRow row in dt.Rows)
                 {
                     customer.Name = row["name"].ToString();
-                    customer.Entity = row["entity"].ToString();
-                    customer.EntityName = row["entityname"].ToString();
-                    customer.MobileNum = row["mobilenum"].ToString();
-                    customer.TeleNum = row["phonenum"].ToString();
+                    customer.Entity = new entity();
+                    customer.Entityname = row["entityname"].ToString();
+                    customer.Mobilenum = row["mobilenum"].ToString();
+                    customer.Telenum = row["phonenum"].ToString();
                     customer.Extension = row["extension"].ToString();
                     customer.Email = row["primaryemail"].ToString();
-                    customer.SocialNetId = row["socialnetid"].ToString();
-                    customer.Region = row["region"].ToString();
-                    customer.Municipality = row["municipality"].ToString();
-                    customer.Baranggay = row["baranggay"].ToString();
+                    customer.Socialnetid = row["socialnetid"].ToString();
+                    customer.Region = new Region() { Id = Convert.ToInt32(row["region"]) };
+                    customer.Province = new Province() { Id = Convert.ToInt32(row["province"]) };
+                    customer.Municipality = new Municipality() { Id = Convert.ToInt32(row["municipality"]) };
+                    customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(row["baranggay"]) };
                     customer.Housenum = row["housenum"].ToString();
                     customer.Postal = row["postal"].ToString();
                 }
@@ -81,16 +111,17 @@ namespace Core.System.Repository
             {
                 {"@Id", customer.Id.ToString()},
                 {"@Name", customer.Name},
-                {"@Entity", customer.Entity},
-                {"@Entityname", customer.EntityName},
-                {"@Mobilenum", customer.MobileNum},
-                {"@Telenum", customer.TeleNum},
+                {"@Entity", customer.Entity.ToString()},
+                {"@Entityname", customer.Entityname},
+                {"@Mobilenum", customer.Mobilenum},
+                {"@Telenum", customer.Telenum},
                 {"@Extension", customer.Extension},
                 {"@Email", customer.Email},
-                {"@Socialnetid", customer.SocialNetId},
-                {"@Region", customer.Region},
-                {"@Municipality", customer.Municipality},
-                {"@Baranggay", customer.Baranggay},
+                {"@Socialnetid", customer.Socialnetid},
+                {"@Region", customer.Region.Id.ToString()},
+                {"@Province", customer.Province.Id.ToString()},
+                {"@Municipality", customer.Municipality.Id.ToString()},
+                {"@Baranggay", customer.Baranggay.Id.ToString()},
                 {"@Housenum", customer.Housenum},
                 {"@Postal", customer.Postal}
             };

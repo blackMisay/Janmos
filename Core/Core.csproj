@@ -67,11 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="System\Data\Model\Baranggay.cs" />
     <Compile Include="System\Data\Model\Category.cs" />
     <Compile Include="System\Data\Model\Customer.cs" />
     <Compile Include="System\Data\Model\MetricUnitCategory.cs" />
     <Compile Include="System\Data\Model\MetricUnit.cs" />
+    <Compile Include="System\Data\Model\Municipality.cs" />
     <Compile Include="System\Data\Model\Product.cs" />
+    <Compile Include="System\Data\Model\Province.cs" />
+    <Compile Include="System\Data\Model\Region.cs" />
     <Compile Include="System\Data\Model\User.cs" />
     <Compile Include="System\Data\UpgradeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

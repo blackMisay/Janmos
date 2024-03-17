@@ -1,6 +1,7 @@
 ﻿using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,14 @@ namespace App.Customer
         {
             InitializeComponent();
             InitializeComponentsData();
+            cmbEntity.DataSource = Enum.GetValues(typeof(entity));
+        }
+
+        public CustomerModal(int customerId)
+        {
+            InitializeComponent();
+            this.Id = customerId;
+            InitializeSelectedCustomerData();
         }
 
         private void btn_Cancel_Click(object sender, EventArgs e)
@@ -38,38 +47,75 @@ namespace App.Customer
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
             customer.Id = this.Id;
             customer.Name = this.txtCustomerName.Text;
-            customer.EntityName = this.txtEntityName.Text;
-            customer.MobileNum = this.txtMobileNumber.Text;
-            customer.TeleNum = this.txtPhoneNumber.Text;
+            customer.Entity = new entity();
+            customer.Entityname = this.txtEntityName.Text;
+            customer.Mobilenum = this.txtMobileNumber.Text;
+            customer.Telenum = this.txtPhoneNumber.Text;
             customer.Extension = this.txtPhoneNumberExtension.Text;
             customer.Email = this.txtEmailAddress.Text;
-            customer.SocialNetId= this.txtSocialNetworkID.Text;
+            customer.Socialnetid= this.txtSocialNetworkID.Text;
+            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion) };
+            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince) };
+            customer.Municipality= new Municipality() { Id = Convert.ToInt32(cmbProvince) };
+            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict) };
+            customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
-            customer.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
-            customer.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbUnit.SelectedValue) };
-            customer.MetricValue = this.txtValue.Text;
 
             customerController = new CustomerRepository();
-            if (productController.Save(product))
+            if (customerController.Save(customer))
             {
-                MessageBox.Show("Save Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
             }
             else
             {
-                MessageBox.Show("Product failed to save", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void InitializeComponentsData()
         {
             customerController = new CustomerRepository();
-            cmbCategory.DataSource = productController.LoadDataList("SELECT id, CONCAT(`name`,'-',`description`) AS `name` FROM dbjanmos.category;");
-            cmbCategory.ValueMember = "id";
-            cmbCategory.DisplayMember = "name";
 
-            cmbUnit.DataSource = productController.LoadDataList("SELECT id, CONCAT(`name`,' (',`symbol`,')') AS `name` FROM dbjanmos.metricunit;");
-            cmbUnit.ValueMember = "id";
-            cmbUnit.DisplayMember = "name";
+            cmbRegion.DataSource = customerController.LoadDataList("SELECT region.id, region.`name` FROM region;");
+            cmbRegion.ValueMember = "id";
+            cmbRegion.DisplayMember = "name";
+
+            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.`name` FROM province JOIN region ON province.region = region.id WHERE province.region = region.id;");
+            cmbProvince.ValueMember = "id";
+            cmbProvince.DisplayMember = "name";
+
+            cmbCity.DataSource = customerController.LoadDataList("SELECT municipality.id, province.`name` FROM municipality JOIN province ON municipality.province = province.id WHERE municipality.province = province.id;");
+            cmbCity.ValueMember = "id";
+            cmbCity.DisplayMember = "name";
+
+            cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.`name` FROM baranggay JOIN municipality ON baranggay.municipality = municipality.id WHERE baranggay.municipality = municipality.id;");
+            cmbDistrict.ValueMember = "id";
+            cmbDistrict.DisplayMember = "name";
+        }
+
+        private void InitializeSelectedCustomerData()
+        {
+            InitializeComponentsData();
+
+            customerController = new CustomerRepository();
+
+            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
+            customer = customerController.FetchCustomerData(this.Id);
+
+            this.txtCustomerName.Text = customer.Name;
+            cmbEntity.SelectedItem = customer.Entity.ToString();
+            this.txtEntityName.Text = customer.Entityname;
+            this.txtMobileNumber.Text = customer.Mobilenum;
+            this.txtPhoneNumber.Text = customer.Telenum;
+            this.txtPhoneNumberExtension.Text = customer.Extension;
+            this.txtEmailAddress.Text = customer.Email;
+            this.txtSocialNetworkID.Text = customer.Socialnetid;
+            cmbRegion.SelectedValue = customer.Region.Id;
+            cmbProvince.SelectedValue = customer.Province.Id;
+            cmbCity.SelectedValue = customer.Municipality.Id;
+            cmbDistrict.SelectedValue = customer.Baranggay.Id;
+            this.txtAddress.Text = customer.Housenum;
+            this.txtPostalCode.Text = customer.Postal;
         }
     }
 }
