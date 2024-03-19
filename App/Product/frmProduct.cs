@@ -16,7 +16,8 @@ namespace App.Product
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (frmProductModal info = new frmProductModal()) { 
+            using (frmProductModal info = new frmProductModal())
+            {
                 info.ShowDialog();
             }
             this.LoadProductData();
@@ -67,7 +68,20 @@ namespace App.Product
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (selectedProductId > 0)
+            {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.DeleteProductData(selectedProductId);
+                this.LoadProductData();
+                selectedProductId = 0;
 
+                MessageBox.Show("Delete Successfully.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a product to delete.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
