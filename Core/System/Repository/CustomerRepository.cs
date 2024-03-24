@@ -73,11 +73,11 @@ namespace Core.System.Repository
 
             if (customer.Id > 0)
             {
-                query = "UPDATE dbjanmos.customer SET name=@Name,entity=@Entity,entityname=@Entityname,mobilenum=@Mobilenum,phonenum=@Telenum,extension=@Extension,primaryemail=@Email,socialnetid=@Socialnetid,region=@Region,municipality=@Municipality,baranggay=@Baranggay,housenum=@Housenum,postal=@Postal WHERE id=@Id;";
+                query = "UPDATE dbjanmos.customer SET name=@Name, entity=@Entity, entityname=@Entityname, mobilenum=@Mobilenum, phonenum=@Telenum, extension=@Extension, primaryemail=@Email, socialnetid=@Socialnetid, region=@Region, province=@Province, municipality=@Municipality, baranggay=@Baranggay, housenum=@Housenum, postal=@Postal WHERE id=@Id;";
             }
             else
             {
-                query = "INSERT INTO dbjanmos.customer(name,entity,entityname,mobilenum,phonenum,extension,primaryemail,socialnetid,region,municipality,baranggay,housenum,postal) VALUES(@Name,@Entity,@Entityname,@Mobilenum,@Telenum,@Extension,@Email,@Socialnetid,@Region,@Municipality,@Baranggay,@Housenum,@Postal);";
+                query = "INSERT INTO dbjanmos.customer(name, entity, entityname, mobilenum, phonenum, extension, primaryemail, socialnetid, region, province, municipality, baranggay, housenum, postal) VALUES(@Name, @Entity, @Entityname, @Mobilenum, @Telenum, @Extension, @Email, @Socialnetid, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal);";
             }
 
             Dictionary<string, string> customerParameters = new Dictionary<string, string>()

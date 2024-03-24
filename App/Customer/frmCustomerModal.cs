@@ -17,7 +17,6 @@ namespace App.Customer
     {
         private readonly int Id = 0;
         CustomerRepository customerController;
-        private int selectedItemAddress = 0;
         public CustomerModal()
         {
             InitializeComponent();
@@ -56,7 +55,7 @@ namespace App.Customer
             customer.Socialnetid = this.txtSocialNetworkID.Text;
             customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion) };
             customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince) };
-            customer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbProvince) };
+            customer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbCity) };
             customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict) };
             customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
@@ -102,7 +101,7 @@ namespace App.Customer
             this.txtSocialNetworkID.Text = customer.Socialnetid;
             cmbRegion.SelectedValue = customer.Region.Id;
             cmbProvince.SelectedValue = customer.Province.Id;
-            cmbProvince.SelectedValue = customer.Municipality.Id;
+            cmbCity.SelectedValue = customer.Municipality.Id;
             cmbDistrict.SelectedValue = customer.Baranggay.Id;
             this.txtAddress.Text = customer.Housenum;
             this.txtPostalCode.Text = customer.Postal;
