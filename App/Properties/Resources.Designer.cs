@@ -73,6 +73,16 @@ namespace App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap create_product_48px {
+            get {
+                object obj = ResourceManager.GetObject("create_product_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap customer_24px {
             get {
                 object obj = ResourceManager.GetObject("customer_24px", resourceCulture);
@@ -186,6 +196,16 @@ namespace App.Properties {
         internal static System.Drawing.Bitmap supplier_24px {
             get {
                 object obj = ResourceManager.GetObject("supplier_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap supplier_48px {
+            get {
+                object obj = ResourceManager.GetObject("supplier_48px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

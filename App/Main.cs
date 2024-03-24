@@ -26,6 +26,31 @@ namespace App
             InitializeComponent();
         }
 
+        private void btnToggle_Click(object sender, EventArgs e)
+        {
+            this.ToggleMenu();
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Dashboard.Dashboard());
+        }
+
+        private void btnProduct_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Product.frmProduct());
+        }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Customer.Customer());
+        }
+
+        private void btnSupplier_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new Supplier.frmSupplier());
+        }
+
         private void openFormModule(Form formModule)
         {
             if (!(activeFormModule == null))
@@ -41,26 +66,6 @@ namespace App
             pnlModule.Tag = formModule;
             formModule.BringToFront();
             formModule.Show();
-        }
-
-        private void btnProduct_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new App.Product.frmProduct());
-        }
-
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new App.Customer.Customer());
-        }
-
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new App.Dashboard.Dashboard());
-        }
-
-        private void btnToggle_Click(object sender, EventArgs e)
-        {
-            this.ToggleMenu();
         }
 
         private void ToggleMenu()
