@@ -17,6 +17,7 @@ namespace App.Customer
     {
         private readonly int Id = 0;
         CustomerRepository customerController;
+        private int selectedItemAddress = 0;
         public CustomerModal()
         {
             InitializeComponent();
@@ -77,21 +78,9 @@ namespace App.Customer
 
             cmbEntity.DataSource = Enum.GetValues(typeof(entity));
 
-            cmbRegion.DataSource = customerController.LoadDataList("SELECT region.id, region.`name` FROM region;");
+            cmbRegion.DataSource = customerController.LoadDataList("SELECT DISTINCT region.id, region.`name` FROM region;");
             cmbRegion.ValueMember = "id";
             cmbRegion.DisplayMember = "name";
-
-            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.`name` FROM province JOIN region ON province.region = region.id WHERE province.region = region.id;");
-            cmbProvince.ValueMember = "id";
-            cmbProvince.DisplayMember = "name";
-
-            cmbCity.DataSource = customerController.LoadDataList("SELECT municipality.id, province.`name` FROM municipality JOIN province ON municipality.province = province.id WHERE municipality.province = province.id;");
-            cmbCity.ValueMember = "id";
-            cmbCity.DisplayMember = "name";
-
-            cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.`name` FROM baranggay JOIN municipality ON baranggay.municipality = municipality.id WHERE baranggay.municipality = municipality.id;");
-            cmbDistrict.ValueMember = "id";
-            cmbDistrict.DisplayMember = "name";
         }
 
         private void InitializeSelectedCustomerData()
@@ -117,6 +106,27 @@ namespace App.Customer
             cmbDistrict.SelectedValue = customer.Baranggay.Id;
             this.txtAddress.Text = customer.Housenum;
             this.txtPostalCode.Text = customer.Postal;
+        }
+
+        private void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.region, province.`name` FROM province INNER JOIN region ON province.region = region.id WHERE region.id =" + cmbRegion.SelectedValue.ToString() + " ORDER BY province.id") ;
+            cmbProvince.ValueMember = "id";
+            cmbProvince.DisplayMember= "name";
+        }
+
+        private void cmbProvince_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbCity.DataSource = customerController.LoadDataList("SELECT municipality.id, municipality.province, municipality.`name` FROM municipality INNER JOIN province ON municipality.province = province.id WHERE province.id =" + cmbProvince.SelectedValue.ToString() + " ORDER BY municipality.id");
+            cmbCity.ValueMember = "id";
+            cmbCity.DisplayMember = "name";
+        }
+
+        private void cmbCity_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.municipality, baranggay.`name` FROM baranggay INNER JOIN municipality ON baranggay.municipality = municipality.id WHERE municipality.id =" + cmbCity.SelectedValue.ToString() + " ORDER BY baranggay.id");
+            cmbDistrict.ValueMember = "id";
+            cmbDistrict.DisplayMember = "name";
         }
     }
 }

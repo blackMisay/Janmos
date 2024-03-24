@@ -279,6 +279,7 @@
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(230, 27);
             this.cmbCity.TabIndex = 21;
+            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.cmbCity_SelectionChangeCommitted);
             // 
             // lblSocialNetworkID
             // 
@@ -441,6 +442,7 @@
             this.cmbProvince.Name = "cmbProvince";
             this.cmbProvince.Size = new System.Drawing.Size(230, 27);
             this.cmbProvince.TabIndex = 10;
+            this.cmbProvince.SelectionChangeCommitted += new System.EventHandler(this.cmbProvince_SelectionChangeCommitted);
             // 
             // lblRegion
             // 
@@ -462,6 +464,7 @@
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(230, 27);
             this.cmbRegion.TabIndex = 9;
+            this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // lblEmailAddress
             // 
