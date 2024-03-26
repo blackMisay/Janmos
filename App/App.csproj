@@ -182,5 +182,11 @@
   <ItemGroup>
     <None Include="Resources\previouspage_16px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory-management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\inventory-management_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
