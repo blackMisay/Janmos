@@ -232,6 +232,7 @@
             this.tpMain.SetToolTip(this.btnSupplier, "Supplier\r\n\r\nFacilitates supplier information \r\nand tracks supply chain transactio" +
         "ns.");
             this.btnSupplier.UseVisualStyleBackColor = false;
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // panel4
             // 

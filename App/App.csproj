@@ -90,6 +90,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Supplier\frmSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmSupplier.Designer.cs">
+      <DependentUpon>frmSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\frmSupplierModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier\frmSupplierModal.Designer.cs">
+      <DependentUpon>frmSupplierModal.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Customer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +133,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Supplier\frmSupplier.resx">
+      <DependentUpon>frmSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier\frmSupplierModal.resx">
+      <DependentUpon>frmSupplierModal.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\previouspage_16px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create_product_48px.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\inventory-management.png" />
