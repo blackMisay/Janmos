@@ -25,11 +25,5 @@ namespace Core.System.Data.Model
                 }
             }
         }
-        public status Status {  get; set; }
-        public enum status
-        {
-            Deleted = 0,
-            Active = 1
-        }
     }
 }
