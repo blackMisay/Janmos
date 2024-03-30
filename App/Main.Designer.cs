@@ -37,21 +37,23 @@
             this.pnlProductContainer = new System.Windows.Forms.Panel();
             this.pnlDashboardContainer = new System.Windows.Forms.Panel();
             this.pnlMenuSidebar = new System.Windows.Forms.Panel();
-            this.btnReports = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnAccount = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tpMain = new System.Windows.Forms.ToolTip(this.components);
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnPurchase = new System.Windows.Forms.Button();
+            this.btnAccount = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.btnCustomer = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnInventory = new System.Windows.Forms.Button();
             this.btnProduct = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnToggle = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tpMain = new System.Windows.Forms.ToolTip(this.components);
             this.panel2.SuspendLayout();
             this.pnlMenuSidebar.SuspendLayout();
             this.SuspendLayout();
@@ -130,6 +132,8 @@
             // 
             this.pnlMenuSidebar.Controls.Add(this.btnReports);
             this.pnlMenuSidebar.Controls.Add(this.panel6);
+            this.pnlMenuSidebar.Controls.Add(this.btnPurchase);
+            this.pnlMenuSidebar.Controls.Add(this.panel7);
             this.pnlMenuSidebar.Controls.Add(this.btnAccount);
             this.pnlMenuSidebar.Controls.Add(this.panel5);
             this.pnlMenuSidebar.Controls.Add(this.btnSetting);
@@ -150,6 +154,59 @@
             this.pnlMenuSidebar.Size = new System.Drawing.Size(70, 707);
             this.pnlMenuSidebar.TabIndex = 4;
             // 
+            // panel6
+            // 
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(10, 375);
+            this.panel6.Name = "panel6";
+            this.panel6.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel6.Size = new System.Drawing.Size(50, 10);
+            this.panel6.TabIndex = 19;
+            // 
+            // panel5
+            // 
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(10, 647);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel5.Size = new System.Drawing.Size(50, 10);
+            this.panel5.TabIndex = 17;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(10, 265);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel4.Size = new System.Drawing.Size(50, 10);
+            this.panel4.TabIndex = 14;
+            // 
+            // panel3
+            // 
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(10, 210);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel3.Size = new System.Drawing.Size(50, 10);
+            this.panel3.TabIndex = 13;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(70, 734);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1126, 15);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(10, 320);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel7.Size = new System.Drawing.Size(50, 10);
+            this.panel7.TabIndex = 21;
+            // 
             // btnReports
             // 
             this.btnReports.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -158,7 +215,7 @@
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReports.Image = global::App.Properties.Resources.reports_24px;
-            this.btnReports.Location = new System.Drawing.Point(10, 330);
+            this.btnReports.Location = new System.Drawing.Point(10, 385);
             this.btnReports.Name = "btnReports";
             this.btnReports.Size = new System.Drawing.Size(50, 45);
             this.btnReports.TabIndex = 20;
@@ -166,14 +223,21 @@
         "alyses \r\nfor making business decisions.");
             this.btnReports.UseVisualStyleBackColor = false;
             // 
-            // panel6
+            // btnPurchase
             // 
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(10, 320);
-            this.panel6.Name = "panel6";
-            this.panel6.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel6.Size = new System.Drawing.Size(50, 10);
-            this.panel6.TabIndex = 19;
+            this.btnPurchase.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnPurchase.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPurchase.FlatAppearance.BorderSize = 0;
+            this.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPurchase.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPurchase.Image = global::App.Properties.Resources.order_24px;
+            this.btnPurchase.Location = new System.Drawing.Point(10, 330);
+            this.btnPurchase.Name = "btnPurchase";
+            this.btnPurchase.Size = new System.Drawing.Size(50, 45);
+            this.btnPurchase.TabIndex = 22;
+            this.tpMain.SetToolTip(this.btnPurchase, "Purchase Management\r\n\r\nManage purchase orders and\r\npurchase requisitions.");
+            this.btnPurchase.UseVisualStyleBackColor = false;
+            this.btnPurchase.Click += new System.EventHandler(this.btnPurchase_Click);
             // 
             // btnAccount
             // 
@@ -190,15 +254,6 @@
             this.btnAccount.TabIndex = 18;
             this.tpMain.SetToolTip(this.btnAccount, "Account Profile\r\n\r\nManage account information.");
             this.btnAccount.UseVisualStyleBackColor = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(10, 647);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel5.Size = new System.Drawing.Size(50, 10);
-            this.panel5.TabIndex = 17;
             // 
             // btnSetting
             // 
@@ -234,15 +289,6 @@
             this.btnSupplier.UseVisualStyleBackColor = false;
             this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(10, 265);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel4.Size = new System.Drawing.Size(50, 10);
-            this.panel4.TabIndex = 14;
-            // 
             // btnCustomer
             // 
             this.btnCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -258,15 +304,6 @@
             this.tpMain.SetToolTip(this.btnCustomer, "Customer\r\n\r\nFacilitates customer, and order information.  ");
             this.btnCustomer.UseVisualStyleBackColor = false;
             this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(10, 210);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel3.Size = new System.Drawing.Size(50, 10);
-            this.panel3.TabIndex = 13;
             // 
             // btnInventory
             // 
@@ -336,14 +373,6 @@
             this.btnToggle.UseVisualStyleBackColor = false;
             this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(70, 734);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1126, 15);
-            this.panel1.TabIndex = 5;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
@@ -390,5 +419,7 @@
         private System.Windows.Forms.ToolTip tpMain;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnPurchase;
+        private System.Windows.Forms.Panel panel7;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using App.Product;
+using App.Purchase;
 
 namespace App
 {
@@ -12,6 +14,7 @@ namespace App
         private static readonly string INVENTORY = "&Inventory";
         private static readonly string CUSTOMER = "&Customer";
         private static readonly string SUPPLIER = "&Supplier";
+        private static readonly string PURCHASEMGMT = "Purchase Management";
         private static readonly string REPORTS = "&Reports";
         private static readonly string ACCOUNT = "Pro&file";
         private static readonly string SETTING = "Se&ttings";
@@ -38,7 +41,7 @@ namespace App
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Product.frmProduct());
+            this.openFormModule(new frmProduct());
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
@@ -49,6 +52,11 @@ namespace App
         private void btnSupplier_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Supplier.frmSupplier());
+        }
+
+        private void btnPurchase_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new frmPurchaseManagement());
         }
 
         private void openFormModule(Form formModule)
@@ -85,6 +93,7 @@ namespace App
                 btnInventory.Text = INVENTORY;
                 btnCustomer.Text = CUSTOMER;
                 btnSupplier.Text = SUPPLIER;
+                btnPurchase.Text = PURCHASEMGMT;
                 btnReports.Text = REPORTS;
                 btnAccount.Text = ACCOUNT;
                 btnSetting.Text = SETTING;
