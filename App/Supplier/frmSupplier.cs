@@ -75,8 +75,6 @@ namespace App.Supplier
             dgvSupplier.DataSource = supplierRepository.LoadSupplierData();
             this.dgvSupplier.Columns["Mobile Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvSupplier.Columns["Phone Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            this.dgvSupplier.Columns["Extension"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            this.dgvSupplier.Columns["Postal Code"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void dgvSupplier_CellClick(object sender, DataGridViewCellEventArgs e)
