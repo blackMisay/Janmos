@@ -64,7 +64,7 @@
             this.lblModule.ForeColor = System.Drawing.Color.Black;
             this.lblModule.Location = new System.Drawing.Point(67, 14);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(178, 32);
+            this.lblModule.Size = new System.Drawing.Size(140, 25);
             this.lblModule.TabIndex = 95;
             this.lblModule.Text = "Create Product";
             // 
@@ -75,7 +75,7 @@
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblName.Location = new System.Drawing.Point(25, 168);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(56, 23);
+            this.lblName.Size = new System.Drawing.Size(45, 19);
             this.lblName.TabIndex = 96;
             this.lblName.Text = "Name";
             // 
@@ -84,7 +84,7 @@
             this.txtProductName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProductName.Location = new System.Drawing.Point(29, 194);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(365, 30);
+            this.txtProductName.Size = new System.Drawing.Size(365, 26);
             this.txtProductName.TabIndex = 97;
             this.tipProducts.SetToolTip(this.txtProductName, "This specifies the product\'s name or title.");
             // 
@@ -107,7 +107,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(25, 246);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 23);
+            this.label1.Size = new System.Drawing.Size(78, 19);
             this.label1.TabIndex = 99;
             this.label1.Text = "Description";
             // 
@@ -118,7 +118,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label2.Location = new System.Drawing.Point(425, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 23);
+            this.label2.Size = new System.Drawing.Size(65, 19);
             this.label2.TabIndex = 100;
             this.label2.Text = "Category";
             // 
@@ -129,7 +129,7 @@
             this.cmbCategory.FormattingEnabled = true;
             this.cmbCategory.Location = new System.Drawing.Point(429, 194);
             this.cmbCategory.Name = "cmbCategory";
-            this.cmbCategory.Size = new System.Drawing.Size(200, 31);
+            this.cmbCategory.Size = new System.Drawing.Size(200, 27);
             this.cmbCategory.TabIndex = 101;
             this.tipProducts.SetToolTip(this.cmbCategory, "This categorize the products \r\nto a specific group or classification.");
             // 
@@ -140,7 +140,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label3.Location = new System.Drawing.Point(425, 246);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 23);
+            this.label3.Size = new System.Drawing.Size(78, 19);
             this.label3.TabIndex = 102;
             this.label3.Text = "Metric Unit";
             // 
@@ -151,7 +151,7 @@
             this.cmbMetricUnit.FormattingEnabled = true;
             this.cmbMetricUnit.Location = new System.Drawing.Point(429, 272);
             this.cmbMetricUnit.Name = "cmbMetricUnit";
-            this.cmbMetricUnit.Size = new System.Drawing.Size(200, 31);
+            this.cmbMetricUnit.Size = new System.Drawing.Size(200, 27);
             this.cmbMetricUnit.TabIndex = 103;
             this.tipProducts.SetToolTip(this.cmbMetricUnit, "This specifies the unit of \r\nmeasurement associated with \r\na particular product a" +
         "ttribute \r\nor characteristic.");
@@ -161,7 +161,7 @@
             this.txtMetricValue.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMetricValue.Location = new System.Drawing.Point(429, 347);
             this.txtMetricValue.Name = "txtMetricValue";
-            this.txtMetricValue.Size = new System.Drawing.Size(200, 30);
+            this.txtMetricValue.Size = new System.Drawing.Size(200, 26);
             this.txtMetricValue.TabIndex = 104;
             this.tipProducts.SetToolTip(this.txtMetricValue, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
         "he unit specified by the \r\n\"metric_unit\".");
@@ -173,7 +173,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label4.Location = new System.Drawing.Point(425, 321);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 23);
+            this.label4.Size = new System.Drawing.Size(85, 19);
             this.label4.TabIndex = 105;
             this.label4.Text = "Metric Value";
             // 
@@ -231,7 +231,7 @@
             this.lblResetFields.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblResetFields.Location = new System.Drawing.Point(25, 24);
             this.lblResetFields.Name = "lblResetFields";
-            this.lblResetFields.Size = new System.Drawing.Size(104, 20);
+            this.lblResetFields.Size = new System.Drawing.Size(79, 15);
             this.lblResetFields.TabIndex = 108;
             this.lblResetFields.Text = "Clear all fields";
             this.tipProducts.SetToolTip(this.lblResetFields, "Clear all supplied values \r\nin the fields and dropdown.\r\n");
@@ -253,7 +253,7 @@
             this.label5.ForeColor = System.Drawing.Color.Gray;
             this.label5.Location = new System.Drawing.Point(69, 46);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(482, 23);
+            this.label5.Size = new System.Drawing.Size(386, 19);
             this.label5.TabIndex = 110;
             this.label5.Text = "Efficiently create new products by entering information below.";
             // 
@@ -276,13 +276,13 @@
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(160)))), ((int)(((byte)(69)))));
             this.label6.Location = new System.Drawing.Point(25, 116);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(206, 20);
+            this.label6.Size = new System.Drawing.Size(157, 15);
             this.label6.TabIndex = 112;
             this.label6.Text = "NOTE: All fields are required.";
             // 
             // frmProductModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(663, 481);

@@ -32,7 +32,10 @@ namespace App.Customer
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            if (MessageBox.Show("Are you sure you want to close this form without saving the customer?", "Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
         }
 
         private void CustomerModal_Load(object sender, EventArgs e)
@@ -41,43 +44,13 @@ namespace App.Customer
             cmbStatus.SelectedItem = "Active";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
-            customer.Id = this.Id;
-            customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new entity();
-            customer.Entityname = this.txtEntityName.Text;
-            customer.Mobilenum = this.txtMobileNumber.Text;
-            customer.Telenum = this.txtPhoneNumber.Text;
-            customer.Extension = this.txtPhoneNumberExtension.Text;
-            customer.Email = this.txtEmailAddress.Text;
-            customer.Socialnetid = this.txtSocialNetworkID.Text;
-            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion) };
-            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince) };
-            customer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbCity) };
-            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict) };
-            customer.Postal = this.txtPostalCode.Text;
-            customer.Housenum = this.txtAddress.Text;
-
-            customerController = new CustomerRepository();
-            if (customerController.Save(customer))
-            {
-                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
-            }
-            else
-            {
-                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void InitializeComponentsData()
         {
             customerController = new CustomerRepository();
 
-            cmbEntity.DataSource = Enum.GetValues(typeof(entity));
+            cmbEntity.DataSource = Enum.GetValues(typeof(EntityValue));
 
-            cmbRegion.DataSource = customerController.LoadDataList("SELECT DISTINCT region.id, region.`name` FROM region;");
+            cmbRegion.DataSource = customerController.LoadDataList("SELECT DISTINCT region.id, region.`name`, region.`description` FROM region;");
             cmbRegion.ValueMember = "id";
             cmbRegion.DisplayMember = "name";
         }
@@ -85,7 +58,6 @@ namespace App.Customer
         private void InitializeSelectedCustomerData()
         {
             InitializeComponentsData();
-
             customerController = new CustomerRepository();
 
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
@@ -109,9 +81,9 @@ namespace App.Customer
 
         private void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.region, province.`name` FROM province INNER JOIN region ON province.region = region.id WHERE region.id =" + cmbRegion.SelectedValue.ToString() + " ORDER BY province.id") ;
+            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.region, province.`name` FROM province INNER JOIN region ON province.region = region.id WHERE region.id =" + cmbRegion.SelectedValue.ToString() + " ORDER BY province.id");
             cmbProvince.ValueMember = "id";
-            cmbProvince.DisplayMember= "name";
+            cmbProvince.DisplayMember = "name";
         }
 
         private void cmbProvince_SelectionChangeCommitted(object sender, EventArgs e)
@@ -126,6 +98,190 @@ namespace App.Customer
             cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.municipality, baranggay.`name` FROM baranggay INNER JOIN municipality ON baranggay.municipality = municipality.id WHERE municipality.id =" + cmbCity.SelectedValue.ToString() + " ORDER BY baranggay.id");
             cmbDistrict.ValueMember = "id";
             cmbDistrict.DisplayMember = "name";
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            FieldValidate();
+        }
+        private void FieldValidate()
+        {
+            bool validate = true;
+
+            //customer name
+            if (string.IsNullOrEmpty(txtCustomerName.Text) || string.IsNullOrWhiteSpace(txtCustomerName.Text))
+            {
+                lblRequireName.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireName.Visible = false;
+            }
+
+            //entity
+            if (cmbEntity.SelectedIndex == -1)
+            {
+                lblRequireEntity.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireEntity.Visible = false;
+            }
+
+            //mobile
+            if (string.IsNullOrEmpty(txtMobileNumber.Text) || string.IsNullOrWhiteSpace(txtMobileNumber.Text))
+            {
+                lblRequireMobile.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireMobile.Visible = false;
+            }
+
+            //phone
+            if (string.IsNullOrEmpty(txtPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
+            {
+                lblRequirePhone.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequirePhone.Visible = false;
+            }
+
+            //extension
+            if (string.IsNullOrEmpty(txtPhoneNumberExtension.Text) || string.IsNullOrWhiteSpace(txtPhoneNumberExtension.Text))
+            {
+                lblRequireExtension.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireExtension.Visible = false;
+            }
+
+            //email
+            if (string.IsNullOrEmpty(txtEmailAddress.Text) || string.IsNullOrWhiteSpace(txtEmailAddress.Text))
+            {
+                lblRequireEmail.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireEmail.Visible = false;
+            }
+
+            //socialnetid
+            if (string.IsNullOrEmpty(txtSocialNetworkID.Text) || string.IsNullOrWhiteSpace(txtSocialNetworkID.Text))
+            {
+                lblRequireSocial.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireSocial.Visible = false;
+            }
+
+            //region
+            if (cmbRegion.SelectedIndex == -1)
+            {
+                lblRequireRegion.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireRegion.Visible = false;
+            }
+
+            //province
+            if (cmbProvince.SelectedIndex == -1)
+            {
+                lblRequireProvince.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireProvince.Visible = false;
+            }
+
+            //municipality
+            if (cmbCity.SelectedIndex == -1)
+            {
+                lblRequireCity.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireCity.Visible = false;
+            }
+
+            //baranggay
+            if (cmbDistrict.SelectedIndex == -1)
+            {
+                lblRequireDistrict.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireDistrict.Visible = false;
+            }
+
+            //housenum
+            if (string.IsNullOrEmpty(txtAddress.Text) || string.IsNullOrWhiteSpace(txtAddress.Text))
+            {
+                lblRequireAddress.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequireAddress.Visible = false;
+            }
+
+            //postal
+            if (string.IsNullOrEmpty(txtPostalCode.Text) || string.IsNullOrWhiteSpace(txtPostalCode.Text))
+            {
+                lblRequirePostal.Visible = true;
+                validate = false;
+            }
+            else
+            {
+                lblRequirePostal.Visible = false;
+            }
+
+            if (!validate)
+            {
+                return;
+            }
+
+            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
+            customer.Name = this.txtCustomerName.Text;
+            customer.Entity = new EntityValue();
+            customer.Entityname = this.txtEntityName.Text;
+            customer.Mobilenum = this.txtMobileNumber.Text;
+            customer.Telenum = this.txtPhoneNumber.Text;
+            customer.Extension = this.txtPhoneNumberExtension.Text;
+            customer.Email = this.txtEmailAddress.Text;
+            customer.Socialnetid = this.txtSocialNetworkID.Text;
+            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
+            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            customer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbCity.SelectedValue) };
+            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
+            customer.Postal = this.txtPostalCode.Text;
+            customer.Housenum = this.txtAddress.Text;
+
+            customerController = new CustomerRepository();
+            if (customerController.Save(customer))
+            {
+                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

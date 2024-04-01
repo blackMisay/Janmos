@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lblModule = new System.Windows.Forms.Label();
             this.gbxMain = new System.Windows.Forms.GroupBox();
+            this.lblRequireEntity = new System.Windows.Forms.Label();
+            this.lblRequireName = new System.Windows.Forms.Label();
             this.lblEntityName = new System.Windows.Forms.Label();
             this.txtEntityName = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -40,6 +42,17 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.gbxContactInformation = new System.Windows.Forms.GroupBox();
+            this.lblRequireAddress = new System.Windows.Forms.Label();
+            this.lblRequireDistrict = new System.Windows.Forms.Label();
+            this.lblRequirePostal = new System.Windows.Forms.Label();
+            this.lblRequireCity = new System.Windows.Forms.Label();
+            this.lblRequireProvince = new System.Windows.Forms.Label();
+            this.lblRequireRegion = new System.Windows.Forms.Label();
+            this.lblRequireExtension = new System.Windows.Forms.Label();
+            this.lblRequirePhone = new System.Windows.Forms.Label();
+            this.lblRequireSocial = new System.Windows.Forms.Label();
+            this.lblRequireEmail = new System.Windows.Forms.Label();
+            this.lblRequireMobile = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblCity = new System.Windows.Forms.Label();
@@ -83,6 +96,8 @@
             // 
             // gbxMain
             // 
+            this.gbxMain.Controls.Add(this.lblRequireEntity);
+            this.gbxMain.Controls.Add(this.lblRequireName);
             this.gbxMain.Controls.Add(this.lblEntityName);
             this.gbxMain.Controls.Add(this.txtEntityName);
             this.gbxMain.Controls.Add(this.lblStatus);
@@ -98,6 +113,30 @@
             this.gbxMain.TabIndex = 95;
             this.gbxMain.TabStop = false;
             this.gbxMain.Text = "Main";
+            // 
+            // lblRequireEntity
+            // 
+            this.lblRequireEntity.AutoSize = true;
+            this.lblRequireEntity.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireEntity.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireEntity.Location = new System.Drawing.Point(98, 144);
+            this.lblRequireEntity.Name = "lblRequireEntity";
+            this.lblRequireEntity.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireEntity.TabIndex = 18;
+            this.lblRequireEntity.Text = "*required";
+            this.lblRequireEntity.Visible = false;
+            // 
+            // lblRequireName
+            // 
+            this.lblRequireName.AutoSize = true;
+            this.lblRequireName.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireName.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireName.Location = new System.Drawing.Point(98, 64);
+            this.lblRequireName.Name = "lblRequireName";
+            this.lblRequireName.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireName.TabIndex = 16;
+            this.lblRequireName.Text = "*required";
+            this.lblRequireName.Visible = false;
             // 
             // lblEntityName
             // 
@@ -151,7 +190,7 @@
             this.lblEntity.AutoSize = true;
             this.lblEntity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEntity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblEntity.Location = new System.Drawing.Point(47, 140);
+            this.lblEntity.Location = new System.Drawing.Point(47, 141);
             this.lblEntity.Name = "lblEntity";
             this.lblEntity.Size = new System.Drawing.Size(44, 19);
             this.lblEntity.TabIndex = 3;
@@ -177,7 +216,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblName.Location = new System.Drawing.Point(47, 60);
+            this.lblName.Location = new System.Drawing.Point(47, 61);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(45, 19);
             this.lblName.TabIndex = 1;
@@ -196,6 +235,17 @@
             // 
             this.gbxContactInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxContactInformation.Controls.Add(this.lblRequireAddress);
+            this.gbxContactInformation.Controls.Add(this.lblRequireDistrict);
+            this.gbxContactInformation.Controls.Add(this.lblRequirePostal);
+            this.gbxContactInformation.Controls.Add(this.lblRequireCity);
+            this.gbxContactInformation.Controls.Add(this.lblRequireProvince);
+            this.gbxContactInformation.Controls.Add(this.lblRequireRegion);
+            this.gbxContactInformation.Controls.Add(this.lblRequireExtension);
+            this.gbxContactInformation.Controls.Add(this.lblRequirePhone);
+            this.gbxContactInformation.Controls.Add(this.lblRequireSocial);
+            this.gbxContactInformation.Controls.Add(this.lblRequireEmail);
+            this.gbxContactInformation.Controls.Add(this.lblRequireMobile);
             this.gbxContactInformation.Controls.Add(this.btnCancel);
             this.gbxContactInformation.Controls.Add(this.btnSubmit);
             this.gbxContactInformation.Controls.Add(this.lblCity);
@@ -228,6 +278,138 @@
             this.gbxContactInformation.TabStop = false;
             this.gbxContactInformation.Text = "Contact Information";
             // 
+            // lblRequireAddress
+            // 
+            this.lblRequireAddress.AutoSize = true;
+            this.lblRequireAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireAddress.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireAddress.Location = new System.Drawing.Point(111, 238);
+            this.lblRequireAddress.Name = "lblRequireAddress";
+            this.lblRequireAddress.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireAddress.TabIndex = 31;
+            this.lblRequireAddress.Text = "*required";
+            this.lblRequireAddress.Visible = false;
+            // 
+            // lblRequireDistrict
+            // 
+            this.lblRequireDistrict.AutoSize = true;
+            this.lblRequireDistrict.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireDistrict.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireDistrict.Location = new System.Drawing.Point(423, 238);
+            this.lblRequireDistrict.Name = "lblRequireDistrict";
+            this.lblRequireDistrict.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireDistrict.TabIndex = 30;
+            this.lblRequireDistrict.Text = "*required";
+            this.lblRequireDistrict.Visible = false;
+            // 
+            // lblRequirePostal
+            // 
+            this.lblRequirePostal.AutoSize = true;
+            this.lblRequirePostal.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequirePostal.ForeColor = System.Drawing.Color.Red;
+            this.lblRequirePostal.Location = new System.Drawing.Point(633, 238);
+            this.lblRequirePostal.Name = "lblRequirePostal";
+            this.lblRequirePostal.Size = new System.Drawing.Size(56, 15);
+            this.lblRequirePostal.TabIndex = 29;
+            this.lblRequirePostal.Text = "*required";
+            this.lblRequirePostal.Visible = false;
+            // 
+            // lblRequireCity
+            // 
+            this.lblRequireCity.AutoSize = true;
+            this.lblRequireCity.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireCity.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireCity.Location = new System.Drawing.Point(672, 170);
+            this.lblRequireCity.Name = "lblRequireCity";
+            this.lblRequireCity.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireCity.TabIndex = 28;
+            this.lblRequireCity.Text = "*required";
+            this.lblRequireCity.Visible = false;
+            // 
+            // lblRequireProvince
+            // 
+            this.lblRequireProvince.AutoSize = true;
+            this.lblRequireProvince.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireProvince.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireProvince.Location = new System.Drawing.Point(361, 170);
+            this.lblRequireProvince.Name = "lblRequireProvince";
+            this.lblRequireProvince.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireProvince.TabIndex = 27;
+            this.lblRequireProvince.Text = "*required";
+            this.lblRequireProvince.Visible = false;
+            // 
+            // lblRequireRegion
+            // 
+            this.lblRequireRegion.AutoSize = true;
+            this.lblRequireRegion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireRegion.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireRegion.Location = new System.Drawing.Point(104, 170);
+            this.lblRequireRegion.Name = "lblRequireRegion";
+            this.lblRequireRegion.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireRegion.TabIndex = 26;
+            this.lblRequireRegion.Text = "*required";
+            this.lblRequireRegion.Visible = false;
+            // 
+            // lblRequireExtension
+            // 
+            this.lblRequireExtension.AutoSize = true;
+            this.lblRequireExtension.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireExtension.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireExtension.Location = new System.Drawing.Point(368, 101);
+            this.lblRequireExtension.Name = "lblRequireExtension";
+            this.lblRequireExtension.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireExtension.TabIndex = 25;
+            this.lblRequireExtension.Text = "*required";
+            this.lblRequireExtension.Visible = false;
+            // 
+            // lblRequirePhone
+            // 
+            this.lblRequirePhone.AutoSize = true;
+            this.lblRequirePhone.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequirePhone.ForeColor = System.Drawing.Color.Red;
+            this.lblRequirePhone.Location = new System.Drawing.Point(155, 101);
+            this.lblRequirePhone.Name = "lblRequirePhone";
+            this.lblRequirePhone.Size = new System.Drawing.Size(56, 15);
+            this.lblRequirePhone.TabIndex = 24;
+            this.lblRequirePhone.Text = "*required";
+            this.lblRequirePhone.Visible = false;
+            // 
+            // lblRequireSocial
+            // 
+            this.lblRequireSocial.AutoSize = true;
+            this.lblRequireSocial.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireSocial.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireSocial.Location = new System.Drawing.Point(669, 29);
+            this.lblRequireSocial.Name = "lblRequireSocial";
+            this.lblRequireSocial.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireSocial.TabIndex = 23;
+            this.lblRequireSocial.Text = "*required";
+            this.lblRequireSocial.Visible = false;
+            // 
+            // lblRequireEmail
+            // 
+            this.lblRequireEmail.AutoSize = true;
+            this.lblRequireEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireEmail.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireEmail.Location = new System.Drawing.Point(395, 29);
+            this.lblRequireEmail.Name = "lblRequireEmail";
+            this.lblRequireEmail.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireEmail.TabIndex = 22;
+            this.lblRequireEmail.Text = "*required";
+            this.lblRequireEmail.Visible = false;
+            // 
+            // lblRequireMobile
+            // 
+            this.lblRequireMobile.AutoSize = true;
+            this.lblRequireMobile.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireMobile.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireMobile.Location = new System.Drawing.Point(158, 29);
+            this.lblRequireMobile.Name = "lblRequireMobile";
+            this.lblRequireMobile.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireMobile.TabIndex = 20;
+            this.lblRequireMobile.Text = "*required";
+            this.lblRequireMobile.Visible = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -258,6 +440,7 @@
             this.btnSubmit.TabIndex = 13;
             this.btnSubmit.Text = "&Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // lblCity
             // 
@@ -549,5 +732,18 @@
         private System.Windows.Forms.ToolTip tipCustomerModal;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.ComboBox cmbCity;
+        private System.Windows.Forms.Label lblRequireEntity;
+        private System.Windows.Forms.Label lblRequireName;
+        private System.Windows.Forms.Label lblRequireSocial;
+        private System.Windows.Forms.Label lblRequireEmail;
+        private System.Windows.Forms.Label lblRequireMobile;
+        private System.Windows.Forms.Label lblRequireAddress;
+        private System.Windows.Forms.Label lblRequireDistrict;
+        private System.Windows.Forms.Label lblRequirePostal;
+        private System.Windows.Forms.Label lblRequireCity;
+        private System.Windows.Forms.Label lblRequireProvince;
+        private System.Windows.Forms.Label lblRequireRegion;
+        private System.Windows.Forms.Label lblRequireExtension;
+        private System.Windows.Forms.Label lblRequirePhone;
     }
 }

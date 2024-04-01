@@ -10,7 +10,7 @@ namespace Core.System.Data.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public entity Entity { get; set; }
+        public EntityValue Entity { get; set; }
         public string Entityname { get; set; }
         public string Mobilenum { get; set; }
         public string Telenum { get; set; }
@@ -24,10 +24,10 @@ namespace Core.System.Data.Model
         public string Housenum { get; set; }
         public string Postal { get; set; }
     }
-    public enum entity
+    public enum EntityValue
     {
-        Individual = 1,
-        Business = 2,
-        Organization = 3
+        Individual,
+        Business,
+        Organization
     }
 }
