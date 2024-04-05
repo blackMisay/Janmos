@@ -68,6 +68,7 @@ namespace App.Product
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             if (selectedProductId > 0)
             {
                 ProductRepository productRepository = new ProductRepository();

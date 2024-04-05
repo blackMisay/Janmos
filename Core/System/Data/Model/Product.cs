@@ -25,5 +25,12 @@ namespace Core.System.Data.Model
                 }
             }
         }
+
+        public getStatus Status {  get; set; }
+    }
+    public enum getStatus
+    {
+        Active = 1,
+        Deleted = 0
     }
 }

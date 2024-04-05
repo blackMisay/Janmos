@@ -39,6 +39,17 @@ namespace Core.System.Repository
             };
             return upgradeManager.ExecuteQuery(query, productParams);
         }
+        public bool SaveProductData(int productId)
+        {
+            string query = "UPDATE product SET `status` = '1' WHERE id = @id";
+            upgradeManager = new UpgradeManager();
+
+            Dictionary<string, string> productParams = new Dictionary<string, string>()
+            {
+                { "@id", productId.ToString() }
+            };
+            return upgradeManager.ExecuteQuery(query, productParams);
+        }
 
         public Product FetchProductData(int productId)
         {

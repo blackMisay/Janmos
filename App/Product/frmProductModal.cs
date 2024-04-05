@@ -32,8 +32,10 @@ namespace App.Product
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
             product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
             product.MetricValue = this.txtMetricValue.Text;
+            product.Status = new getStatus();
 
             productController = new ProductRepository();
+            if (MessageBox.Show("Do you want to save the selected product?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
             if (productController.Save(product))
             {
                 MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
