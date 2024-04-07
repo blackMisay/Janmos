@@ -27,6 +27,7 @@ namespace App.Product
         {
             if (selectedProductId != 0)
             {
+                if (MessageBox.Show("Do you want to edit the selected product?", "Edit Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 using (frmProductModal info = new frmProductModal(this.selectedProductId))
                 {
                     info.ShowDialog();
@@ -64,20 +65,22 @@ namespace App.Product
             ProductRepository productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData();
             this.dgvProduct.Columns["Metric Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            selectedProductId = 0;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             if (selectedProductId > 0)
             {
-                ProductRepository productRepository = new ProductRepository();
-                productRepository.DeleteProductData(selectedProductId);
-                this.LoadProductData();
-                selectedProductId = 0;
+                if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ProductRepository productRepository = new ProductRepository();
+                    productRepository.DeleteProductData(selectedProductId);
+                    this.LoadProductData();
+                    selectedProductId = 0;
 
-                MessageBox.Show("Delete Successfully.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("Delete Successfully.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {
