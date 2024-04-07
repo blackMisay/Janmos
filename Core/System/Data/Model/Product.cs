@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,22 +16,22 @@ namespace Core.System.Data.Model
         public MetricUnit MetricUnit { get; set; }
 
         private double _metricValue;
-        public string MetricValue 
-        { 
-            get { return _metricValue.ToString(); } 
-            set 
-            { if (double.TryParse(value,out double result)) 
+        public string MetricValue
+        {
+            get { return _metricValue.ToString(); }
+            set
+            { if (double.TryParse(value, out double result))
                 {
                     _metricValue = result;
                 }
             }
         }
-
-        public getStatus Status {  get; set; }
+        public getStatus Status { get; set; }
     }
+
     public enum getStatus
     {
-        Active = 1,
-        Deleted = 0
+        Active = 0,
+        Deleted = 1
     }
 }

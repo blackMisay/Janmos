@@ -2,6 +2,7 @@
 using Core.System.Data.Model;
 using Core.System.Repository;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace App.Product
 {
@@ -32,7 +33,7 @@ namespace App.Product
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
             product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
             product.MetricValue = this.txtMetricValue.Text;
-            product.Status = new getStatus();
+            product.Status = getStatus.Active;
 
             productController = new ProductRepository();
             if (MessageBox.Show("Do you want to save the selected product?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
