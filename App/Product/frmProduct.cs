@@ -77,7 +77,6 @@ namespace App.Product
                     ProductRepository productRepository = new ProductRepository();
                     productRepository.DeleteProductData(selectedProductId);
                     this.LoadProductData();
-                    selectedProductId = 0;
 
                     MessageBox.Show("Delete Successfully.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
