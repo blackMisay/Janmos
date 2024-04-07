@@ -10,7 +10,7 @@ namespace Core.System.Data.Model
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public EntityValue Entity { get; set; }
+        public getEntity Entity { get; set; }
         public string Entityname { get; set; }
         public string Mobilenum { get; set; }
         public string Telenum { get; set; }
@@ -23,11 +23,18 @@ namespace Core.System.Data.Model
         public Baranggay Baranggay { get; set; }
         public string Housenum { get; set; }
         public string Postal { get; set; }
+        public getStatus Status {  get; set; }
     }
-    public enum EntityValue
+    public enum getEntity
     {
         Individual,
         Business,
         Organization
+    }
+
+    public enum getStatus
+    {
+        Active = 0,
+        Deleted = 1
     }
 }

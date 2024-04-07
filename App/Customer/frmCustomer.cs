@@ -19,6 +19,7 @@ namespace App.Customer
         public Customer()
         {
             InitializeComponent();
+            cmbRecordCount.SelectedItem = defaultRowCount.ToString();
         }
 
         private void Customer_Load(object sender, EventArgs e)
@@ -48,11 +49,12 @@ namespace App.Customer
         {
             if (selectedCustomerId != 0)
             {
-                using (CustomerModal cmodal = new CustomerModal(this.selectedCustomerId))
-                {
-                    cmodal.ShowDialog();
-                }
-                this.LoadCustomerData();
+                if (MessageBox.Show("Do you want to edit the selected customer?", "Edit Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    using (CustomerModal cmodal = new CustomerModal(this.selectedCustomerId))
+                    {
+                        cmodal.ShowDialog();
+                    }
+                    this.LoadCustomerData();
             }
             else
             {

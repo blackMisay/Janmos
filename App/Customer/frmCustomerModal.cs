@@ -16,7 +16,7 @@ namespace App.Customer
     public partial class CustomerModal : Form
     {
         private readonly int Id = 0;
-        CustomerRepository customerController;
+        CustomerRepository customerRepository;
         public CustomerModal()
         {
             InitializeComponent();
@@ -46,22 +46,47 @@ namespace App.Customer
 
         private void InitializeComponentsData()
         {
-            customerController = new CustomerRepository();
+            customerRepository = new CustomerRepository();
 
-            cmbEntity.DataSource = Enum.GetValues(typeof(EntityValue));
+            cmbEntity.DataSource = Enum.GetValues(typeof(getEntity));
 
-            cmbRegion.DataSource = customerController.LoadDataList("SELECT DISTINCT region.id, region.`name`, region.`description` FROM region;");
+            cmbRegion.DataSource = customerRepository.LoadDataList("SELECT DISTINCT region.id, region.`name`, region.`description` FROM region;");
             cmbRegion.ValueMember = "id";
             cmbRegion.DisplayMember = "name";
+            cmbRegion.SelectedIndex = -1;
+        }
+
+        private void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbProvince.DataSource = customerRepository.LoadDataList("SELECT province.id, province.region, province.`name` FROM province INNER JOIN region ON province.region = region.id WHERE region.id =" + cmbRegion.SelectedValue.ToString() + " ORDER BY province.id");
+            cmbProvince.ValueMember = "id";
+            cmbProvince.DisplayMember = "name";
+            cmbProvince.SelectedIndex = -1;
+        }
+
+        private void cmbProvince_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbCity.DataSource = customerRepository.LoadDataList("SELECT municipality.id, municipality.province, municipality.`name` FROM municipality INNER JOIN province ON municipality.province = province.id WHERE province.id =" + cmbProvince.SelectedValue.ToString() + " ORDER BY municipality.id");
+            cmbCity.ValueMember = "id";
+            cmbCity.DisplayMember = "name";
+            cmbCity.SelectedIndex = -1;
+        }
+
+        private void cmbCity_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbDistrict.DataSource = customerRepository.LoadDataList("SELECT baranggay.id, baranggay.municipality, baranggay.`name` FROM baranggay INNER JOIN municipality ON baranggay.municipality = municipality.id WHERE municipality.id =" + cmbCity.SelectedValue.ToString() + " ORDER BY baranggay.id");
+            cmbDistrict.ValueMember = "id";
+            cmbDistrict.DisplayMember = "name";
+            cmbDistrict.SelectedIndex = -1;
         }
 
         private void InitializeSelectedCustomerData()
         {
             InitializeComponentsData();
-            customerController = new CustomerRepository();
+            customerRepository = new CustomerRepository();
 
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
-            customer = customerController.FetchCustomerData(this.Id);
+            customer = customerRepository.FetchCustomerData(this.Id);
 
             this.txtCustomerName.Text = customer.Name;
             cmbEntity.SelectedItem = customer.Entity.ToString();
@@ -77,27 +102,6 @@ namespace App.Customer
             cmbDistrict.SelectedValue = customer.Baranggay.Id;
             this.txtAddress.Text = customer.Housenum;
             this.txtPostalCode.Text = customer.Postal;
-        }
-
-        private void cmbRegion_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.region, province.`name` FROM province INNER JOIN region ON province.region = region.id WHERE region.id =" + cmbRegion.SelectedValue.ToString() + " ORDER BY province.id");
-            cmbProvince.ValueMember = "id";
-            cmbProvince.DisplayMember = "name";
-        }
-
-        private void cmbProvince_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            cmbCity.DataSource = customerController.LoadDataList("SELECT municipality.id, municipality.province, municipality.`name` FROM municipality INNER JOIN province ON municipality.province = province.id WHERE province.id =" + cmbProvince.SelectedValue.ToString() + " ORDER BY municipality.id");
-            cmbCity.ValueMember = "id";
-            cmbCity.DisplayMember = "name";
-        }
-
-        private void cmbCity_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.municipality, baranggay.`name` FROM baranggay INNER JOIN municipality ON baranggay.municipality = municipality.id WHERE municipality.id =" + cmbCity.SelectedValue.ToString() + " ORDER BY baranggay.id");
-            cmbDistrict.ValueMember = "id";
-            cmbDistrict.DisplayMember = "name";
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -257,8 +261,9 @@ namespace App.Customer
             }
 
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
+            customer.Id = this.Id;
             customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new EntityValue();
+            customer.Entity = new getEntity();
             customer.Entityname = this.txtEntityName.Text;
             customer.Mobilenum = this.txtMobileNumber.Text;
             customer.Telenum = this.txtPhoneNumber.Text;
@@ -271,9 +276,10 @@ namespace App.Customer
             customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
             customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
+            customer.Status = getStatus.Active;
 
-            customerController = new CustomerRepository();
-            if (customerController.Save(customer))
+            customerRepository = new CustomerRepository();
+            if (customerRepository.Save(customer))
             {
                 MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
