@@ -27,12 +27,14 @@ namespace App.Product
         {
             if (selectedProductId != 0)
             {
-                if (MessageBox.Show("Do you want to edit the selected product?", "Edit Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                if (MessageBox.Show("Do you want to edit the selected product?", "Edit Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) 
                 {
-                    info.ShowDialog();
+                    using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                    {
+                        info.ShowDialog();
+                    }
+                    this.LoadProductData();
                 }
-                this.LoadProductData();
             }
             else
             {
