@@ -36,18 +36,18 @@ namespace App.Product
             product.Status = getStatus.Active;
 
             productController = new ProductRepository();
-            
-            if (productController.Save(product))
+
+            if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (MessageBox.Show("Do you want to save the selected product?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (productController.Save(product))
                 {
                     MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Dispose();
                 }
-            }
-            else
-            {
-                MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
