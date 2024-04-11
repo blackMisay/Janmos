@@ -54,7 +54,7 @@ namespace Core.System.Repository
                 foreach (DataRow row in dt.Rows)
                 {
                     customer.Name = row["name"].ToString();
-                    customer.Entity = new getEntity();
+                    customer.Entity = new Entity();
                     customer.Entityname = row["entityname"].ToString();
                     customer.Mobilenum = row["mobilenum"].ToString();
                     customer.Telenum = row["phonenum"].ToString();

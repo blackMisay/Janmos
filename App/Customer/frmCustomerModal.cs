@@ -48,7 +48,8 @@ namespace App.Customer
         {
             customerRepository = new CustomerRepository();
 
-            cmbEntity.DataSource = Enum.GetValues(typeof(getEntity));
+            cmbEntity.DataSource = Enum.GetValues(typeof(Entity));
+            cmbEntity.SelectedIndex = -1;
 
             cmbRegion.DataSource = customerRepository.LoadDataList("SELECT DISTINCT region.id, region.`name`, region.`description` FROM region;");
             cmbRegion.ValueMember = "id";
@@ -263,7 +264,7 @@ namespace App.Customer
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
             customer.Id = this.Id;
             customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new getEntity();
+            customer.Entity = new Entity();
             customer.Entityname = this.txtEntityName.Text;
             customer.Mobilenum = this.txtMobileNumber.Text;
             customer.Telenum = this.txtPhoneNumber.Text;
@@ -276,17 +277,20 @@ namespace App.Customer
             customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
             customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
-            customer.Status = getStatus.Active;
+            customer.Status = Status.Active;
 
             customerRepository = new CustomerRepository();
-            if (customerRepository.Save(customer))
+            if (MessageBox.Show("Do you want to save the customer data?", "Save Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
-            }
-            else
-            {
-                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (customerRepository.Save(customer))
+                {
+                    MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

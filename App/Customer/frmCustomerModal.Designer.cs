@@ -201,10 +201,6 @@
             this.cmbEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEntity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbEntity.FormattingEnabled = true;
-            this.cmbEntity.Items.AddRange(new object[] {
-            "Individual",
-            "Business",
-            "Organization"});
             this.cmbEntity.Location = new System.Drawing.Point(51, 166);
             this.cmbEntity.Name = "cmbEntity";
             this.cmbEntity.Size = new System.Drawing.Size(183, 27);
