@@ -36,14 +36,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.dgvProduct = new System.Windows.Forms.DataGridView();
+            this.dgvSupplier = new System.Windows.Forms.DataGridView();
             this.cmbRecordCount = new System.Windows.Forms.ComboBox();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnNext = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupplier)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -98,8 +98,9 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(927, 104);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 30);
+            this.txtSearch.Size = new System.Drawing.Size(200, 26);
             this.txtSearch.TabIndex = 65;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
             // 
             // label1
             // 
@@ -109,7 +110,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(-6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(233, 38);
+            this.label1.Size = new System.Drawing.Size(182, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manage Supplier";
             // 
@@ -136,27 +137,28 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(923, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 23);
+            this.label2.Size = new System.Drawing.Size(167, 19);
             this.label2.TabIndex = 63;
             this.label2.Text = "Search by (Supplier name)";
             // 
-            // dgvProduct
+            // dgvSupplier
             // 
-            this.dgvProduct.AllowUserToAddRows = false;
-            this.dgvProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvSupplier.AllowUserToAddRows = false;
+            this.dgvSupplier.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvProduct.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvProduct.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProduct.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvProduct.Location = new System.Drawing.Point(21, 171);
-            this.dgvProduct.Name = "dgvProduct";
-            this.dgvProduct.RowHeadersVisible = false;
-            this.dgvProduct.RowHeadersWidth = 51;
-            this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(1126, 568);
-            this.dgvProduct.TabIndex = 70;
+            this.dgvSupplier.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSupplier.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSupplier.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvSupplier.Location = new System.Drawing.Point(21, 171);
+            this.dgvSupplier.Name = "dgvSupplier";
+            this.dgvSupplier.RowHeadersVisible = false;
+            this.dgvSupplier.RowHeadersWidth = 51;
+            this.dgvSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSupplier.Size = new System.Drawing.Size(1126, 568);
+            this.dgvSupplier.TabIndex = 70;
+            this.dgvSupplier.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupplier_CellClick);
             // 
             // cmbRecordCount
             // 
@@ -165,7 +167,7 @@
             this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRecordCount.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRecordCount.FormattingEnabled = true;
-            this.cmbRecordCount.ItemHeight = 25;
+            this.cmbRecordCount.ItemHeight = 19;
             this.cmbRecordCount.Items.AddRange(new object[] {
             "5",
             "10",
@@ -175,7 +177,7 @@
             "200"});
             this.cmbRecordCount.Location = new System.Drawing.Point(1086, 742);
             this.cmbRecordCount.Name = "cmbRecordCount";
-            this.cmbRecordCount.Size = new System.Drawing.Size(61, 33);
+            this.cmbRecordCount.Size = new System.Drawing.Size(61, 27);
             this.cmbRecordCount.TabIndex = 81;
             // 
             // btnLastPage
@@ -236,25 +238,26 @@
             // 
             // frmSupplier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1167, 777);
+            this.ClientSize = new System.Drawing.Size(1167, 749);
             this.Controls.Add(this.cmbRecordCount);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.dgvProduct);
+            this.Controls.Add(this.dgvSupplier);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmSupplier";
             this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
             this.Text = "frmSupplier";
+            this.Load += new System.EventHandler(this.frmSupplier_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSupplier)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -268,7 +271,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dgvProduct;
+        private System.Windows.Forms.DataGridView dgvSupplier;
         private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.Button btnFirstPage;
         private System.Windows.Forms.Button btnPrevious;
