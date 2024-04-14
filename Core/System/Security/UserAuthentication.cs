@@ -37,11 +37,14 @@ namespace Core.System.Security
                 user.Password = row["password"].ToString();
                 user.Key = row["key"].ToString();
             }
-            if (user.Password != null)
+            if (!string.IsNullOrEmpty(user.Username))
             {
-                if (user.Password.Equals(SecureHash.HashPassword(account.Password, user.Key)))
+                if (user.Username == account.Username)
                 {
-                    return true;
+                    if (!string.IsNullOrEmpty(user.Password) && (user.Password.Equals(SecureHash.HashPassword(account.Password, user.Key))))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
