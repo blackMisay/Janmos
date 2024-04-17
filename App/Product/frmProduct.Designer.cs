@@ -44,6 +44,7 @@
             this.btnNext = new System.Windows.Forms.Button();
             this.cmbRecordCount = new System.Windows.Forms.ComboBox();
             this.tipProduct = new System.Windows.Forms.ToolTip(this.components);
+            this.lblPageNumber = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.SuspendLayout();
@@ -102,7 +103,7 @@
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(927, 104);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 30);
+            this.txtSearch.Size = new System.Drawing.Size(200, 26);
             this.txtSearch.TabIndex = 65;
             this.tipProduct.SetToolTip(this.txtSearch, "Search a product by name");
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -115,7 +116,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(-6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 38);
+            this.label1.Size = new System.Drawing.Size(186, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Manage Products";
             // 
@@ -143,7 +144,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(923, 78);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(207, 23);
+            this.label2.Size = new System.Drawing.Size(166, 19);
             this.label2.TabIndex = 63;
             this.label2.Text = "Search by (Product name)";
             // 
@@ -174,7 +175,7 @@
             this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
-            this.btnLastPage.Location = new System.Drawing.Point(622, 739);
+            this.btnLastPage.Location = new System.Drawing.Point(643, 739);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(30, 30);
             this.btnLastPage.TabIndex = 76;
@@ -189,7 +190,7 @@
             this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirstPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
-            this.btnFirstPage.Location = new System.Drawing.Point(490, 738);
+            this.btnFirstPage.Location = new System.Drawing.Point(496, 739);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
             this.btnFirstPage.TabIndex = 75;
@@ -204,7 +205,7 @@
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(534, 738);
+            this.btnPrevious.Location = new System.Drawing.Point(541, 739);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 74;
@@ -219,7 +220,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(578, 739);
+            this.btnNext.Location = new System.Drawing.Point(598, 739);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 73;
@@ -233,7 +234,7 @@
             this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRecordCount.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRecordCount.FormattingEnabled = true;
-            this.cmbRecordCount.ItemHeight = 25;
+            this.cmbRecordCount.ItemHeight = 19;
             this.cmbRecordCount.Items.AddRange(new object[] {
             "5",
             "10",
@@ -243,16 +244,26 @@
             "200"});
             this.cmbRecordCount.Location = new System.Drawing.Point(1085, 739);
             this.cmbRecordCount.Name = "cmbRecordCount";
-            this.cmbRecordCount.Size = new System.Drawing.Size(61, 33);
+            this.cmbRecordCount.Size = new System.Drawing.Size(61, 27);
             this.cmbRecordCount.TabIndex = 77;
             this.tipProduct.SetToolTip(this.cmbRecordCount, "Record count");
             // 
+            // lblPageNumber
+            // 
+            this.lblPageNumber.AutoSize = true;
+            this.lblPageNumber.Location = new System.Drawing.Point(577, 740);
+            this.lblPageNumber.Name = "lblPageNumber";
+            this.lblPageNumber.Size = new System.Drawing.Size(15, 17);
+            this.lblPageNumber.TabIndex = 78;
+            this.lblPageNumber.Text = "1";
+            // 
             // frmProduct
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.ClientSize = new System.Drawing.Size(1167, 777);
+            this.ClientSize = new System.Drawing.Size(1167, 749);
+            this.Controls.Add(this.lblPageNumber);
             this.Controls.Add(this.cmbRecordCount);
             this.Controls.Add(this.btnLastPage);
             this.Controls.Add(this.btnFirstPage);
@@ -270,6 +281,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -288,5 +300,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cmbRecordCount;
         private System.Windows.Forms.ToolTip tipProduct;
+        private System.Windows.Forms.Label lblPageNumber;
     }
 }
