@@ -21,7 +21,8 @@ namespace App.Customer
         {
             InitializeComponent();
             InitializeComponentsData();
-            cmbEntity.DataSource = Enum.GetValues(typeof(entity));
+            cmbEntity.DataSource = Enum.GetValues(typeof(Entity));
+            cmbEntity.SelectedIndex = -1;
         }
 
         public CustomerModal(int customerId)
@@ -47,19 +48,20 @@ namespace App.Customer
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
             customer.Id = this.Id;
             customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new entity();
+            customer.Entity = new Entity();
             customer.Entityname = this.txtEntityName.Text;
             customer.Mobilenum = this.txtMobileNumber.Text;
             customer.Telenum = this.txtPhoneNumber.Text;
             customer.Extension = this.txtPhoneNumberExtension.Text;
             customer.Email = this.txtEmailAddress.Text;
             customer.Socialnetid= this.txtSocialNetworkID.Text;
-            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion) };
-            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince) };
-            customer.Municipality= new Municipality() { Id = Convert.ToInt32(cmbProvince) };
-            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict) };
+            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
+            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            customer.Municipality= new Municipality() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
             customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
+            customer.Status = Status.Active;
 
             customerController = new CustomerRepository();
             if (customerController.Save(customer))

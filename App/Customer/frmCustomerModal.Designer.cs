@@ -40,6 +40,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.gbxContactInformation = new System.Windows.Forms.GroupBox();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
             this.lblSocialNetworkID = new System.Windows.Forms.Label();
             this.txtSocialNetworkID = new System.Windows.Forms.TextBox();
             this.lblPhoneNumberExtension = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.tipCustomerModal = new System.Windows.Forms.ToolTip(this.components);
-            this.lblCity = new System.Windows.Forms.Label();
-            this.cmbCity = new System.Windows.Forms.ComboBox();
             this.gbxMain.SuspendLayout();
             this.gbxContactInformation.SuspendLayout();
             this.SuspendLayout();
@@ -162,10 +162,6 @@
             this.cmbEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEntity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbEntity.FormattingEnabled = true;
-            this.cmbEntity.Items.AddRange(new object[] {
-            "Individual",
-            "Business",
-            "Organization"});
             this.cmbEntity.Location = new System.Drawing.Point(51, 166);
             this.cmbEntity.Name = "cmbEntity";
             this.cmbEntity.Size = new System.Drawing.Size(183, 27);
@@ -225,6 +221,27 @@
             this.gbxContactInformation.TabIndex = 96;
             this.gbxContactInformation.TabStop = false;
             this.gbxContactInformation.Text = "Contact Information";
+            // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCity.Location = new System.Drawing.Point(546, 171);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(120, 19);
+            this.lblCity.TabIndex = 20;
+            this.lblCity.Text = "City / Municipality";
+            // 
+            // cmbCity
+            // 
+            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(550, 197);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(230, 27);
+            this.cmbCity.TabIndex = 21;
             // 
             // lblSocialNetworkID
             // 
@@ -460,27 +477,6 @@
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btn_Cancel_Click);
-            // 
-            // lblCity
-            // 
-            this.lblCity.AutoSize = true;
-            this.lblCity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCity.Location = new System.Drawing.Point(546, 171);
-            this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(120, 19);
-            this.lblCity.TabIndex = 20;
-            this.lblCity.Text = "City / Municipality";
-            // 
-            // cmbCity
-            // 
-            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(550, 197);
-            this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(230, 27);
-            this.cmbCity.TabIndex = 21;
             // 
             // CustomerModal
             // 
