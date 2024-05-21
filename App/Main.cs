@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Backup;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -110,6 +111,14 @@ namespace App
             if (MessageBox.Show("Are you sure you want to log out?","Confirm to logout",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 this.Dispose();
+            }
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            using (frmBackup fb = new frmBackup())
+            {
+                fb.ShowDialog();
             }
         }
     }

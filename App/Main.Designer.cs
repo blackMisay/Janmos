@@ -78,7 +78,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 0);
-            this.label1.Size = new System.Drawing.Size(412, 27);
+            this.label1.Size = new System.Drawing.Size(334, 23);
             this.label1.TabIndex = 5;
             this.label1.Text = "J-anmos - Sales and Inventory Management System";
             // 
@@ -216,6 +216,7 @@
             this.tpMain.SetToolTip(this.btnSetting, "Settings\r\n\r\nConfigure options or adjust application\'s default settings or behavio" +
         "ur.");
             this.btnSetting.UseVisualStyleBackColor = false;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
             // 
             // btnSupplier
             // 
@@ -346,7 +347,7 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 749);
