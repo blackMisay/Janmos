@@ -3,13 +3,17 @@ using System.Data;
 using System.Collections.Generic;
 
 using MySqlConnector;
+using Core.System.Data.Model;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 
 namespace Core
 {
     internal class UpgradeManager
     {
-        internal MySqlConnection connection;
+        internal MySql.Data.MySqlClient.MySqlConnection connection;
         private string connectionString;
 
 
@@ -49,13 +53,13 @@ namespace Core
         {
             try
             {
-                connection = new MySqlConnection(connectionString);
+                connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
                 }
             }
-            catch (MySqlException ex)
+            catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 // Log or handle specific MySql errors here
                 throw new Exception($"Error executing query: {ex.Message}");
@@ -79,7 +83,7 @@ namespace Core
             try
             {
                 this.Connect();
-                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, this.connection))
                 {
                     foreach (KeyValuePair<string, string> kvp in parameters)
                     {
@@ -90,7 +94,7 @@ namespace Core
                     return true;
                 }
             }
-            catch (MySqlException ex)
+            catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 // Log or handle specific MySql errors here
                 throw new Exception($"Error executing query: {ex.Message}");
@@ -131,7 +135,7 @@ namespace Core
             {
                 this.Connect();
                 DataTable dt;
-                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, this.connection))
                 {
                     if (param != null)
                     {
@@ -140,7 +144,7 @@ namespace Core
                             cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                         }
                     }
-                    using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                    using (MySql.Data.MySqlClient.MySqlDataAdapter da = new MySql.Data.MySqlClient.MySqlDataAdapter(cmd))
                     {
                         dt = new DataTable();
                         da.Fill(dt);
@@ -149,7 +153,7 @@ namespace Core
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 // Log or handle specific MySql errors here
                 throw new Exception($"Error executing query: {ex.Message}");
@@ -178,9 +182,9 @@ namespace Core
             {
                 this.Connect();
                 UpgradeManager db = new UpgradeManager();
-                using (MySqlCommand cmd = new MySqlCommand(query, db.connection))
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, db.connection))
                 {
-                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    using (MySql.Data.MySqlClient.MySqlDataReader dr = cmd.ExecuteReader())
                     {
                         keyValueList = new List<KeyValuePair<int, string>>();
                         while (dr.Read())
@@ -197,10 +201,111 @@ namespace Core
                     }
                 }
             }
-            catch (MySqlException ex)
+            catch (MySql.Data.MySqlClient.MySqlException ex)
             {
                 // Log or handle specific MySql errors here
                 throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+
+        public int GetTotalCount(string query)
+        {
+            int totalRecords = 0;
+            try
+            {
+                this.Connect();
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(query, this.connection))
+                {
+                    totalRecords = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                return totalRecords;
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+
+        public void SaveBackup(int buttonValue, string strPath) //for saving
+        {
+            try
+            {
+                this.Connect();
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(null, this.connection))
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        if (buttonValue == 0)
+                        {
+                            mb.ExportToFile(strPath);
+                            MessageBox.Show("Backup Successfully.", "Database Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        if (buttonValue == 1)
+                        {
+                            mb.ImportFromFile(strPath);
+                            MessageBox.Show("Restore Successfully.", "Database Backup", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                MessageBox.Show($"Error executing: {ex.Message}", "Save Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show($"Unexpected error: {e.Message}", "Save Backup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally { this.connection.Close(); }
+        }
+
+        public string OpenBackup(int value) //for reading
+        {
+            string file = "";
+            try
+            {
+                this.Connect();
+                using (MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(null, this.connection))
+                {
+                    using (MySqlBackup mb = new MySqlBackup(cmd))
+                    {
+                        if (value == 1)
+                        {
+                            SaveFileDialog sfd = new SaveFileDialog();
+                            sfd.Filter = "SQL Source File | *.sql";
+                            if (sfd.ShowDialog() == DialogResult.OK)
+                            {
+                                file = sfd.FileName;
+                                return file;
+                            }
+                        }
+                        if (value == 2)
+                        {
+                            OpenFileDialog ofd = new OpenFileDialog();
+                            ofd.Filter = "SQL Source File | *.sql";
+                            if (ofd.ShowDialog() == DialogResult.OK)
+                            {
+                                file = ofd.FileName;
+                                return file;
+                            }
+                        }
+                        return file;
+                    }
+                }
+            }
+            catch (MySql.Data.MySqlClient.MySqlException ex)
+            {
+                throw new Exception($"Error executing: {ex.Message}");
             }
             catch (Exception e)
             {

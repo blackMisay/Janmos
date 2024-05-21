@@ -2,15 +2,16 @@
 using Core.System.Data.Model;
 using System.Data;
 using System;
+using System.Windows.Forms;
 
 namespace Core.System.Repository
 {
     public class ProductRepository
     {
         UpgradeManager upgradeManager;
-        public DataTable LoadProductData()
+        public DataTable LoadProductData(int pageSize)
         {
-            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id ORDER BY product.id DESC;";
+            string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.`status` = '0' ORDER BY product.id DESC LIMIT "+pageSize;
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
@@ -26,6 +27,12 @@ namespace Core.System.Repository
             };
             
             return upgradeManager.Load(query, productParams);
+        }
+        public int GetProductCount()
+        {
+            string query = "SELECT COUNT(*) AS 'totalcount' FROM product WHERE product.`status` = '0'";
+            upgradeManager = new UpgradeManager();
+            return upgradeManager.GetTotalCount(query);
         }
 
         public Product FetchProductData(int productId)
@@ -79,10 +86,21 @@ namespace Core.System.Repository
                 {"@MetricUnit", product.MetricUnit.Id.ToString()}
             };
 
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             if (upgradeManager.ExecuteQuery(query, productParameters))
                 return true;
             return false;
+        }
+        public string OpenBackup(int buttonValue)
+        {
+            upgradeManager = new UpgradeManager();
+            return this.upgradeManager.OpenBackup(buttonValue);
+        }
+
+        public void SaveBackup(int buttonValue, string strPath)
+        {
+            upgradeManager = new UpgradeManager();
+            this.upgradeManager.SaveBackup(buttonValue, strPath);
         }
     }
 }
