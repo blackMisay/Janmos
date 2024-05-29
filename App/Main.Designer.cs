@@ -105,7 +105,7 @@
             this.pnlModule.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlModule.Location = new System.Drawing.Point(70, 42);
             this.pnlModule.Name = "pnlModule";
-            this.pnlModule.Size = new System.Drawing.Size(1126, 664);
+            this.pnlModule.Size = new System.Drawing.Size(1126, 692);
             this.pnlModule.TabIndex = 3;
             // 
             // pnlProductContainer
@@ -232,6 +232,7 @@
             this.tpMain.SetToolTip(this.btnSupplier, "Supplier\r\n\r\nFacilitates supplier information \r\nand tracks supply chain transactio" +
         "ns.");
             this.btnSupplier.UseVisualStyleBackColor = false;
+            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // panel4
             // 
@@ -281,6 +282,7 @@
             this.btnInventory.TabIndex = 12;
             this.tpMain.SetToolTip(this.btnInventory, "Inventory\r\n\r\nManage and track stock of items");
             this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // btnProduct
             // 
@@ -338,9 +340,9 @@
             // panel1
             // 
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(70, 706);
+            this.panel1.Location = new System.Drawing.Point(70, 734);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1126, 43);
+            this.panel1.Size = new System.Drawing.Size(1126, 15);
             this.panel1.TabIndex = 5;
             // 
             // Main
