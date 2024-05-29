@@ -11,14 +11,14 @@ namespace Core.System.Repository
         public DataTable LoadProductData()
         {
             string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id ORDER BY product.id DESC;";
-            upgradeManager = new UpgradeManager();
+            UpgradeManager upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadProductData(string searchValue)
         {
             string query = "SELECT product.id AS `Product Number`,product.name AS `Product Name`,product.description AS `Description`,category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.name LIKE @val ORDER BY product.id DESC;";
-            upgradeManager = new UpgradeManager();
+            UpgradeManager upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> productParams = new Dictionary<string, string>()
             { 
@@ -31,7 +31,7 @@ namespace Core.System.Repository
         public Product FetchProductData(int productId)
         {
             DataTable dt = new DataTable();
-            this.upgradeManager = new UpgradeManager();
+            UpgradeManager upgradeManager = new UpgradeManager();
             dt = upgradeManager.Load("SELECT * FROM dbjanmos.product WHERE product.id=" + productId);
 
             if (dt.Rows.Count > 0 )
@@ -52,8 +52,8 @@ namespace Core.System.Repository
 
         public DataTable LoadDataList(string query)
         {
-            this.upgradeManager = new UpgradeManager();
-            return this.upgradeManager.Load(query);
+            UpgradeManager upgradeManager = new UpgradeManager();
+            return upgradeManager.Load(query);
         }
 
         public bool Save(Product product)

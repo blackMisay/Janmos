@@ -1,5 +1,6 @@
 ﻿using App.Product;
 using Core.System.Repository;
+﻿using Core.System.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,13 @@ namespace App.Customer
                         cmodal.ShowDialog();
                     }
                     this.LoadCustomerData();
+            if (selectedCustomerId != 0)
+            {
+                using (CustomerModal cmodal = new CustomerModal())
+                {
+                    cmodal.ShowDialog();
+                }
+                this.LoadCustomerData();
             }
             else
             {
@@ -94,6 +102,25 @@ namespace App.Customer
             {
                 int selectedRowIndex = dgvCustomer.SelectedCells[0].RowIndex;
                 this.selectedCustomerId = Convert.ToInt32(dgvCustomer.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+
+        private void LoadCustomerData()
+        {
+            CustomerRepository customerRepository = new CustomerRepository();
+            dgvCustomers.DataSource = customerRepository.LoadCustomerData();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            CustomerRepository customerRepository = new CustomerRepository();
+            dgvCustomers.DataSource = customerRepository.LoadCustomerData(txtSearch.Text);
+        }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvCustomers.RowCount > 0)
+            {
+                int selectedRowIndex = dgvCustomers.SelectedCells[0].RowIndex;
+                this.selectedCustomerId = Convert.ToInt32(dgvCustomers.Rows[selectedRowIndex].Cells[0].Value?.ToString());
             }
         }
     }

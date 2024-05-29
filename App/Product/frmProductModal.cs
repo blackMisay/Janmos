@@ -25,6 +25,66 @@ namespace App.Product
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            FieldValidate();
+        }
+        public void FieldValidate()
+        {
+            bool validated = true;
+
+            if (string.IsNullOrEmpty(txtProductName.Text) || string.IsNullOrWhiteSpace(txtProductName.Text))
+            {
+                lblRequiredName.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredName.Visible = false;
+            }
+
+            if (string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                lblRequiredDescription.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredDescription.Visible = false;
+            }
+
+            if (string.IsNullOrEmpty(txtMetricValue.Text) || string.IsNullOrWhiteSpace(txtMetricValue.Text))
+            {
+                lblRequiredMetricValue.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredMetricValue.Visible = false;
+            }
+
+            if (cmbCategory.SelectedIndex == -1)
+            {
+                lblRequiredCategory.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredCategory.Visible = false;
+            }
+
+            if (cmbMetricUnit.SelectedIndex == -1)
+            {
+                lblRequiredMetricUnit.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredMetricUnit.Visible = false;
+            }
+
+            if (!validated)
+                return;
+
+            productController = new ProductRepository();
             Core.System.Data.Model.Product product = new Core.System.Data.Model.Product();
             product.Id = this.Id;
             product.Name = this.txtProductName.Text;
@@ -32,8 +92,6 @@ namespace App.Product
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
             product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
             product.MetricValue = this.txtMetricValue.Text;
-
-            productController = new ProductRepository();
             if (productController.Save(product))
             {
                 MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);

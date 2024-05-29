@@ -17,10 +17,13 @@ namespace App.Customer
     {
         private readonly int Id = 0;
         CustomerRepository customerRepository;
+        CustomerRepository customerController;
         public CustomerModal()
         {
             InitializeComponent();
             InitializeComponentsData();
+            cmbEntity.DataSource = Enum.GetValues(typeof(Entity));
+            cmbEntity.SelectedIndex = -1;
         }
 
         public CustomerModal(int customerId)
@@ -79,6 +82,56 @@ namespace App.Customer
             cmbDistrict.ValueMember = "id";
             cmbDistrict.DisplayMember = "name";
             cmbDistrict.SelectedIndex = -1;
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
+            customer.Id = this.Id;
+            customer.Name = this.txtCustomerName.Text;
+            customer.Entity = new Entity();
+            customer.Entityname = this.txtEntityName.Text;
+            customer.Mobilenum = this.txtMobileNumber.Text;
+            customer.Telenum = this.txtPhoneNumber.Text;
+            customer.Extension = this.txtPhoneNumberExtension.Text;
+            customer.Email = this.txtEmailAddress.Text;
+            customer.Socialnetid= this.txtSocialNetworkID.Text;
+            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
+            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            customer.Municipality= new Municipality() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
+            customer.Postal = this.txtPostalCode.Text;
+            customer.Housenum = this.txtAddress.Text;
+            customer.Status = Status.Active;
+
+            customerController = new CustomerRepository();
+            if (customerController.Save(customer))
+            {
+                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void InitializeComponentsData()
+        {
+            customerController = new CustomerRepository();
+
+            cmbRegion.DataSource = customerController.LoadDataList("SELECT region.id, region.`name` FROM region;");
+            cmbRegion.ValueMember = "id";
+            cmbRegion.DisplayMember = "name";
+
+            cmbProvince.DataSource = customerController.LoadDataList("SELECT province.id, province.`name` FROM province JOIN region ON province.region = region.id WHERE province.region = region.id;");
+            cmbProvince.ValueMember = "id";
+            cmbProvince.DisplayMember = "name";
+
+            cmbCity.DataSource = customerController.LoadDataList("SELECT municipality.id, province.`name` FROM municipality JOIN province ON municipality.province = province.id WHERE municipality.province = province.id;");
+            cmbCity.ValueMember = "id";
+            cmbCity.DisplayMember = "name";
+
+            cmbDistrict.DataSource = customerController.LoadDataList("SELECT baranggay.id, baranggay.`name` FROM baranggay JOIN municipality ON baranggay.municipality = municipality.id WHERE baranggay.municipality = municipality.id;");
+            cmbDistrict.ValueMember = "id";
+            cmbDistrict.DisplayMember = "name";
         }
 
         private void InitializeSelectedCustomerData()
@@ -88,6 +141,11 @@ namespace App.Customer
 
             Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
             customer = customerRepository.FetchCustomerData(this.Id);
+
+            customerController = new CustomerRepository();
+
+            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
+            customer = customerController.FetchCustomerData(this.Id);
 
             this.txtCustomerName.Text = customer.Name;
             cmbEntity.SelectedItem = customer.Entity.ToString();
