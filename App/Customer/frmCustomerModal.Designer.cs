@@ -40,6 +40,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.gbxContactInformation = new System.Windows.Forms.GroupBox();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.cmbCity = new System.Windows.Forms.ComboBox();
             this.lblSocialNetworkID = new System.Windows.Forms.Label();
             this.txtSocialNetworkID = new System.Windows.Forms.TextBox();
             this.lblPhoneNumberExtension = new System.Windows.Forms.Label();
@@ -54,8 +56,8 @@
             this.txtAddress = new System.Windows.Forms.RichTextBox();
             this.lblBrgy = new System.Windows.Forms.Label();
             this.cmbDistrict = new System.Windows.Forms.ComboBox();
-            this.lblCity = new System.Windows.Forms.Label();
-            this.cmbCity = new System.Windows.Forms.ComboBox();
+            this.lblProvince = new System.Windows.Forms.Label();
+            this.cmbProvince = new System.Windows.Forms.ComboBox();
             this.lblRegion = new System.Windows.Forms.Label();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
             this.lblEmailAddress = new System.Windows.Forms.Label();
@@ -73,9 +75,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblModule.AutoSize = true;
             this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModule.Location = new System.Drawing.Point(23, 25);
+            this.lblModule.Location = new System.Drawing.Point(23, 20);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(198, 32);
+            this.lblModule.Size = new System.Drawing.Size(156, 25);
             this.lblModule.TabIndex = 94;
             this.lblModule.Text = "Create Customer";
             // 
@@ -90,7 +92,7 @@
             this.gbxMain.Controls.Add(this.lblName);
             this.gbxMain.Controls.Add(this.txtCustomerName);
             this.gbxMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxMain.Location = new System.Drawing.Point(54, 102);
+            this.gbxMain.Location = new System.Drawing.Point(55, 59);
             this.gbxMain.Name = "gbxMain";
             this.gbxMain.Size = new System.Drawing.Size(830, 228);
             this.gbxMain.TabIndex = 95;
@@ -104,7 +106,7 @@
             this.lblEntityName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblEntityName.Location = new System.Drawing.Point(249, 141);
             this.lblEntityName.Name = "lblEntityName";
-            this.lblEntityName.Size = new System.Drawing.Size(104, 23);
+            this.lblEntityName.Size = new System.Drawing.Size(84, 19);
             this.lblEntityName.TabIndex = 7;
             this.lblEntityName.Text = "Entity Name";
             // 
@@ -113,7 +115,7 @@
             this.txtEntityName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEntityName.Location = new System.Drawing.Point(253, 167);
             this.txtEntityName.Name = "txtEntityName";
-            this.txtEntityName.Size = new System.Drawing.Size(279, 30);
+            this.txtEntityName.Size = new System.Drawing.Size(279, 26);
             this.txtEntityName.TabIndex = 2;
             this.tipCustomerModal.SetToolTip(this.txtEntityName, "Entity name\r\n\r\nIndividual - leave as blank. (Not required)\r\nBusiness - name of bu" +
         "siness. (Required)\r\nOrganization - name of organization. (Required)\r\n\r\n");
@@ -125,7 +127,7 @@
             this.lblStatus.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblStatus.Location = new System.Drawing.Point(645, 61);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(56, 23);
+            this.lblStatus.Size = new System.Drawing.Size(47, 19);
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Status";
             // 
@@ -140,7 +142,7 @@
             "Inactive"});
             this.cmbStatus.Location = new System.Drawing.Point(649, 86);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(131, 31);
+            this.cmbStatus.Size = new System.Drawing.Size(131, 27);
             this.cmbStatus.TabIndex = 15;
             this.tipCustomerModal.SetToolTip(this.cmbStatus, "Customer Status");
             // 
@@ -151,7 +153,7 @@
             this.lblEntity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblEntity.Location = new System.Drawing.Point(47, 140);
             this.lblEntity.Name = "lblEntity";
-            this.lblEntity.Size = new System.Drawing.Size(53, 23);
+            this.lblEntity.Size = new System.Drawing.Size(44, 19);
             this.lblEntity.TabIndex = 3;
             this.lblEntity.Text = "Entity";
             // 
@@ -160,13 +162,9 @@
             this.cmbEntity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEntity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbEntity.FormattingEnabled = true;
-            this.cmbEntity.Items.AddRange(new object[] {
-            "Individual",
-            "Business",
-            "Organization"});
             this.cmbEntity.Location = new System.Drawing.Point(51, 166);
             this.cmbEntity.Name = "cmbEntity";
-            this.cmbEntity.Size = new System.Drawing.Size(183, 31);
+            this.cmbEntity.Size = new System.Drawing.Size(183, 27);
             this.cmbEntity.TabIndex = 1;
             this.tipCustomerModal.SetToolTip(this.cmbEntity, "Customer entity (Required)\r\n\r\nThis serve as the customer classification.");
             // 
@@ -177,7 +175,7 @@
             this.lblName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblName.Location = new System.Drawing.Point(47, 60);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(56, 23);
+            this.lblName.Size = new System.Drawing.Size(45, 19);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Name";
             // 
@@ -186,7 +184,7 @@
             this.txtCustomerName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCustomerName.Location = new System.Drawing.Point(51, 86);
             this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.Size = new System.Drawing.Size(481, 30);
+            this.txtCustomerName.Size = new System.Drawing.Size(481, 26);
             this.txtCustomerName.TabIndex = 1;
             this.tipCustomerModal.SetToolTip(this.txtCustomerName, "Customer name (Required)");
             // 
@@ -194,6 +192,8 @@
             // 
             this.gbxContactInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxContactInformation.Controls.Add(this.lblCity);
+            this.gbxContactInformation.Controls.Add(this.cmbCity);
             this.gbxContactInformation.Controls.Add(this.lblSocialNetworkID);
             this.gbxContactInformation.Controls.Add(this.txtSocialNetworkID);
             this.gbxContactInformation.Controls.Add(this.lblPhoneNumberExtension);
@@ -208,37 +208,58 @@
             this.gbxContactInformation.Controls.Add(this.txtAddress);
             this.gbxContactInformation.Controls.Add(this.lblBrgy);
             this.gbxContactInformation.Controls.Add(this.cmbDistrict);
-            this.gbxContactInformation.Controls.Add(this.lblCity);
-            this.gbxContactInformation.Controls.Add(this.cmbCity);
+            this.gbxContactInformation.Controls.Add(this.lblProvince);
+            this.gbxContactInformation.Controls.Add(this.cmbProvince);
             this.gbxContactInformation.Controls.Add(this.lblRegion);
             this.gbxContactInformation.Controls.Add(this.cmbRegion);
             this.gbxContactInformation.Controls.Add(this.lblEmailAddress);
             this.gbxContactInformation.Controls.Add(this.txtEmailAddress);
             this.gbxContactInformation.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxContactInformation.Location = new System.Drawing.Point(54, 345);
+            this.gbxContactInformation.Location = new System.Drawing.Point(55, 302);
             this.gbxContactInformation.Name = "gbxContactInformation";
             this.gbxContactInformation.Size = new System.Drawing.Size(830, 372);
             this.gbxContactInformation.TabIndex = 96;
             this.gbxContactInformation.TabStop = false;
             this.gbxContactInformation.Text = "Contact Information";
             // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCity.Location = new System.Drawing.Point(546, 171);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(120, 19);
+            this.lblCity.TabIndex = 20;
+            this.lblCity.Text = "City / Municipality";
+            // 
+            // cmbCity
+            // 
+            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(550, 197);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(230, 27);
+            this.cmbCity.TabIndex = 21;
+            // 
             // lblSocialNetworkID
             // 
             this.lblSocialNetworkID.AutoSize = true;
             this.lblSocialNetworkID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSocialNetworkID.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSocialNetworkID.Location = new System.Drawing.Point(546, 61);
+            this.lblSocialNetworkID.Location = new System.Drawing.Point(546, 28);
             this.lblSocialNetworkID.Name = "lblSocialNetworkID";
-            this.lblSocialNetworkID.Size = new System.Drawing.Size(145, 23);
+            this.lblSocialNetworkID.Size = new System.Drawing.Size(117, 19);
             this.lblSocialNetworkID.TabIndex = 19;
             this.lblSocialNetworkID.Text = "Social Network ID";
             // 
             // txtSocialNetworkID
             // 
             this.txtSocialNetworkID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSocialNetworkID.Location = new System.Drawing.Point(550, 87);
+            this.txtSocialNetworkID.Location = new System.Drawing.Point(550, 54);
             this.txtSocialNetworkID.Name = "txtSocialNetworkID";
-            this.txtSocialNetworkID.Size = new System.Drawing.Size(230, 30);
+            this.txtSocialNetworkID.Size = new System.Drawing.Size(230, 26);
             this.txtSocialNetworkID.TabIndex = 5;
             this.tipCustomerModal.SetToolTip(this.txtSocialNetworkID, "Customer Social Network ID (Optional)\r\n\r\nThis your name or identification \r\nin an" +
         "y social media platform.");
@@ -248,18 +269,18 @@
             this.lblPhoneNumberExtension.AutoSize = true;
             this.lblPhoneNumberExtension.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumberExtension.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPhoneNumberExtension.Location = new System.Drawing.Point(295, 133);
+            this.lblPhoneNumberExtension.Location = new System.Drawing.Point(295, 100);
             this.lblPhoneNumberExtension.Name = "lblPhoneNumberExtension";
-            this.lblPhoneNumberExtension.Size = new System.Drawing.Size(83, 23);
+            this.lblPhoneNumberExtension.Size = new System.Drawing.Size(67, 19);
             this.lblPhoneNumberExtension.TabIndex = 17;
             this.lblPhoneNumberExtension.Text = "Extension";
             // 
             // txtPhoneNumberExtension
             // 
             this.txtPhoneNumberExtension.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNumberExtension.Location = new System.Drawing.Point(299, 159);
+            this.txtPhoneNumberExtension.Location = new System.Drawing.Point(299, 126);
             this.txtPhoneNumberExtension.Name = "txtPhoneNumberExtension";
-            this.txtPhoneNumberExtension.Size = new System.Drawing.Size(230, 30);
+            this.txtPhoneNumberExtension.Size = new System.Drawing.Size(230, 26);
             this.txtPhoneNumberExtension.TabIndex = 7;
             // 
             // lblPhoneNumber
@@ -267,18 +288,18 @@
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumber.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(47, 133);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(47, 100);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
-            this.lblPhoneNumber.Size = new System.Drawing.Size(127, 23);
+            this.lblPhoneNumber.Size = new System.Drawing.Size(102, 19);
             this.lblPhoneNumber.TabIndex = 15;
             this.lblPhoneNumber.Text = "Phone Number";
             // 
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNumber.Location = new System.Drawing.Point(51, 159);
+            this.txtPhoneNumber.Location = new System.Drawing.Point(51, 126);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(230, 30);
+            this.txtPhoneNumber.Size = new System.Drawing.Size(230, 26);
             this.txtPhoneNumber.TabIndex = 6;
             this.tipCustomerModal.SetToolTip(this.txtPhoneNumber, "Primary phone number (Optional)");
             // 
@@ -287,18 +308,18 @@
             this.lblMobileNumber.AutoSize = true;
             this.lblMobileNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMobileNumber.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblMobileNumber.Location = new System.Drawing.Point(47, 61);
+            this.lblMobileNumber.Location = new System.Drawing.Point(47, 28);
             this.lblMobileNumber.Name = "lblMobileNumber";
-            this.lblMobileNumber.Size = new System.Drawing.Size(130, 23);
+            this.lblMobileNumber.Size = new System.Drawing.Size(105, 19);
             this.lblMobileNumber.TabIndex = 13;
             this.lblMobileNumber.Text = "Mobile Number";
             // 
             // txtMobileNumber
             // 
             this.txtMobileNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMobileNumber.Location = new System.Drawing.Point(51, 87);
+            this.txtMobileNumber.Location = new System.Drawing.Point(51, 54);
             this.txtMobileNumber.Name = "txtMobileNumber";
-            this.txtMobileNumber.Size = new System.Drawing.Size(230, 30);
+            this.txtMobileNumber.Size = new System.Drawing.Size(230, 26);
             this.txtMobileNumber.TabIndex = 3;
             this.tipCustomerModal.SetToolTip(this.txtMobileNumber, "Customer mobile number (Required)");
             // 
@@ -307,18 +328,18 @@
             this.lblPostalCode.AutoSize = true;
             this.lblPostalCode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPostalCode.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPostalCode.Location = new System.Drawing.Point(546, 283);
+            this.lblPostalCode.Location = new System.Drawing.Point(546, 249);
             this.lblPostalCode.Name = "lblPostalCode";
-            this.lblPostalCode.Size = new System.Drawing.Size(100, 23);
+            this.lblPostalCode.Size = new System.Drawing.Size(81, 19);
             this.lblPostalCode.TabIndex = 11;
             this.lblPostalCode.Text = "Postal Code";
             // 
             // txtPostalCode
             // 
             this.txtPostalCode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPostalCode.Location = new System.Drawing.Point(550, 309);
+            this.txtPostalCode.Location = new System.Drawing.Point(550, 275);
             this.txtPostalCode.Name = "txtPostalCode";
-            this.txtPostalCode.Size = new System.Drawing.Size(230, 30);
+            this.txtPostalCode.Size = new System.Drawing.Size(230, 26);
             this.txtPostalCode.TabIndex = 12;
             // 
             // lblAddress
@@ -326,9 +347,9 @@
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblAddress.Location = new System.Drawing.Point(47, 208);
+            this.lblAddress.Location = new System.Drawing.Point(47, 229);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(70, 23);
+            this.lblAddress.Size = new System.Drawing.Size(58, 19);
             this.lblAddress.TabIndex = 9;
             this.lblAddress.Text = "Address";
             // 
@@ -336,7 +357,7 @@
             // 
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtAddress.Location = new System.Drawing.Point(51, 234);
+            this.txtAddress.Location = new System.Drawing.Point(51, 255);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(226, 105);
             this.txtAddress.TabIndex = 8;
@@ -347,9 +368,9 @@
             this.lblBrgy.AutoSize = true;
             this.lblBrgy.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrgy.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblBrgy.Location = new System.Drawing.Point(295, 283);
+            this.lblBrgy.Location = new System.Drawing.Point(298, 249);
             this.lblBrgy.Name = "lblBrgy";
-            this.lblBrgy.Size = new System.Drawing.Size(151, 23);
+            this.lblBrgy.Size = new System.Drawing.Size(122, 19);
             this.lblBrgy.TabIndex = 7;
             this.lblBrgy.Text = "Barangay / District";
             // 
@@ -358,40 +379,40 @@
             this.cmbDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDistrict.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbDistrict.FormattingEnabled = true;
-            this.cmbDistrict.Location = new System.Drawing.Point(299, 309);
+            this.cmbDistrict.Location = new System.Drawing.Point(302, 275);
             this.cmbDistrict.Name = "cmbDistrict";
-            this.cmbDistrict.Size = new System.Drawing.Size(230, 31);
+            this.cmbDistrict.Size = new System.Drawing.Size(230, 27);
             this.cmbDistrict.TabIndex = 11;
             // 
-            // lblCity
+            // lblProvince
             // 
-            this.lblCity.AutoSize = true;
-            this.lblCity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCity.Location = new System.Drawing.Point(546, 208);
-            this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(230, 23);
-            this.lblCity.TabIndex = 5;
-            this.lblCity.Text = "City / Municipality / Province";
+            this.lblProvince.AutoSize = true;
+            this.lblProvince.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProvince.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblProvince.Location = new System.Drawing.Point(298, 171);
+            this.lblProvince.Name = "lblProvince";
+            this.lblProvince.Size = new System.Drawing.Size(61, 19);
+            this.lblProvince.TabIndex = 5;
+            this.lblProvince.Text = "Province";
             // 
-            // cmbCity
+            // cmbProvince
             // 
-            this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.cmbCity.FormattingEnabled = true;
-            this.cmbCity.Location = new System.Drawing.Point(550, 234);
-            this.cmbCity.Name = "cmbCity";
-            this.cmbCity.Size = new System.Drawing.Size(230, 31);
-            this.cmbCity.TabIndex = 10;
+            this.cmbProvince.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbProvince.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cmbProvince.FormattingEnabled = true;
+            this.cmbProvince.Location = new System.Drawing.Point(302, 197);
+            this.cmbProvince.Name = "cmbProvince";
+            this.cmbProvince.Size = new System.Drawing.Size(230, 27);
+            this.cmbProvince.TabIndex = 10;
             // 
             // lblRegion
             // 
             this.lblRegion.AutoSize = true;
             this.lblRegion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblRegion.Location = new System.Drawing.Point(295, 208);
+            this.lblRegion.Location = new System.Drawing.Point(47, 171);
             this.lblRegion.Name = "lblRegion";
-            this.lblRegion.Size = new System.Drawing.Size(63, 23);
+            this.lblRegion.Size = new System.Drawing.Size(51, 19);
             this.lblRegion.TabIndex = 3;
             this.lblRegion.Text = "Region";
             // 
@@ -400,9 +421,9 @@
             this.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegion.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(299, 234);
+            this.cmbRegion.Location = new System.Drawing.Point(51, 197);
             this.cmbRegion.Name = "cmbRegion";
-            this.cmbRegion.Size = new System.Drawing.Size(230, 31);
+            this.cmbRegion.Size = new System.Drawing.Size(230, 27);
             this.cmbRegion.TabIndex = 9;
             // 
             // lblEmailAddress
@@ -410,18 +431,18 @@
             this.lblEmailAddress.AutoSize = true;
             this.lblEmailAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmailAddress.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblEmailAddress.Location = new System.Drawing.Point(295, 61);
+            this.lblEmailAddress.Location = new System.Drawing.Point(295, 28);
             this.lblEmailAddress.Name = "lblEmailAddress";
-            this.lblEmailAddress.Size = new System.Drawing.Size(116, 23);
+            this.lblEmailAddress.Size = new System.Drawing.Size(94, 19);
             this.lblEmailAddress.TabIndex = 1;
             this.lblEmailAddress.Text = "Email Address";
             // 
             // txtEmailAddress
             // 
             this.txtEmailAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailAddress.Location = new System.Drawing.Point(299, 87);
+            this.txtEmailAddress.Location = new System.Drawing.Point(299, 54);
             this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(230, 30);
+            this.txtEmailAddress.Size = new System.Drawing.Size(230, 26);
             this.txtEmailAddress.TabIndex = 4;
             this.tipCustomerModal.SetToolTip(this.txtEmailAddress, "Customer email address (Optional)");
             // 
@@ -433,12 +454,13 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(661, 739);
+            this.btnSave.Location = new System.Drawing.Point(662, 680);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(105, 49);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "&Submit";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -448,7 +470,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.btnCancel.Location = new System.Drawing.Point(779, 739);
+            this.btnCancel.Location = new System.Drawing.Point(780, 680);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 49);
             this.btnCancel.TabIndex = 14;
@@ -458,10 +480,10 @@
             // 
             // CustomerModal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(935, 809);
+            this.ClientSize = new System.Drawing.Size(935, 749);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbxContactInformation);
@@ -496,8 +518,8 @@
         private System.Windows.Forms.ComboBox cmbRegion;
         private System.Windows.Forms.Label lblEmailAddress;
         private System.Windows.Forms.TextBox txtEmailAddress;
-        private System.Windows.Forms.Label lblCity;
-        private System.Windows.Forms.ComboBox cmbCity;
+        private System.Windows.Forms.Label lblProvince;
+        private System.Windows.Forms.ComboBox cmbProvince;
         private System.Windows.Forms.Label lblBrgy;
         private System.Windows.Forms.ComboBox cmbDistrict;
         private System.Windows.Forms.Label lblAddress;
@@ -519,5 +541,7 @@
         private System.Windows.Forms.Label lblSocialNetworkID;
         private System.Windows.Forms.TextBox txtSocialNetworkID;
         private System.Windows.Forms.ToolTip tipCustomerModal;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.ComboBox cmbCity;
     }
 }
