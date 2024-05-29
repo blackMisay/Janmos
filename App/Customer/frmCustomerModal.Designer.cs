@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lblModule = new System.Windows.Forms.Label();
             this.gbxMain = new System.Windows.Forms.GroupBox();
+            this.lblRequireEntity = new System.Windows.Forms.Label();
+            this.lblRequireName = new System.Windows.Forms.Label();
             this.lblEntityName = new System.Windows.Forms.Label();
             this.txtEntityName = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -40,6 +42,19 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtCustomerName = new System.Windows.Forms.TextBox();
             this.gbxContactInformation = new System.Windows.Forms.GroupBox();
+            this.lblRequireAddress = new System.Windows.Forms.Label();
+            this.lblRequireDistrict = new System.Windows.Forms.Label();
+            this.lblRequirePostal = new System.Windows.Forms.Label();
+            this.lblRequireCity = new System.Windows.Forms.Label();
+            this.lblRequireProvince = new System.Windows.Forms.Label();
+            this.lblRequireRegion = new System.Windows.Forms.Label();
+            this.lblRequireExtension = new System.Windows.Forms.Label();
+            this.lblRequirePhone = new System.Windows.Forms.Label();
+            this.lblRequireSocial = new System.Windows.Forms.Label();
+            this.lblRequireEmail = new System.Windows.Forms.Label();
+            this.lblRequireMobile = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.lblCity = new System.Windows.Forms.Label();
             this.cmbCity = new System.Windows.Forms.ComboBox();
             this.lblSocialNetworkID = new System.Windows.Forms.Label();
@@ -62,8 +77,6 @@
             this.cmbRegion = new System.Windows.Forms.ComboBox();
             this.lblEmailAddress = new System.Windows.Forms.Label();
             this.txtEmailAddress = new System.Windows.Forms.TextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.tipCustomerModal = new System.Windows.Forms.ToolTip(this.components);
             this.gbxMain.SuspendLayout();
             this.gbxContactInformation.SuspendLayout();
@@ -83,6 +96,8 @@
             // 
             // gbxMain
             // 
+            this.gbxMain.Controls.Add(this.lblRequireEntity);
+            this.gbxMain.Controls.Add(this.lblRequireName);
             this.gbxMain.Controls.Add(this.lblEntityName);
             this.gbxMain.Controls.Add(this.txtEntityName);
             this.gbxMain.Controls.Add(this.lblStatus);
@@ -98,6 +113,30 @@
             this.gbxMain.TabIndex = 95;
             this.gbxMain.TabStop = false;
             this.gbxMain.Text = "Main";
+            // 
+            // lblRequireEntity
+            // 
+            this.lblRequireEntity.AutoSize = true;
+            this.lblRequireEntity.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireEntity.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireEntity.Location = new System.Drawing.Point(98, 144);
+            this.lblRequireEntity.Name = "lblRequireEntity";
+            this.lblRequireEntity.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireEntity.TabIndex = 18;
+            this.lblRequireEntity.Text = "*required";
+            this.lblRequireEntity.Visible = false;
+            // 
+            // lblRequireName
+            // 
+            this.lblRequireName.AutoSize = true;
+            this.lblRequireName.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireName.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireName.Location = new System.Drawing.Point(98, 64);
+            this.lblRequireName.Name = "lblRequireName";
+            this.lblRequireName.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireName.TabIndex = 16;
+            this.lblRequireName.Text = "*required";
+            this.lblRequireName.Visible = false;
             // 
             // lblEntityName
             // 
@@ -151,7 +190,7 @@
             this.lblEntity.AutoSize = true;
             this.lblEntity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEntity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblEntity.Location = new System.Drawing.Point(47, 140);
+            this.lblEntity.Location = new System.Drawing.Point(47, 141);
             this.lblEntity.Name = "lblEntity";
             this.lblEntity.Size = new System.Drawing.Size(44, 19);
             this.lblEntity.TabIndex = 3;
@@ -173,7 +212,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblName.Location = new System.Drawing.Point(47, 60);
+            this.lblName.Location = new System.Drawing.Point(47, 61);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(45, 19);
             this.lblName.TabIndex = 1;
@@ -192,6 +231,19 @@
             // 
             this.gbxContactInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbxContactInformation.Controls.Add(this.lblRequireAddress);
+            this.gbxContactInformation.Controls.Add(this.lblRequireDistrict);
+            this.gbxContactInformation.Controls.Add(this.lblRequirePostal);
+            this.gbxContactInformation.Controls.Add(this.lblRequireCity);
+            this.gbxContactInformation.Controls.Add(this.lblRequireProvince);
+            this.gbxContactInformation.Controls.Add(this.lblRequireRegion);
+            this.gbxContactInformation.Controls.Add(this.lblRequireExtension);
+            this.gbxContactInformation.Controls.Add(this.lblRequirePhone);
+            this.gbxContactInformation.Controls.Add(this.lblRequireSocial);
+            this.gbxContactInformation.Controls.Add(this.lblRequireEmail);
+            this.gbxContactInformation.Controls.Add(this.lblRequireMobile);
+            this.gbxContactInformation.Controls.Add(this.btnCancel);
+            this.gbxContactInformation.Controls.Add(this.btnSubmit);
             this.gbxContactInformation.Controls.Add(this.lblCity);
             this.gbxContactInformation.Controls.Add(this.cmbCity);
             this.gbxContactInformation.Controls.Add(this.lblSocialNetworkID);
@@ -222,11 +274,176 @@
             this.gbxContactInformation.TabStop = false;
             this.gbxContactInformation.Text = "Contact Information";
             // 
+            // lblRequireAddress
+            // 
+            this.lblRequireAddress.AutoSize = true;
+            this.lblRequireAddress.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireAddress.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireAddress.Location = new System.Drawing.Point(111, 238);
+            this.lblRequireAddress.Name = "lblRequireAddress";
+            this.lblRequireAddress.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireAddress.TabIndex = 31;
+            this.lblRequireAddress.Text = "*required";
+            this.lblRequireAddress.Visible = false;
+            // 
+            // lblRequireDistrict
+            // 
+            this.lblRequireDistrict.AutoSize = true;
+            this.lblRequireDistrict.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireDistrict.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireDistrict.Location = new System.Drawing.Point(423, 238);
+            this.lblRequireDistrict.Name = "lblRequireDistrict";
+            this.lblRequireDistrict.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireDistrict.TabIndex = 30;
+            this.lblRequireDistrict.Text = "*required";
+            this.lblRequireDistrict.Visible = false;
+            // 
+            // lblRequirePostal
+            // 
+            this.lblRequirePostal.AutoSize = true;
+            this.lblRequirePostal.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequirePostal.ForeColor = System.Drawing.Color.Red;
+            this.lblRequirePostal.Location = new System.Drawing.Point(633, 238);
+            this.lblRequirePostal.Name = "lblRequirePostal";
+            this.lblRequirePostal.Size = new System.Drawing.Size(56, 15);
+            this.lblRequirePostal.TabIndex = 29;
+            this.lblRequirePostal.Text = "*required";
+            this.lblRequirePostal.Visible = false;
+            // 
+            // lblRequireCity
+            // 
+            this.lblRequireCity.AutoSize = true;
+            this.lblRequireCity.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireCity.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireCity.Location = new System.Drawing.Point(672, 170);
+            this.lblRequireCity.Name = "lblRequireCity";
+            this.lblRequireCity.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireCity.TabIndex = 28;
+            this.lblRequireCity.Text = "*required";
+            this.lblRequireCity.Visible = false;
+            // 
+            // lblRequireProvince
+            // 
+            this.lblRequireProvince.AutoSize = true;
+            this.lblRequireProvince.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireProvince.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireProvince.Location = new System.Drawing.Point(361, 170);
+            this.lblRequireProvince.Name = "lblRequireProvince";
+            this.lblRequireProvince.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireProvince.TabIndex = 27;
+            this.lblRequireProvince.Text = "*required";
+            this.lblRequireProvince.Visible = false;
+            // 
+            // lblRequireRegion
+            // 
+            this.lblRequireRegion.AutoSize = true;
+            this.lblRequireRegion.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireRegion.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireRegion.Location = new System.Drawing.Point(104, 170);
+            this.lblRequireRegion.Name = "lblRequireRegion";
+            this.lblRequireRegion.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireRegion.TabIndex = 26;
+            this.lblRequireRegion.Text = "*required";
+            this.lblRequireRegion.Visible = false;
+            // 
+            // lblRequireExtension
+            // 
+            this.lblRequireExtension.AutoSize = true;
+            this.lblRequireExtension.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireExtension.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireExtension.Location = new System.Drawing.Point(368, 101);
+            this.lblRequireExtension.Name = "lblRequireExtension";
+            this.lblRequireExtension.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireExtension.TabIndex = 25;
+            this.lblRequireExtension.Text = "*required";
+            this.lblRequireExtension.Visible = false;
+            // 
+            // lblRequirePhone
+            // 
+            this.lblRequirePhone.AutoSize = true;
+            this.lblRequirePhone.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequirePhone.ForeColor = System.Drawing.Color.Red;
+            this.lblRequirePhone.Location = new System.Drawing.Point(155, 101);
+            this.lblRequirePhone.Name = "lblRequirePhone";
+            this.lblRequirePhone.Size = new System.Drawing.Size(56, 15);
+            this.lblRequirePhone.TabIndex = 24;
+            this.lblRequirePhone.Text = "*required";
+            this.lblRequirePhone.Visible = false;
+            // 
+            // lblRequireSocial
+            // 
+            this.lblRequireSocial.AutoSize = true;
+            this.lblRequireSocial.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireSocial.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireSocial.Location = new System.Drawing.Point(669, 29);
+            this.lblRequireSocial.Name = "lblRequireSocial";
+            this.lblRequireSocial.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireSocial.TabIndex = 23;
+            this.lblRequireSocial.Text = "*required";
+            this.lblRequireSocial.Visible = false;
+            // 
+            // lblRequireEmail
+            // 
+            this.lblRequireEmail.AutoSize = true;
+            this.lblRequireEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireEmail.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireEmail.Location = new System.Drawing.Point(395, 29);
+            this.lblRequireEmail.Name = "lblRequireEmail";
+            this.lblRequireEmail.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireEmail.TabIndex = 22;
+            this.lblRequireEmail.Text = "*required";
+            this.lblRequireEmail.Visible = false;
+            // 
+            // lblRequireMobile
+            // 
+            this.lblRequireMobile.AutoSize = true;
+            this.lblRequireMobile.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequireMobile.ForeColor = System.Drawing.Color.Red;
+            this.lblRequireMobile.Location = new System.Drawing.Point(158, 29);
+            this.lblRequireMobile.Name = "lblRequireMobile";
+            this.lblRequireMobile.Size = new System.Drawing.Size(56, 15);
+            this.lblRequireMobile.TabIndex = 20;
+            this.lblRequireMobile.Text = "*required";
+            this.lblRequireMobile.Visible = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.btnCancel.Location = new System.Drawing.Point(675, 305);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(105, 49);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btn_Cancel_Click);
+            // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(195)))), ((int)(((byte)(112)))));
+            this.btnSubmit.FlatAppearance.BorderSize = 0;
+            this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Location = new System.Drawing.Point(557, 305);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(105, 49);
+            this.btnSubmit.TabIndex = 13;
+            this.btnSubmit.Text = "&Submit";
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
             this.lblCity.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCity.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblCity.Location = new System.Drawing.Point(546, 167);
             this.lblCity.Location = new System.Drawing.Point(546, 171);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(120, 19);
@@ -238,6 +455,11 @@
             this.cmbCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbCity.FormattingEnabled = true;
+            this.cmbCity.Location = new System.Drawing.Point(550, 193);
+            this.cmbCity.Name = "cmbCity";
+            this.cmbCity.Size = new System.Drawing.Size(230, 27);
+            this.cmbCity.TabIndex = 21;
+            this.cmbCity.SelectionChangeCommitted += new System.EventHandler(this.cmbCity_SelectionChangeCommitted);
             this.cmbCity.Location = new System.Drawing.Point(550, 197);
             this.cmbCity.Name = "cmbCity";
             this.cmbCity.Size = new System.Drawing.Size(230, 27);
@@ -248,6 +470,7 @@
             this.lblSocialNetworkID.AutoSize = true;
             this.lblSocialNetworkID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSocialNetworkID.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblSocialNetworkID.Location = new System.Drawing.Point(546, 26);
             this.lblSocialNetworkID.Location = new System.Drawing.Point(546, 28);
             this.lblSocialNetworkID.Name = "lblSocialNetworkID";
             this.lblSocialNetworkID.Size = new System.Drawing.Size(117, 19);
@@ -257,6 +480,7 @@
             // txtSocialNetworkID
             // 
             this.txtSocialNetworkID.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSocialNetworkID.Location = new System.Drawing.Point(550, 52);
             this.txtSocialNetworkID.Location = new System.Drawing.Point(550, 54);
             this.txtSocialNetworkID.Name = "txtSocialNetworkID";
             this.txtSocialNetworkID.Size = new System.Drawing.Size(230, 26);
@@ -269,6 +493,7 @@
             this.lblPhoneNumberExtension.AutoSize = true;
             this.lblPhoneNumberExtension.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumberExtension.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblPhoneNumberExtension.Location = new System.Drawing.Point(295, 98);
             this.lblPhoneNumberExtension.Location = new System.Drawing.Point(295, 100);
             this.lblPhoneNumberExtension.Name = "lblPhoneNumberExtension";
             this.lblPhoneNumberExtension.Size = new System.Drawing.Size(67, 19);
@@ -278,6 +503,7 @@
             // txtPhoneNumberExtension
             // 
             this.txtPhoneNumberExtension.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNumberExtension.Location = new System.Drawing.Point(299, 124);
             this.txtPhoneNumberExtension.Location = new System.Drawing.Point(299, 126);
             this.txtPhoneNumberExtension.Name = "txtPhoneNumberExtension";
             this.txtPhoneNumberExtension.Size = new System.Drawing.Size(230, 26);
@@ -288,6 +514,7 @@
             this.lblPhoneNumber.AutoSize = true;
             this.lblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneNumber.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblPhoneNumber.Location = new System.Drawing.Point(47, 98);
             this.lblPhoneNumber.Location = new System.Drawing.Point(47, 100);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(102, 19);
@@ -297,6 +524,7 @@
             // txtPhoneNumber
             // 
             this.txtPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhoneNumber.Location = new System.Drawing.Point(51, 124);
             this.txtPhoneNumber.Location = new System.Drawing.Point(51, 126);
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(230, 26);
@@ -308,6 +536,7 @@
             this.lblMobileNumber.AutoSize = true;
             this.lblMobileNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMobileNumber.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblMobileNumber.Location = new System.Drawing.Point(47, 26);
             this.lblMobileNumber.Location = new System.Drawing.Point(47, 28);
             this.lblMobileNumber.Name = "lblMobileNumber";
             this.lblMobileNumber.Size = new System.Drawing.Size(105, 19);
@@ -317,6 +546,7 @@
             // txtMobileNumber
             // 
             this.txtMobileNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMobileNumber.Location = new System.Drawing.Point(51, 52);
             this.txtMobileNumber.Location = new System.Drawing.Point(51, 54);
             this.txtMobileNumber.Name = "txtMobileNumber";
             this.txtMobileNumber.Size = new System.Drawing.Size(230, 26);
@@ -328,6 +558,7 @@
             this.lblPostalCode.AutoSize = true;
             this.lblPostalCode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPostalCode.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblPostalCode.Location = new System.Drawing.Point(546, 235);
             this.lblPostalCode.Location = new System.Drawing.Point(546, 249);
             this.lblPostalCode.Name = "lblPostalCode";
             this.lblPostalCode.Size = new System.Drawing.Size(81, 19);
@@ -337,6 +568,7 @@
             // txtPostalCode
             // 
             this.txtPostalCode.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPostalCode.Location = new System.Drawing.Point(550, 261);
             this.txtPostalCode.Location = new System.Drawing.Point(550, 275);
             this.txtPostalCode.Name = "txtPostalCode";
             this.txtPostalCode.Size = new System.Drawing.Size(230, 26);
@@ -347,6 +579,7 @@
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddress.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblAddress.Location = new System.Drawing.Point(47, 235);
             this.lblAddress.Location = new System.Drawing.Point(47, 229);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(58, 19);
@@ -357,9 +590,10 @@
             // 
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.txtAddress.Location = new System.Drawing.Point(51, 261);
             this.txtAddress.Location = new System.Drawing.Point(51, 255);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(226, 105);
+            this.txtAddress.Size = new System.Drawing.Size(230, 105);
             this.txtAddress.TabIndex = 8;
             this.txtAddress.Text = "";
             // 
@@ -368,6 +602,7 @@
             this.lblBrgy.AutoSize = true;
             this.lblBrgy.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBrgy.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblBrgy.Location = new System.Drawing.Point(295, 235);
             this.lblBrgy.Location = new System.Drawing.Point(298, 249);
             this.lblBrgy.Name = "lblBrgy";
             this.lblBrgy.Size = new System.Drawing.Size(122, 19);
@@ -379,6 +614,7 @@
             this.cmbDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDistrict.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbDistrict.FormattingEnabled = true;
+            this.cmbDistrict.Location = new System.Drawing.Point(299, 261);
             this.cmbDistrict.Location = new System.Drawing.Point(302, 275);
             this.cmbDistrict.Name = "cmbDistrict";
             this.cmbDistrict.Size = new System.Drawing.Size(230, 27);
@@ -389,6 +625,7 @@
             this.lblProvince.AutoSize = true;
             this.lblProvince.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProvince.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblProvince.Location = new System.Drawing.Point(295, 167);
             this.lblProvince.Location = new System.Drawing.Point(298, 171);
             this.lblProvince.Name = "lblProvince";
             this.lblProvince.Size = new System.Drawing.Size(61, 19);
@@ -400,6 +637,11 @@
             this.cmbProvince.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProvince.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbProvince.FormattingEnabled = true;
+            this.cmbProvince.Location = new System.Drawing.Point(299, 193);
+            this.cmbProvince.Name = "cmbProvince";
+            this.cmbProvince.Size = new System.Drawing.Size(230, 27);
+            this.cmbProvince.TabIndex = 10;
+            this.cmbProvince.SelectionChangeCommitted += new System.EventHandler(this.cmbProvince_SelectionChangeCommitted);
             this.cmbProvince.Location = new System.Drawing.Point(302, 197);
             this.cmbProvince.Name = "cmbProvince";
             this.cmbProvince.Size = new System.Drawing.Size(230, 27);
@@ -410,6 +652,7 @@
             this.lblRegion.AutoSize = true;
             this.lblRegion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRegion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblRegion.Location = new System.Drawing.Point(47, 167);
             this.lblRegion.Location = new System.Drawing.Point(47, 171);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(51, 19);
@@ -421,16 +664,19 @@
             this.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegion.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbRegion.FormattingEnabled = true;
+            this.cmbRegion.Location = new System.Drawing.Point(51, 193);
             this.cmbRegion.Location = new System.Drawing.Point(51, 197);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(230, 27);
             this.cmbRegion.TabIndex = 9;
+            this.cmbRegion.SelectionChangeCommitted += new System.EventHandler(this.cmbRegion_SelectionChangeCommitted);
             // 
             // lblEmailAddress
             // 
             this.lblEmailAddress.AutoSize = true;
             this.lblEmailAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmailAddress.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblEmailAddress.Location = new System.Drawing.Point(295, 26);
             this.lblEmailAddress.Location = new System.Drawing.Point(295, 28);
             this.lblEmailAddress.Name = "lblEmailAddress";
             this.lblEmailAddress.Size = new System.Drawing.Size(94, 19);
@@ -440,6 +686,7 @@
             // txtEmailAddress
             // 
             this.txtEmailAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmailAddress.Location = new System.Drawing.Point(299, 52);
             this.txtEmailAddress.Location = new System.Drawing.Point(299, 54);
             this.txtEmailAddress.Name = "txtEmailAddress";
             this.txtEmailAddress.Size = new System.Drawing.Size(230, 26);
@@ -534,7 +781,7 @@
         private System.Windows.Forms.TextBox txtPhoneNumberExtension;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblEntityName;
         private System.Windows.Forms.TextBox txtEntityName;
@@ -543,5 +790,18 @@
         private System.Windows.Forms.ToolTip tipCustomerModal;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.ComboBox cmbCity;
+        private System.Windows.Forms.Label lblRequireEntity;
+        private System.Windows.Forms.Label lblRequireName;
+        private System.Windows.Forms.Label lblRequireSocial;
+        private System.Windows.Forms.Label lblRequireEmail;
+        private System.Windows.Forms.Label lblRequireMobile;
+        private System.Windows.Forms.Label lblRequireAddress;
+        private System.Windows.Forms.Label lblRequireDistrict;
+        private System.Windows.Forms.Label lblRequirePostal;
+        private System.Windows.Forms.Label lblRequireCity;
+        private System.Windows.Forms.Label lblRequireProvince;
+        private System.Windows.Forms.Label lblRequireRegion;
+        private System.Windows.Forms.Label lblRequireExtension;
+        private System.Windows.Forms.Label lblRequirePhone;
     }
 }
