@@ -113,6 +113,16 @@ namespace App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_inventory_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-inventory-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap inventory_24px {
             get {
                 object obj = ResourceManager.GetObject("inventory_24px", resourceCulture);

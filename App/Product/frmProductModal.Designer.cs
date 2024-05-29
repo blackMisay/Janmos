@@ -33,7 +33,6 @@
             this.lblModule = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
@@ -55,6 +54,7 @@
             this.lblRequiredMetricUnit = new System.Windows.Forms.Label();
             this.lblRequiredDescription = new System.Windows.Forms.Label();
             this.lblRequiredMetricValue = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -92,18 +92,6 @@
             this.txtProductName.Size = new System.Drawing.Size(365, 26);
             this.txtProductName.TabIndex = 97;
             this.tipProducts.SetToolTip(this.txtProductName, "This specifies the product\'s name or title.");
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtDescription.Location = new System.Drawing.Point(29, 272);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(365, 105);
-            this.txtDescription.TabIndex = 98;
-            this.txtDescription.Text = "";
-            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
             // 
             // label1
             // 
@@ -345,6 +333,18 @@
             this.lblRequiredMetricValue.Text = "*required";
             this.lblRequiredMetricValue.Visible = false;
             // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.txtDescription.Location = new System.Drawing.Point(29, 272);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(365, 105);
+            this.txtDescription.TabIndex = 98;
+            this.txtDescription.Text = "";
+            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
+            // 
             // frmProductModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -391,7 +391,6 @@
         private System.Windows.Forms.Label lblModule;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbCategory;
@@ -413,5 +412,6 @@
         private System.Windows.Forms.Label lblRequiredMetricUnit;
         private System.Windows.Forms.Label lblRequiredDescription;
         private System.Windows.Forms.Label lblRequiredMetricValue;
+        private System.Windows.Forms.RichTextBox txtDescription;
     }
 }
