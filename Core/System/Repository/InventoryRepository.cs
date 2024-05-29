@@ -18,7 +18,7 @@ namespace Core.System.Repository
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`,inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
+            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
             UpgradeManager upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
@@ -57,7 +57,7 @@ namespace Core.System.Repository
                     inventory.Expiration = row["expiration"].ToString();
                     inventory.Day = row["day"].ToString();
                     inventory.Availability = new Availability();
-                    inventory.Status = new Status();
+                    inventory.Status = new StatusRecord.Type();
                 }
                 return inventory;
             }
@@ -80,10 +80,10 @@ namespace Core.System.Repository
             }
             else
             {
-                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
+                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
             }
 
-            Dictionary<string, string> productParameters = new Dictionary<string, string>()
+            Dictionary<string, string> inventoryParameters = new Dictionary<string, string>()
             {
                 {"@Id", inventory.Id.ToString()},
                 {"@Name", inventory.Name.Id.ToString()},
@@ -97,7 +97,7 @@ namespace Core.System.Repository
             };
 
             UpgradeManager upgradeManager = new UpgradeManager();
-            if (upgradeManager.ExecuteQuery(query, productParameters))
+            if (upgradeManager.ExecuteQuery(query, inventoryParameters))
                 return true;
             return false;
         }

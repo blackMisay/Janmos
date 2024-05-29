@@ -96,7 +96,7 @@ namespace Core.System.Repository
                 {"@Baranggay", customer.Baranggay.Id.ToString()},
                 {"@Housenum", customer.Housenum},
                 {"@Postal", customer.Postal},
-                {"@Status", ((int)customer.Status).ToString()}
+                {"@Status", customer.Status.ToString()}
             };
 
             UpgradeManager upgradeManager = new UpgradeManager();

@@ -61,7 +61,7 @@ namespace App.Customer
             customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
             customer.Postal = this.txtPostalCode.Text;
             customer.Housenum = this.txtAddress.Text;
-            customer.Status = Status.Active;
+            customer.Status = StatusRecord.Type.Active;
 
             customerController = new CustomerRepository();
             if (customerController.Save(customer))

@@ -209,7 +209,7 @@ namespace App.Inventory
             }
             Availability availability = (Availability)cmbAvailability.SelectedItem;
             inventory.Availability = availability;
-            inventory.Status = Status.Active;
+            inventory.Status = StatusRecord.Type.Active;
 
             inventoryRepository = new InventoryRepository();
 
