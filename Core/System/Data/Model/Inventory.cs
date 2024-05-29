@@ -34,6 +34,7 @@ namespace Core.System.Data.Model
                 expiration = value;
             }
         }
+        public string Day {  get; set; }
 
         public Availability Availability { get; set; }
         public Status Status { get; set; }
