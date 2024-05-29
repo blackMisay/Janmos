@@ -49,8 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblRequiredProduct = new System.Windows.Forms.Label();
             this.lblRequiredAvailability = new System.Windows.Forms.Label();
             this.lblRequiredPrice = new System.Windows.Forms.Label();
@@ -298,27 +296,6 @@
             this.label7.TabIndex = 136;
             this.label7.Text = "Expiration";
             // 
-            // cmbStatus
-            // 
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Location = new System.Drawing.Point(509, 110);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(120, 27);
-            this.cmbStatus.TabIndex = 137;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(456, 113);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 19);
-            this.label8.TabIndex = 138;
-            this.label8.Text = "Status";
-            // 
             // lblRequiredProduct
             // 
             this.lblRequiredProduct.AutoSize = true;
@@ -404,8 +381,6 @@
             this.Controls.Add(this.lblRequiredPrice);
             this.Controls.Add(this.lblRequiredAvailability);
             this.Controls.Add(this.lblRequiredProduct);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.cmbStatus);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -458,8 +433,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cmbStatus;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblRequiredProduct;
         private System.Windows.Forms.Label lblRequiredAvailability;
         private System.Windows.Forms.Label lblRequiredPrice;

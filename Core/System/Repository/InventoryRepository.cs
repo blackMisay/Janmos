@@ -11,14 +11,14 @@ namespace Core.System.Repository
         UpgradeManager upgradeManager;//for database connection
         public DataTable LoadInventoryData()//for record load
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
+            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
             UpgradeManager upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
+            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`,inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
             UpgradeManager upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
@@ -55,6 +55,7 @@ namespace Core.System.Repository
                     inventory.Price = row["price"].ToString();
                     inventory.Quantity = Convert.ToInt32(row["quantity"]);
                     inventory.Expiration = row["expiration"].ToString();
+                    inventory.Day = row["day"].ToString();
                     inventory.Availability = new Availability();
                     inventory.Status = new Status();
                 }
@@ -75,11 +76,11 @@ namespace Core.System.Repository
 
             if (inventory.Id > 0)
             {
-                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,expiration=@Expiration,availability=@Availability,status=@Status WHERE id=@Id;";
+                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,expiration=@Expiration,day=@Day,availability=@Availability,status=@Status WHERE id=@Id;";
             }
             else
             {
-                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Availability,@Status);";
+                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
             }
 
             Dictionary<string, string> productParameters = new Dictionary<string, string>()
@@ -90,6 +91,7 @@ namespace Core.System.Repository
                 {"@Price", inventory.Price},
                 {"@Quantity", inventory.Quantity.ToString()},
                 {"@Expiration", inventory.Expiration},
+                {"@Day", inventory.Day.ToString() },
                 {"@Availability", inventory.Availability.ToString()},
                 {"@Status", inventory.Status.ToString()}
             };

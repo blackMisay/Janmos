@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace App.Inventory
 {
@@ -17,12 +18,13 @@ namespace App.Inventory
         InventoryRepository inventoryRepository;
         private readonly int Id = 0;
         private readonly int _enable = 0;
+        private string str_date = "yyyy-MM-dd";
+        private int validuntil = 0;
         public frmInventoryModal()
         {
             InitializeComponent();
             InitializeComponentsData();
             FieldEnabling(_enable);
-
         }
 
         public frmInventoryModal(int inventoryId)
@@ -31,6 +33,22 @@ namespace App.Inventory
             this.Id = inventoryId;
             FieldEnabling(inventoryId);
             InitializeSelectedInventoryData();
+            lblResetFields.Enabled = false;
+
+            str_date = this.dtpExpiration.Value.ToString("yyyy-MM-dd");
+            DateTime target = DateTime.Parse(str_date);
+            DateTime today = DateTime.Today;
+            TimeSpan _validuntil = target - today;
+            int validuntil = _validuntil.Days;
+
+            if (validuntil <= 7 && validuntil > 0) //to see how many days left before expiration.
+            {
+                MessageBox.Show("The selected product will expired in " + validuntil + " day/s.", "Expiration Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (target <= today) //message if the selected product is expired.
+            {
+                MessageBox.Show("The selected product is expired.", "Expiration Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void FieldEnabling(int inventoryId)
@@ -38,8 +56,6 @@ namespace App.Inventory
             if (inventoryId > _enable)
             {
                 cmbProduct.Enabled = false;
-                cmbStatus.DataSource = Enum.GetValues(typeof(Status));
-                cmbStatus.Enabled= false;
                 cmbAvailability.DataSource = Enum.GetValues(typeof(Availability));
                 cmbAvailability.Enabled = true;
             }
@@ -47,8 +63,6 @@ namespace App.Inventory
             {
                 dtpExpiration.Value = DateTime.Today;
                 cmbProduct.SelectedIndex = -1;
-                cmbStatus.DataSource = Enum.GetValues(typeof(Status));
-                cmbStatus.Enabled = false;
                 cmbAvailability.DataSource = Enum.GetValues(typeof(Availability));
                 cmbAvailability.Enabled = false;
             }
@@ -87,7 +101,6 @@ namespace App.Inventory
             this.txtQuantity.Text = ((int)inventory.Quantity).ToString();
             this.dtpExpiration.Text = inventory.Expiration;
             this.cmbAvailability.SelectedItem = inventory.Availability.ToString();
-            this.cmbStatus.SelectedItem = inventory.Status.ToString();
         }
 
         private void InitializeComponentsData()
@@ -101,8 +114,8 @@ namespace App.Inventory
 
         private void FieldValidate()
         {
-            string str_date = this.dtpExpiration.Value.ToString("yyyy-MM-dd");
-            DateTime target = DateTime.Parse(str_date);
+            this.str_date = this.dtpExpiration.Value.ToString("yyyy-MM-dd");
+            DateTime target = DateTime.Parse(this.str_date);
             DateTime today = DateTime.Today;
             TimeSpan _validuntil = target - today;
             int validuntil = _validuntil.Days;
@@ -158,20 +171,15 @@ namespace App.Inventory
             {
                 lblRequiredDescription.Visible = false;
             }
-            if (target <= today)
+
+            if (cmbAvailability.SelectedIndex == 1 && target <= today)
+            {
+                validated = true;
+            }
+            else if (target <= today)
             {
                 MessageBox.Show("The date that you selected is not acceptable for expiration.", "Expiration date", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 validated = false;
-            }
-            else if (validuntil <= today.Day)
-            {
-                MessageBox.Show("The product is expired.", "Expiration date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                validated = false;
-            }
-            else if (validuntil <= 30)
-            {
-                MessageBox.Show("The product no. " + this.Id + " will be expire in " + validuntil + " days.");
-                validated = true;
             }
 
             if (!validated)
@@ -184,14 +192,28 @@ namespace App.Inventory
             inventory.Description = this.txtDescription.Text;
             inventory.Price = this.txtPrice.Text;
             inventory.Quantity = Convert.ToInt32(this.txtQuantity.Text);
-            inventory.Expiration = str_date;
+            inventory.Expiration = this.str_date;
+            if (validuntil <= 0)
+            {
+                this.validuntil = Math.Abs(validuntil);
+                string validUntil = this.validuntil.ToString();
+                string ValidUntil = validUntil + "day/s expired";
+                inventory.Day = ValidUntil;
+            }
+            else
+            {
+                this.validuntil = Math.Abs(validuntil);
+                string validUntil = this.validuntil.ToString();
+                string ValidUntil = validUntil + "day/s before expiration";
+                inventory.Day = ValidUntil;
+            }
             Availability availability = (Availability)cmbAvailability.SelectedItem;
             inventory.Availability = availability;
-            inventory.Status = new Status();
+            inventory.Status = Status.Active;
 
             inventoryRepository = new InventoryRepository();
 
-            if (MessageBox.Show("Are you sure you want to save inventory record?", "Save Inventory Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to save inventory record?", "Save Inventory Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (inventoryRepository.Save(inventory))
                 {
@@ -215,12 +237,10 @@ namespace App.Inventory
             {
                 cmbProduct.SelectedIndex = -1;
                 txtDescription.Clear();
-                cmbAvailability.SelectedIndex = -1;
                 txtPrice.Clear();
                 txtQuantity.Clear();
                 dtpExpiration.Value = DateTime.Now;
             }
         }
-
     }
 }

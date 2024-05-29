@@ -37,6 +37,7 @@ namespace App.Inventory
             this.dgvInventory.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvInventory.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvInventory.Columns["Expiration"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            this.dgvInventory.Columns["Day/s Remaining"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -101,14 +102,6 @@ namespace App.Inventory
         {
             inventoryRepository = new InventoryRepository();
             dgvInventory.DataSource = inventoryRepository.LoadInventoryData(txtSearch.Text);
-        }
-
-        private void checkExpiration()
-        {
-            if (selectedInventoryId > 0)
-            {
-                frmInventoryModal frm = new frmInventoryModal();
-            }
         }
     }
 }
