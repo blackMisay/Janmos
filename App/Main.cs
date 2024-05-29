@@ -46,6 +46,11 @@ namespace App
             this.openFormModule(new App.Customer.Customer());
         }
 
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Inventory.frmInventory());
+        }
+
         private void btnSupplier_Click(object sender, EventArgs e)
         {
             this.openFormModule(new Supplier.frmSupplier());
