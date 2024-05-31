@@ -118,6 +118,7 @@ namespace Core.System.Repository
                 {"@Baranggay", customer.Baranggay.Id.ToString()},
                 {"@Housenum", customer.Housenum},
                 {"@Postal", customer.Postal},
+                {"@Status", customer.Status.ToString()}
                 {"@Status", ((int)customer.Status).ToString() }
                 {"@Status", ((int)customer.Status).ToString()}
             };

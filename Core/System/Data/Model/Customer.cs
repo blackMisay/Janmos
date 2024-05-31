@@ -24,17 +24,12 @@ namespace Core.System.Data.Model
         public Baranggay Baranggay { get; set; }
         public string Housenum { get; set; }
         public string Postal { get; set; }
-        public Status Status {  get; set; }
+        public StatusRecord.Type Status {  get; set; }
     }
     public enum Entity
     {
         Individual,
         Business,
         Organization
-    }
-    public enum Status
-    {
-        Active = 0,
-        Deleted = 1
     }
 }
