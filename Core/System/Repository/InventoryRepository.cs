@@ -73,11 +73,11 @@ namespace Core.System.Repository
         {
             string query;
 
-            if (inventory.Id > 0)
+            if (inventory.Id > 0) //for updating existing record
             {
                 query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,expiration=@Expiration,day=@Day,availability=@Availability,status=@Status WHERE id=@Id;";
             }
-            else
+            else //for add new record
             {
                 query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
             }
