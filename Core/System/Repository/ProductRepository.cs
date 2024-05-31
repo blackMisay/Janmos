@@ -43,7 +43,7 @@ namespace Core.System.Repository
         public Product FetchProductData(int productId)
         {
             DataTable dt = new DataTable();
-            this.upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             dt = upgradeManager.Load("SELECT * FROM dbjanmos.product WHERE product.id=" + productId);
 
             if (dt.Rows.Count > 0 )
@@ -64,8 +64,8 @@ namespace Core.System.Repository
 
         public DataTable LoadDataList(string query)
         {
-            this.upgradeManager = new UpgradeManager();
-            return this.upgradeManager.Load(query);
+            upgradeManager = new UpgradeManager();
+            return upgradeManager.Load(query);
         }
 
         public bool Save(Product product)

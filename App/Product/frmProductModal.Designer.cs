@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductModal));
             this.lblModule = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
@@ -50,6 +48,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.tipProducts = new System.Windows.Forms.ToolTip(this.components);
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.lblRequiredName = new System.Windows.Forms.Label();
+            this.lblRequiredCategory = new System.Windows.Forms.Label();
+            this.lblRequiredMetricUnit = new System.Windows.Forms.Label();
+            this.lblRequiredDescription = new System.Windows.Forms.Label();
+            this.lblRequiredMetricValue = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -87,18 +91,6 @@
             this.txtProductName.Size = new System.Drawing.Size(365, 26);
             this.txtProductName.TabIndex = 97;
             this.tipProducts.SetToolTip(this.txtProductName, "This specifies the product\'s name or title.");
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtDescription.Location = new System.Drawing.Point(29, 272);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(365, 105);
-            this.txtDescription.TabIndex = 98;
-            this.txtDescription.Text = "";
-            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
             // 
             // label1
             // 
@@ -214,8 +206,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.lblResetFields);
             this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.lblResetFields);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 412);
@@ -239,7 +231,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ErrorImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(13, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
@@ -280,12 +272,89 @@
             this.label6.TabIndex = 112;
             this.label6.Text = "NOTE: All fields are required.";
             // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.txtDescription.Location = new System.Drawing.Point(29, 272);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(365, 105);
+            this.txtDescription.TabIndex = 98;
+            this.txtDescription.Text = "";
+            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
+            // 
+            // lblRequiredName
+            // 
+            this.lblRequiredName.AutoSize = true;
+            this.lblRequiredName.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredName.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredName.Location = new System.Drawing.Point(76, 171);
+            this.lblRequiredName.Name = "lblRequiredName";
+            this.lblRequiredName.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredName.TabIndex = 113;
+            this.lblRequiredName.Text = "*required";
+            this.lblRequiredName.Visible = false;
+            // 
+            // lblRequiredCategory
+            // 
+            this.lblRequiredCategory.AutoSize = true;
+            this.lblRequiredCategory.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredCategory.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredCategory.Location = new System.Drawing.Point(496, 171);
+            this.lblRequiredCategory.Name = "lblRequiredCategory";
+            this.lblRequiredCategory.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredCategory.TabIndex = 114;
+            this.lblRequiredCategory.Text = "*required";
+            this.lblRequiredCategory.Visible = false;
+            // 
+            // lblRequiredMetricUnit
+            // 
+            this.lblRequiredMetricUnit.AutoSize = true;
+            this.lblRequiredMetricUnit.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredMetricUnit.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredMetricUnit.Location = new System.Drawing.Point(509, 249);
+            this.lblRequiredMetricUnit.Name = "lblRequiredMetricUnit";
+            this.lblRequiredMetricUnit.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredMetricUnit.TabIndex = 115;
+            this.lblRequiredMetricUnit.Text = "*required";
+            this.lblRequiredMetricUnit.Visible = false;
+            // 
+            // lblRequiredDescription
+            // 
+            this.lblRequiredDescription.AutoSize = true;
+            this.lblRequiredDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredDescription.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredDescription.Location = new System.Drawing.Point(109, 249);
+            this.lblRequiredDescription.Name = "lblRequiredDescription";
+            this.lblRequiredDescription.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredDescription.TabIndex = 116;
+            this.lblRequiredDescription.Text = "*required";
+            this.lblRequiredDescription.Visible = false;
+            // 
+            // lblRequiredMetricValue
+            // 
+            this.lblRequiredMetricValue.AutoSize = true;
+            this.lblRequiredMetricValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredMetricValue.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredMetricValue.Location = new System.Drawing.Point(516, 324);
+            this.lblRequiredMetricValue.Name = "lblRequiredMetricValue";
+            this.lblRequiredMetricValue.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredMetricValue.TabIndex = 117;
+            this.lblRequiredMetricValue.Text = "*required";
+            this.lblRequiredMetricValue.Visible = false;
+            // 
             // frmProductModal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(663, 481);
+            this.Controls.Add(this.lblRequiredMetricValue);
+            this.Controls.Add(this.lblRequiredDescription);
+            this.Controls.Add(this.lblRequiredMetricUnit);
+            this.Controls.Add(this.lblRequiredCategory);
+            this.Controls.Add(this.lblRequiredName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -321,7 +390,6 @@
         private System.Windows.Forms.Label lblModule;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbCategory;
@@ -338,5 +406,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblResetFields;
         private System.Windows.Forms.ToolTip tipProducts;
+        private System.Windows.Forms.Label lblRequiredName;
+        private System.Windows.Forms.Label lblRequiredCategory;
+        private System.Windows.Forms.Label lblRequiredMetricUnit;
+        private System.Windows.Forms.Label lblRequiredDescription;
+        private System.Windows.Forms.Label lblRequiredMetricValue;
+        private System.Windows.Forms.RichTextBox txtDescription;
     }
 }
