@@ -57,7 +57,6 @@ namespace Core.System.Repository
                     inventory.Expiration = row["expiration"].ToString();
                     inventory.Day = row["day"].ToString();
                     inventory.Availability = new Availability();
-                    inventory.Status = new StatusRecord.Type();
                 }
                 return inventory;
             }

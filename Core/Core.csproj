@@ -77,6 +77,7 @@
     <Compile Include="System\Data\Model\Product.cs" />
     <Compile Include="System\Data\Model\Province.cs" />
     <Compile Include="System\Data\Model\Region.cs" />
+    <Compile Include="System\Data\Model\StatusRecord.cs" />
     <Compile Include="System\Repository\CustomerRepository.cs" />
     <Compile Include="System\Data\Model\Supplier.cs" />
     <Compile Include="System\Data\Model\SupplierCategory.cs" />
