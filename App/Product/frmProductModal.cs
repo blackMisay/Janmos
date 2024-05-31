@@ -85,7 +85,7 @@ namespace App.Product
             if (!validated)
                 return;
 
-            productController = new ProductRepository();
+            productRepository = new ProductRepository();
             Core.System.Data.Model.Product product = new Core.System.Data.Model.Product();
             product.Id = this.Id;
             product.Name = this.txtProductName.Text;
@@ -98,7 +98,7 @@ namespace App.Product
             productRepository = new ProductRepository();
 
             if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            if (productController.Save(product))
+            if (productRepository.Save(product))
             {
                 MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Dispose();
