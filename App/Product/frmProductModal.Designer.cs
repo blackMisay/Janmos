@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductModal));
             this.lblModule = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.txtProductName = new System.Windows.Forms.TextBox();
@@ -49,12 +48,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.tipProducts = new System.Windows.Forms.ToolTip(this.components);
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.lblRequiredName = new System.Windows.Forms.Label();
             this.lblRequiredCategory = new System.Windows.Forms.Label();
             this.lblRequiredMetricUnit = new System.Windows.Forms.Label();
             this.lblRequiredDescription = new System.Windows.Forms.Label();
             this.lblRequiredMetricValue = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -207,8 +206,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel1.Controls.Add(this.lblResetFields);
             this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.lblResetFields);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 412);
@@ -232,7 +231,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ErrorImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(13, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);
@@ -272,6 +271,18 @@
             this.label6.Size = new System.Drawing.Size(157, 15);
             this.label6.TabIndex = 112;
             this.label6.Text = "NOTE: All fields are required.";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.txtDescription.Location = new System.Drawing.Point(29, 272);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(365, 105);
+            this.txtDescription.TabIndex = 98;
+            this.txtDescription.Text = "";
+            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
             // 
             // lblRequiredName
             // 
@@ -332,18 +343,6 @@
             this.lblRequiredMetricValue.TabIndex = 117;
             this.lblRequiredMetricValue.Text = "*required";
             this.lblRequiredMetricValue.Visible = false;
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtDescription.Location = new System.Drawing.Point(29, 272);
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(365, 105);
-            this.txtDescription.TabIndex = 98;
-            this.txtDescription.Text = "";
-            this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
             // 
             // frmProductModal
             // 

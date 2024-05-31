@@ -151,12 +151,12 @@
             this.dgvSupplier.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvSupplier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSupplier.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvSupplier.Location = new System.Drawing.Point(21, 171);
+            this.dgvSupplier.Location = new System.Drawing.Point(20, 171);
             this.dgvSupplier.Name = "dgvSupplier";
             this.dgvSupplier.RowHeadersVisible = false;
             this.dgvSupplier.RowHeadersWidth = 51;
             this.dgvSupplier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSupplier.Size = new System.Drawing.Size(1126, 568);
+            this.dgvSupplier.Size = new System.Drawing.Size(1127, 538);
             this.dgvSupplier.TabIndex = 70;
             this.dgvSupplier.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSupplier_CellClick);
             // 
@@ -175,7 +175,7 @@
             "50",
             "100",
             "200"});
-            this.cmbRecordCount.Location = new System.Drawing.Point(1086, 742);
+            this.cmbRecordCount.Location = new System.Drawing.Point(1085, 715);
             this.cmbRecordCount.Name = "cmbRecordCount";
             this.cmbRecordCount.Size = new System.Drawing.Size(61, 27);
             this.cmbRecordCount.TabIndex = 81;
@@ -188,7 +188,7 @@
             this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
-            this.btnLastPage.Location = new System.Drawing.Point(634, 743);
+            this.btnLastPage.Location = new System.Drawing.Point(622, 715);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(30, 30);
             this.btnLastPage.TabIndex = 80;
@@ -202,7 +202,7 @@
             this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirstPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
-            this.btnFirstPage.Location = new System.Drawing.Point(502, 743);
+            this.btnFirstPage.Location = new System.Drawing.Point(490, 715);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
             this.btnFirstPage.TabIndex = 79;
@@ -216,7 +216,7 @@
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(546, 743);
+            this.btnPrevious.Location = new System.Drawing.Point(534, 715);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
             this.btnPrevious.TabIndex = 78;
@@ -230,7 +230,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(590, 743);
+            this.btnNext.Location = new System.Drawing.Point(578, 715);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
             this.btnNext.TabIndex = 77;
@@ -240,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1167, 749);
             this.Controls.Add(this.cmbRecordCount);
             this.Controls.Add(this.btnLastPage);

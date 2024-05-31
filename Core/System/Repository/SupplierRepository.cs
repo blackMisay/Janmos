@@ -113,7 +113,7 @@ namespace Core.System.Repository
                 {"@Postal", supplier.Postal},
             };
 
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             if (upgradeManager.ExecuteQuery(query, supplierParameters))
                 return true;
             return false;
