@@ -6,6 +6,7 @@ namespace App.Product
 {
     public partial class frmProduct : Form
     {
+        ProductRepository productRepository;
         private int selectedProductId = 0;
         private readonly int defaultRowCount = 20;
         public frmProduct()
@@ -58,13 +59,13 @@ namespace App.Product
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            ProductRepository productRepository = new ProductRepository();
+            productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData(txtSearch.Text);
         }
 
         private void LoadProductData()
         {
-            ProductRepository productRepository = new ProductRepository();
+            productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData();
             this.dgvProduct.Columns["Metric Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             selectedProductId = 0;
@@ -76,7 +77,7 @@ namespace App.Product
             {
                 if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    ProductRepository productRepository = new ProductRepository();
+                    productRepository = new ProductRepository();
                     productRepository.DeleteProductData(selectedProductId);
                     this.LoadProductData();
 
