@@ -30,7 +30,7 @@ namespace Core.System.Repository
 
         public bool DeleteProductData(int productId)
         {
-            string query = "UPDATE product SET `status` = '1' WHERE id = @id";
+            string query = "UPDATE product SET `status` = 'Deleted' WHERE id = @id";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> productParams = new Dictionary<string, string>()
