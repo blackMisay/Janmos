@@ -12,7 +12,6 @@ namespace Core.System.Data.Model
         public string Name { get; set; }
         public Entity Entity { get; set; }
         public string Entityname { get; set; }
-        public string Entityname {  get; set; }
         public string Mobilenum { get; set; }
         public string Telenum { get; set; }
         public string Extension { get; set; }

@@ -12,14 +12,14 @@ namespace Core.System.Repository
         public DataTable LoadInventoryData()//for record load
         {
             string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
             string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
             {
@@ -42,7 +42,7 @@ namespace Core.System.Repository
         public Inventory FetchInventoryData(int inventoryId)//fetching data from database to form
         {
             DataTable dt = new DataTable();
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             dt = upgradeManager.Load("SELECT * FROM dbjanmos.inventory WHERE inventory.id=" + inventoryId);
 
             if (dt.Rows.Count > 0)
@@ -65,7 +65,7 @@ namespace Core.System.Repository
 
         public DataTable LoadDataList(string query)//load data list
         {
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
@@ -95,7 +95,7 @@ namespace Core.System.Repository
                 {"@Status", inventory.Status.ToString()}
             };
 
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             if (upgradeManager.ExecuteQuery(query, inventoryParameters))
                 return true;
             return false;

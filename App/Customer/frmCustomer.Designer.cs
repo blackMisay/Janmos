@@ -38,8 +38,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.cmbRecordCount = new System.Windows.Forms.ComboBox();
             this.tipCustomer = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbRecordCount = new System.Windows.Forms.ComboBox();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -53,10 +53,10 @@
             this.lblModule.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblModule.AutoSize = true;
-            this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModule.Location = new System.Drawing.Point(-6, 0);
+            this.lblModule.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModule.Location = new System.Drawing.Point(-5, 0);
             this.lblModule.Name = "lblModule";
-            this.lblModule.Size = new System.Drawing.Size(178, 25);
+            this.lblModule.Size = new System.Drawing.Size(198, 30);
             this.lblModule.TabIndex = 0;
             this.lblModule.Text = "Manage Customers";
             // 
@@ -67,8 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCustomer.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCustomer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCustomer.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvCustomer.Location = new System.Drawing.Point(20, 171);
@@ -76,29 +75,16 @@
             this.dgvCustomer.RowHeadersVisible = false;
             this.dgvCustomer.RowHeadersWidth = 51;
             this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomer.Size = new System.Drawing.Size(1127, 563);
+            this.dgvCustomer.Size = new System.Drawing.Size(1127, 538);
             this.dgvCustomer.TabIndex = 0;
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
-            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCustomers.BackgroundColor = System.Drawing.Color.White;
-            this.dgvCustomers.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCustomers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvCustomers.Location = new System.Drawing.Point(20, 171);
-            this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.RowHeadersVisible = false;
-            this.dgvCustomers.RowHeadersWidth = 51;
-            this.dgvCustomers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomers.Size = new System.Drawing.Size(1127, 563);
-            this.dgvCustomers.TabIndex = 0;
-            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
             // lblSearch
             // 
             this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(860, 107);
+            this.lblSearch.Location = new System.Drawing.Point(923, 78);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(49, 19);
             this.lblSearch.TabIndex = 63;
@@ -180,8 +166,9 @@
             // cmbRecordCount
             // 
             this.cmbRecordCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRecordCount.BackColor = System.Drawing.Color.LightGray;
             this.cmbRecordCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRecordCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbRecordCount.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRecordCount.FormattingEnabled = true;
             this.cmbRecordCount.ItemHeight = 19;
             this.cmbRecordCount.Items.AddRange(new object[] {
@@ -191,74 +178,70 @@
             "50",
             "100",
             "200"});
-            this.cmbRecordCount.Location = new System.Drawing.Point(1085, 740);
+            this.cmbRecordCount.Location = new System.Drawing.Point(1093, 719);
             this.cmbRecordCount.Name = "cmbRecordCount";
-            this.cmbRecordCount.Size = new System.Drawing.Size(61, 27);
-            this.cmbRecordCount.TabIndex = 68;
+            this.cmbRecordCount.Size = new System.Drawing.Size(54, 27);
+            this.cmbRecordCount.TabIndex = 83;
             // 
             // btnLastPage
             // 
             this.btnLastPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnLastPage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLastPage.FlatAppearance.BorderSize = 0;
+            this.btnLastPage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnLastPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLastPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
-            this.btnLastPage.Location = new System.Drawing.Point(634, 740);
+            this.btnLastPage.Location = new System.Drawing.Point(622, 715);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(30, 30);
-            this.btnLastPage.TabIndex = 72;
-            this.tipCustomer.SetToolTip(this.btnLastPage, "Last page");
+            this.btnLastPage.TabIndex = 87;
             this.btnLastPage.UseVisualStyleBackColor = false;
             // 
             // btnFirstPage
             // 
             this.btnFirstPage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnFirstPage.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnFirstPage.FlatAppearance.BorderSize = 0;
+            this.btnFirstPage.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnFirstPage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirstPage.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
-            this.btnFirstPage.Location = new System.Drawing.Point(502, 740);
+            this.btnFirstPage.Location = new System.Drawing.Point(490, 715);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
-            this.btnFirstPage.TabIndex = 71;
-            this.tipCustomer.SetToolTip(this.btnFirstPage, "First page");
+            this.btnFirstPage.TabIndex = 86;
             this.btnFirstPage.UseVisualStyleBackColor = false;
             // 
             // btnPrevious
             // 
             this.btnPrevious.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnPrevious.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(546, 740);
+            this.btnPrevious.Location = new System.Drawing.Point(534, 715);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(30, 30);
-            this.btnPrevious.TabIndex = 70;
-            this.tipCustomer.SetToolTip(this.btnPrevious, "Previous");
+            this.btnPrevious.TabIndex = 85;
             this.btnPrevious.UseVisualStyleBackColor = false;
             // 
             // btnNext
             // 
             this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnNext.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
-            this.btnNext.Location = new System.Drawing.Point(590, 740);
+            this.btnNext.Location = new System.Drawing.Point(578, 715);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(30, 30);
-            this.btnNext.TabIndex = 69;
-            this.tipCustomer.SetToolTip(this.btnNext, "Next");
+            this.btnNext.TabIndex = 84;
             this.btnNext.UseVisualStyleBackColor = false;
             // 
             // Customer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
             this.ClientSize = new System.Drawing.Size(1167, 749);
@@ -269,7 +252,7 @@
             this.Controls.Add(this.cmbRecordCount);
             this.Controls.Add(this.dgvCustomer);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Customer";
             this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
@@ -289,14 +272,14 @@
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cmbRecordCount;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnFirstPage;
-        private System.Windows.Forms.Button btnLastPage;
         private System.Windows.Forms.ToolTip tipCustomer;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.ComboBox cmbRecordCount;
+        private System.Windows.Forms.Button btnLastPage;
+        private System.Windows.Forms.Button btnFirstPage;
+        private System.Windows.Forms.Button btnPrevious;
+        private System.Windows.Forms.Button btnNext;
     }
 }
