@@ -26,6 +26,6 @@ namespace Core.System.Data.Model
                 }
             }
         }
-        public StatusRecord Status { get; set; }
+        public StatusRecord.Type Status { get; set; }
     }
 }

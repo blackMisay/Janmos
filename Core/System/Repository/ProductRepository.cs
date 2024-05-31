@@ -89,10 +89,10 @@ namespace Core.System.Repository
                 {"@Category", product.Category.Id.ToString()},
                 {"@MetricValue", product.MetricValue},
                 {"@MetricUnit", product.MetricUnit.Id.ToString()},
-                {"@Status", (product.Status.ToString()}
+                {"@Status", (product.Status.ToString())}
             };
 
-            UpgradeManager upgradeManager = new UpgradeManager();
+            upgradeManager = new UpgradeManager();
             if (upgradeManager.ExecuteQuery(query, productParameters))
                 return true;
             return false;
