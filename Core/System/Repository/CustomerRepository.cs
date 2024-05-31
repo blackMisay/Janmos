@@ -12,14 +12,14 @@ namespace Core.System.Repository
 
         public DataTable LoadCustomerData()
         {
-            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.`status` = 'Active' ORDER BY customer.id DESC;";
+            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.regionID = region.id JOIN province ON customer.provinceID = province.id JOIN municipality ON customer.municipalityID = municipality.id JOIN baranggay ON customer.baranggayID = baranggay.id WHERE customer.`status` = 'Active' ORDER BY customer.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadCustomerData(string searchValue)
         {
-            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.name LIKE @val AND customer.`status` = 'Deleted' ORDER BY customer.id DESC;";
+            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.regionID = region.id JOIN province ON customer.provinceID = province.id JOIN municipality ON customer.municipalityID = municipality.id JOIN baranggay ON customer.baranggayID = baranggay.id WHERE customer.name LIKE @val AND customer.`status` = 'Active' ORDER BY customer.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> customerParams = new Dictionary<string, string>()
@@ -32,7 +32,7 @@ namespace Core.System.Repository
 
         public bool DeleteCustomerData(int customerId)
         {
-            string query = "UPDATE customer SET `status` = '1' WHERE id = @id";
+            string query = "UPDATE customer SET `status` = 'Deleted' WHERE id = @id";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> customerParams = new Dictionary<string, string>()

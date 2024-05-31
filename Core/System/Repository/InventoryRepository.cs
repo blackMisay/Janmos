@@ -18,7 +18,7 @@ namespace Core.System.Repository
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' LIKE @val ORDER BY inventory.id DESC;";
+            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`name` LIKE @val AND inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
