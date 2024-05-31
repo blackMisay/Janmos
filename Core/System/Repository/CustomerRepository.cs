@@ -9,6 +9,10 @@ namespace Core.System.Repository
     public class CustomerRepository
     {
         UpgradeManager upgradeManager;
+
+        public DataTable LoadCustomerData()
+        {
+            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.`status` = '0' ORDER BY customer.id DESC;";
         public DataTable LoadCustomerData()
         {
             string query = "SELECT customer.id AS `Customer Number`,customer.`name` AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', region.`name` AS 'Region', province.`name` AS 'Province', municipality.`name` AS 'Municipality', baranggay.`name` AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.`status` = '0' ORDER BY customer.id DESC;";
@@ -18,6 +22,7 @@ namespace Core.System.Repository
 
         public DataTable LoadCustomerData(string searchValue)
         {
+            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, '(', customer.entityname, ')') AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.name LIKE @val AND customer.`status` = '0' ORDER BY customer.id DESC;";
             string query = "SELECT customer.id AS `Customer Number`,customer.name AS `Customer Name`,customer.entity AS 'Entity', customer.entityname AS 'Entity Name', customer.mobilenum AS `Mobile Number`, customer.phonenum AS 'Phone Number', customer.extension AS 'Extension', customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id',  region.`name` AS 'Region', province.`name` AS 'Province', municipality.`name` AS 'Municipality', baranggay.`name` AS 'Baranggay', customer.housenum AS 'House Number', customer.postal AS 'Postal Code' JOIN region ON customer.region = region.id JOIN province ON customer.province = province.id JOIN municipality ON customer.municipality = municipality.id JOIN baranggay ON customer.baranggay = baranggay.id WHERE customer.`status` = '0' AND customer.name LIKE @val ORDER BY customer.id DESC;";
             upgradeManager = new UpgradeManager();
 
@@ -27,6 +32,18 @@ namespace Core.System.Repository
             };
 
             return upgradeManager.Load(query, customerParams);
+        }
+
+        public bool DeleteCustomerData(int customerId)
+        {
+            string query = "UPDATE customer SET `status` = '1' WHERE id = @id";
+            upgradeManager = new UpgradeManager();
+
+            Dictionary<string, string> customerParams = new Dictionary<string, string>()
+            {
+                {"@id", customerId.ToString() }
+            };
+            return upgradeManager.ExecuteQuery(query, customerParams);
         }
 
         public Customer FetchCustomerData(int customerId)
@@ -72,6 +89,11 @@ namespace Core.System.Repository
 
             if (customer.Id > 0)
             {
+                query = "UPDATE dbjanmos.customer SET name=@Name, entity=@Entity, entityname=@Entityname, mobilenum=@Mobilenum, phonenum=@Telenum, extension=@Extension, primaryemail=@Email, socialnetid=@Socialnetid, region=@Region, province=@Province, municipality=@Municipality, baranggay=@Baranggay, housenum=@Housenum, postal=@Postal, status=@Status WHERE id=@Id;";
+            }
+            else
+            {
+                query = "INSERT INTO dbjanmos.customer(name, entity, entityname, mobilenum, phonenum, extension, primaryemail, socialnetid, region, province, municipality, baranggay, housenum, postal, status) VALUES(@Name, @Entity, @Entityname, @Mobilenum, @Telenum, @Extension, @Email, @Socialnetid, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal, @Status);";
                 query = "UPDATE dbjanmos.customer SET name=@Name,entity=@Entity,entityname=@Entityname,mobilenum=@Mobilenum,phonenum=@Telenum,extension=@Extension,primaryemail=@Email,socialnetid=@Socialnetid,region=@Region,municipality=@Municipality,baranggay=@Baranggay,housenum=@Housenum,postal=@Postal,status=@Status WHERE id=@Id;";
             }
             else
@@ -97,6 +119,8 @@ namespace Core.System.Repository
                 {"@Housenum", customer.Housenum},
                 {"@Postal", customer.Postal},
                 {"@Status", customer.Status.ToString()}
+                {"@Status", ((int)customer.Status).ToString() }
+                {"@Status", ((int)customer.Status).ToString()}
             };
 
             UpgradeManager upgradeManager = new UpgradeManager();
