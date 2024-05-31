@@ -6,6 +6,7 @@ namespace App.Product
 {
     public partial class frmProduct : Form
     {
+        ProductRepository productRepository;
         private int selectedProductId = 0;
         private readonly int defaultRowCount = 20;
         public frmProduct()
@@ -16,7 +17,8 @@ namespace App.Product
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (frmProductModal info = new frmProductModal()) { 
+            using (frmProductModal info = new frmProductModal())
+            {
                 info.ShowDialog();
             }
             this.LoadProductData();
@@ -26,11 +28,14 @@ namespace App.Product
         {
             if (selectedProductId != 0)
             {
-                using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                if (MessageBox.Show("Do you want to edit the selected product?", "Edit Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) 
                 {
-                    info.ShowDialog();
+                    using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                    {
+                        info.ShowDialog();
+                    }
+                    this.LoadProductData();
                 }
-                this.LoadProductData();
             }
             else
             {
@@ -54,20 +59,35 @@ namespace App.Product
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            ProductRepository productRepository = new ProductRepository();
+            productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData(txtSearch.Text);
         }
 
         private void LoadProductData()
         {
-            ProductRepository productRepository = new ProductRepository();
+            productRepository = new ProductRepository();
             dgvProduct.DataSource = productRepository.LoadProductData();
             this.dgvProduct.Columns["Metric Value"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            selectedProductId = 0;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (selectedProductId > 0)
+            {
+                if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    productRepository = new ProductRepository();
+                    productRepository.DeleteProductData(selectedProductId);
+                    this.LoadProductData();
 
+                    MessageBox.Show("Delete Successfully.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a product to delete.", "Delete product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

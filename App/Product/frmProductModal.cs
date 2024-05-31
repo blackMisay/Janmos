@@ -2,13 +2,14 @@
 using Core.System.Data.Model;
 using Core.System.Repository;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace App.Product
 {
     public partial class frmProductModal : Form
     {
         private readonly int Id = 0;
-        ProductRepository productController;
+        ProductRepository productRepository;
 
         public frmProductModal()
         {
@@ -92,6 +93,11 @@ namespace App.Product
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
             product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
             product.MetricValue = this.txtMetricValue.Text;
+            product.Status = StatusRecord.Type.Active;
+
+            productRepository = new ProductRepository();
+
+            if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             if (productController.Save(product))
             {
                 MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,19 +105,27 @@ namespace App.Product
             }
             else
             {
-                MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (productRepository.Save(product))
+                {
+                    MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void InitializeComponentsData()
         {
-            productController = new ProductRepository();
-            cmbCategory.DataSource = productController.LoadDataList("SELECT id, CONCAT(`description`,' (',`name`,')') AS `name` FROM dbjanmos.category;");
+            productRepository = new ProductRepository();
+            cmbCategory.DataSource = productRepository.LoadDataList("SELECT id, CONCAT(`description`,' (',`name`,')') AS `name` FROM dbjanmos.category;");
             cmbCategory.ValueMember = "id";
             cmbCategory.DisplayMember = "name";
             cmbCategory.SelectedIndex = -1;
 
-            cmbMetricUnit.DataSource = productController.LoadDataList("SELECT id, CONCAT(`name`,' (',`symbol`,')') AS `name` FROM dbjanmos.metricunit;");
+            cmbMetricUnit.DataSource = productRepository.LoadDataList("SELECT id, CONCAT(`name`,' (',`symbol`,')') AS `name` FROM dbjanmos.metricunit;");
             cmbMetricUnit.ValueMember = "id";
             cmbMetricUnit.DisplayMember = "name";
             cmbMetricUnit.SelectedIndex = -1;
@@ -121,10 +135,10 @@ namespace App.Product
         {
             InitializeComponentsData();
 
-            productController = new ProductRepository();
+            productRepository = new ProductRepository();
             
             Core.System.Data.Model.Product product = new Core.System.Data.Model.Product();
-            product = productController.FetchProductData(this.Id);
+            product = productRepository.FetchProductData(this.Id);
 
             this.txtProductName.Text = product.Name;
             this.txtDescription.Text = product.Description;
