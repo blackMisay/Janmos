@@ -23,5 +23,6 @@ namespace Core.System.Data.Model
         public Baranggay Baranggay { get; set; }
         public string Housenum { get; set; }
         public string Postal { get; set; }
+        public StatusRecord.Type Status { get; set; }
     }
 }

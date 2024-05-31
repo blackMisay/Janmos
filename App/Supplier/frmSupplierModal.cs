@@ -283,6 +283,7 @@ namespace App.Supplier
             supplier.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
             supplier.Housenum = this.txtAddress.Text;
             supplier.Postal = this.txtPostalCode.Text;
+            supplier.Status = StatusRecord.Type.Active;
 
             supplierRepository = new SupplierRepository();
             if (supplierRepository.Save(supplier))

@@ -10,18 +10,18 @@ namespace Core.System.Repository
 {
     public class SupplierRepository
     {
-        UpgradeManager upgradeManager;
+        UpgradeManager upgradeManager; //for database connection
 
-        public DataTable LoadSupplierData()
+        public DataTable LoadSupplierData() //for record load
         {
-            string query = "SELECT supplier.id AS `Id`, supplier.`name` AS `Supplier Name`, suppliercategory.`name` AS `Category`, supplier.contactperson AS `Contact Person`, supplier.socialnetid AS `Social Network Id`, supplier.mobilenum AS `Mobile Number`, CONCAT(supplier.phonenum, ' Ext.', supplier.extension) AS `Phone Number`, supplier.email AS `Email`, CONCAT(region.`name`, '-', province.`name`, '-', municipality.`name`, '-', baranggay.`name`, '-', supplier.housenum, '-', supplier.postal) AS `Address` FROM supplier JOIN suppliercategory ON supplier.category = suppliercategory.id JOIN region ON supplier.region = region.id JOIN province ON supplier.province = province.id JOIN municipality ON supplier.municipality = municipality.id JOIN baranggay ON supplier.baranggay = baranggay.id WHERE supplier.`status` = '1' ORDER BY supplier.id DESC;";
+            string query = "SELECT supplier.id AS `Id`, supplier.`name` AS `Supplier Name`, suppliercategory.`name` AS `Category`, supplier.contactperson AS `Contact Person`, supplier.socialnetid AS `Social Network Id`, supplier.mobilenum AS `Mobile Number`, CONCAT(supplier.phonenum, ' Ext.', supplier.extension) AS `Phone Number`, supplier.email AS `Email`, CONCAT(region.`name`, '-', province.`name`, '-', municipality.`name`, '-', baranggay.`name`, '-', supplier.housenum, '-', supplier.postal) AS `Address` FROM supplier JOIN suppliercategory ON supplier.category = suppliercategory.id JOIN region ON supplier.region = region.id JOIN province ON supplier.province = province.id JOIN municipality ON supplier.municipality = municipality.id JOIN baranggay ON supplier.baranggay = baranggay.id WHERE supplier.`status` = 'Active' ORDER BY supplier.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
-        public DataTable LoadSupplierData(string searchValue)
+        public DataTable LoadSupplierData(string searchValue) //for record load while searching
         {
-            string query = "SELECT supplier.id AS `Id`, supplier.`name` AS `Supplier Name`, suppliercategory.`name` AS `Category`, supplier.contactperson AS `Contact Person`, supplier.socialnetid AS `Social Network Id`, supplier.mobilenum AS `Mobile Number`, CONCAT(supplier.phonenum, ' Ext.', supplier.extension) AS `Phone Number`, supplier.email AS `Email`, CONCAT(region.`name`, '-', province.`name`, '-', municipality.`name`, '-', baranggay.`name`, '-', supplier.housenum, '-', supplier.postal) AS `Address` FROM supplier JOIN suppliercategory ON supplier.category = suppliercategory.id JOIN region ON supplier.region = region.id JOIN province ON supplier.province = province.id JOIN municipality ON supplier.municipality = municipality.id JOIN baranggay ON supplier.baranggay = baranggay.id WHERE supplier.`name` LIKE @val AND supplier.`status` = '1' ORDER BY supplier.id DESC;";
+            string query = "SELECT supplier.id AS `Id`, supplier.`name` AS `Supplier Name`, suppliercategory.`name` AS `Category`, supplier.contactperson AS `Contact Person`, supplier.socialnetid AS `Social Network Id`, supplier.mobilenum AS `Mobile Number`, CONCAT(supplier.phonenum, ' Ext.', supplier.extension) AS `Phone Number`, supplier.email AS `Email`, CONCAT(region.`name`, '-', province.`name`, '-', municipality.`name`, '-', baranggay.`name`, '-', supplier.housenum, '-', supplier.postal) AS `Address` FROM supplier JOIN suppliercategory ON supplier.category = suppliercategory.id JOIN region ON supplier.region = region.id JOIN province ON supplier.province = province.id JOIN municipality ON supplier.municipality = municipality.id JOIN baranggay ON supplier.baranggay = baranggay.id WHERE supplier.`name` LIKE @val AND supplier.`status` = 'Active' ORDER BY supplier.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> supplierParams = new Dictionary<string, string>()
@@ -32,9 +32,9 @@ namespace Core.System.Repository
             return upgradeManager.Load(query, supplierParams);
         }
 
-        public bool DeleteSupplierData(int supplierId)
+        public bool DeleteSupplierData(int supplierId) //for soft deleting selected record
         {
-            string query = "UPDATE supplier SET `status` = '0' WHERE id = @id";
+            string query = "UPDATE supplier SET `status` = 'Deleted' WHERE id = @id";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> supplierParams = new Dictionary<string, string>()
@@ -44,7 +44,7 @@ namespace Core.System.Repository
             return upgradeManager.ExecuteQuery(query, supplierParams);
         }
 
-        public Supplier FetchSupplierData(int supplierId)
+        public Supplier FetchSupplierData(int supplierId) //fetching record data from sql database to winforms
         {
             DataTable dt = new DataTable();
             this.upgradeManager = new UpgradeManager();
@@ -75,23 +75,23 @@ namespace Core.System.Repository
             return null;
         }
 
-        public DataTable LoadDataList(string query)
+        public DataTable LoadDataList(string query) //load data list
         {
             this.upgradeManager = new UpgradeManager();
             return this.upgradeManager.Load(query);
         }
 
-        public bool Save(Supplier supplier)
+        public bool Save(Supplier supplier) //saving data entry
         {
             string query;
 
-            if (supplier.Id > 0)
+            if (supplier.Id > 0) //for updating existing record
             {
-                query = "UPDATE dbjanmos.supplier SET name=@Name, category=@Category, contactperson=@Contactperson, socialnetid=@Socialnetid, mobilenum=@Mobilenum, phonenum=@Phonenum, extension=@Extension, email=@Email, region=@Region, province=@Province, municipality=@Municipality, baranggay=@Baranggay, housenum=@Housenum, postal=@Postal WHERE id=@Id;";
+                query = "UPDATE dbjanmos.supplier SET name=@Name, category=@Category, contactperson=@Contactperson, socialnetid=@Socialnetid, mobilenum=@Mobilenum, phonenum=@Phonenum, extension=@Extension, email=@Email, region=@Region, province=@Province, municipality=@Municipality, baranggay=@Baranggay, housenum=@Housenum, postal=@Postal, status=@Status WHERE id=@Id;";
             }
-            else
+            else //for add new record
             {
-                query = "INSERT INTO dbjanmos.supplier(name, category, contactperson, socialnetid, mobilenum, phonenum, extension, email, region, province, municipality, baranggay, housenum, postal) VALUES(@Name, @Category, @ContactPerson, @SocialNetId, @Mobilenum, @Phonenum, @Extension, @Email, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal);";
+                query = "INSERT INTO dbjanmos.supplier(name, category, contactperson, socialnetid, mobilenum, phonenum, extension, email, region, province, municipality, baranggay, housenum, postal, status) VALUES(@Name, @Category, @ContactPerson, @SocialNetId, @Mobilenum, @Phonenum, @Extension, @Email, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal, @Status);";
             }
 
             Dictionary<string, string> supplierParameters = new Dictionary<string, string>()
@@ -111,6 +111,7 @@ namespace Core.System.Repository
                 {"@Baranggay", supplier.Baranggay.Id.ToString()},
                 {"@Housenum", supplier.Housenum},
                 {"@Postal", supplier.Postal},
+                {"@Status", supplier.Status.ToString()}
             };
 
             upgradeManager = new UpgradeManager();
