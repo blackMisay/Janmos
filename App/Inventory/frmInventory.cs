@@ -50,7 +50,7 @@ namespace App.Inventory
             }
         }
 
-        private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvInventory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvInventory.RowCount > 0)
             {
