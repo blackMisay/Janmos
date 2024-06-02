@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer Order\frmCustomerOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer Order\frmCustomerOrder.Designer.cs">
+      <DependentUpon>frmCustomerOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer Order\frmCustomerOrderModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer Order\frmCustomerOrderModal.Designer.cs">
+      <DependentUpon>frmCustomerOrderModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\frmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     <Compile Include="Supplier\frmSupplierModal.Designer.cs">
       <DependentUpon>frmSupplierModal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Customer Order\frmCustomerOrder.resx">
+      <DependentUpon>frmCustomerOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer Order\frmCustomerOrderModal.resx">
+      <DependentUpon>frmCustomerOrderModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +250,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-inventory-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-create-order-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-create-order-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-create-order-48 %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
