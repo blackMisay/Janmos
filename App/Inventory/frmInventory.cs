@@ -8,6 +8,8 @@ namespace App.Inventory
     {
         InventoryRepository inventoryRepository;
         private int selectedInventoryId = 0;
+        private string selectedInventoryDayRemainingExpiration = "";
+        private int expired = 0;
         private readonly int defaultRowCount = 20;
         public frmInventory()
         {
@@ -29,14 +31,32 @@ namespace App.Inventory
             this.dgvInventory.Columns["Quantity"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvInventory.Columns["Expiration"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvInventory.Columns["Day/s Remaining"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            foreach (DataGridViewRow row in dgvInventory.Rows)
+            {
+                DateTime expirationValue = DateTime.Parse(row.Cells["Expiration"].Value.ToString());
+                DateTime dateToday = DateTime.Today;
+                TimeSpan dayRemaining = expirationValue - dateToday;
+                this.expired = dayRemaining.Days;
+
+                if (expired <= 0)
+                {
+                    row.Cells["Day/s Remaining"].Value = (Math.Abs(this.expired)) + " day expired";
+                }
+                else
+                {
+                    row.Cells["Day/s Remaining"].Value = (Math.Abs(this.expired)) + " day remaining";
+                }
+            }
         }
 
-        private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvInventory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvInventory.RowCount > 0)
             {
                 int selectedRowIndex = dgvInventory.SelectedCells[0].RowIndex;
                 this.selectedInventoryId = Convert.ToInt32(dgvInventory.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+                this.selectedInventoryDayRemainingExpiration = dgvInventory.Rows[selectedRowIndex].Cells["Day/s Remaining"].Value?.ToString();
             }
         }
 
@@ -55,7 +75,7 @@ namespace App.Inventory
             {
                 if (MessageBox.Show("Do you want to edit the selected inventory data?", "Edit Inventory Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (frmInventoryModal frmIM = new frmInventoryModal(this.selectedInventoryId))
+                    using (frmInventoryModal frmIM = new frmInventoryModal(this.selectedInventoryId, this.selectedInventoryDayRemainingExpiration))
                     {
                         frmIM.ShowDialog();
                         selectedInventoryId = 0;
