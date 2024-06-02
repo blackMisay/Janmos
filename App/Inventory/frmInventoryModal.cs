@@ -1,15 +1,7 @@
 ﻿using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace App.Inventory
 {
@@ -18,6 +10,8 @@ namespace App.Inventory
         InventoryRepository inventoryRepository;
         private readonly int Id = 0;
         private readonly int _enable = 0;
+        private readonly int saveValue = 0;
+        private readonly string str_exp = "";
         private string str_date = "yyyy-MM-dd";
         private int validuntil = 0;
         public frmInventoryModal()
@@ -27,27 +21,34 @@ namespace App.Inventory
             FieldEnabling(_enable);
         }
 
-        public frmInventoryModal(int inventoryId)
+        public frmInventoryModal(int inventoryId, string selectedInventoryDayRemainingExpiration)
         {
             InitializeComponent();
             this.Id = inventoryId;
+            this.str_exp = selectedInventoryDayRemainingExpiration;
             FieldEnabling(inventoryId);
             InitializeSelectedInventoryData();
             lblResetFields.Enabled = false;
 
-            str_date = this.dtpExpiration.Value.ToString("yyyy-MM-dd");
-            DateTime target = DateTime.Parse(str_date);
-            DateTime today = DateTime.Today;
-            TimeSpan _validuntil = target - today;
+            DateTime expirationValue = DateTime.Parse(this.dtpExpiration.Value.ToString("yyyy-MM-dd"));
+            DateTime dateToday = DateTime.Today;
+            TimeSpan _validuntil = expirationValue - dateToday;
             int validuntil = _validuntil.Days;
 
             if (validuntil <= 7 && validuntil > 0) //to see how many days left before expiration.
             {
                 MessageBox.Show("The selected product will expired in " + validuntil + " day/s.", "Expiration Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                saveValue = 2;
             }
-            else if (target <= today) //message if the selected product is expired.
+            else if (expirationValue <= dateToday) //message if the selected product is expired.
             {
                 MessageBox.Show("The selected product is expired.", "Expiration Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnCancel.Enabled = false;
+                saveValue = 1;
+            }
+            else
+            {
+                saveValue = 2;
             }
         }
 
@@ -58,6 +59,7 @@ namespace App.Inventory
                 cmbProduct.Enabled = false;
                 cmbAvailability.DataSource = Enum.GetValues(typeof(Availability));
                 cmbAvailability.Enabled = true;
+                dtpExpiration.Enabled = false;
             }
             else
             {
@@ -115,9 +117,9 @@ namespace App.Inventory
         private void FieldValidate()
         {
             this.str_date = this.dtpExpiration.Value.ToString("yyyy-MM-dd");
-            DateTime target = DateTime.Parse(this.str_date);
-            DateTime today = DateTime.Today;
-            TimeSpan _validuntil = target - today;
+            DateTime expirationValue = DateTime.Parse(this.str_date);
+            DateTime dateToday = DateTime.Today;
+            TimeSpan _validuntil = expirationValue - dateToday;
             int validuntil = _validuntil.Days;
 
             bool validated = true;
@@ -172,14 +174,33 @@ namespace App.Inventory
                 lblRequiredDescription.Visible = false;
             }
 
-            if (cmbAvailability.SelectedIndex == 1 && target <= today)
+            switch (saveValue)
             {
-                validated = true;
-            }
-            else if (target <= today)
-            {
-                MessageBox.Show("The date that you selected is not acceptable for expiration.", "Expiration date", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                validated = false;
+                case 0:
+                    if (expirationValue <= dateToday)
+                    {
+                        MessageBox.Show("The date that you selected is not acceptable for expiration.", "Expiration date", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        validated = false;
+                    }
+                    else
+                    {
+                        validated = true;
+                    }
+                    break;
+                case 1:
+                    if (cmbAvailability.SelectedIndex == 1 && expirationValue <= dateToday)
+                    {
+                        validated = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The availability should be change to unavailable.", "Expiration date", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        validated = false;
+                    }
+                    break;
+                case 2:
+                    validated = true;
+                    break;
             }
 
             if (!validated)
@@ -193,19 +214,24 @@ namespace App.Inventory
             inventory.Price = this.txtPrice.Text;
             inventory.Quantity = Convert.ToInt32(this.txtQuantity.Text);
             inventory.Expiration = this.str_date;
-            if (validuntil <= 0)
+            if (Id == 0)
             {
-                this.validuntil = Math.Abs(validuntil);
-                string validUntil = this.validuntil.ToString();
-                string ValidUntil = validUntil + "day/s expired";
-                inventory.Day = ValidUntil;
+                if (validuntil <= 0)
+                {
+                    this.validuntil = Math.Abs(validuntil);
+                    string validUntil = this.validuntil.ToString();
+                    inventory.Day = validUntil + "day/s expired";
+                }
+                else
+                {
+                    this.validuntil = Math.Abs(validuntil);
+                    string validUntil = this.validuntil.ToString();
+                    inventory.Day = validUntil + "day/s before expiration";
+                }
             }
             else
             {
-                this.validuntil = Math.Abs(validuntil);
-                string validUntil = this.validuntil.ToString();
-                string ValidUntil = validUntil + "day/s before expiration";
-                inventory.Day = ValidUntil;
+                inventory.Day = this.str_exp;
             }
             Availability availability = (Availability)cmbAvailability.SelectedItem;
             inventory.Availability = availability;

@@ -80,7 +80,7 @@ namespace Core.System.Repository
             }
             else
             {
-                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
+                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
             }
 
             Dictionary<string, string> productParameters = new Dictionary<string, string>()
