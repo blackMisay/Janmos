@@ -37,6 +37,8 @@
             this.pnlProductContainer = new System.Windows.Forms.Panel();
             this.pnlDashboardContainer = new System.Windows.Forms.Panel();
             this.pnlMenuSidebar = new System.Windows.Forms.Panel();
+            this.btnCustomerOrder = new System.Windows.Forms.Button();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.btnReports = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAccount = new System.Windows.Forms.Button();
@@ -128,6 +130,8 @@
             // 
             // pnlMenuSidebar
             // 
+            this.pnlMenuSidebar.Controls.Add(this.btnCustomerOrder);
+            this.pnlMenuSidebar.Controls.Add(this.panel7);
             this.pnlMenuSidebar.Controls.Add(this.btnReports);
             this.pnlMenuSidebar.Controls.Add(this.panel6);
             this.pnlMenuSidebar.Controls.Add(this.btnAccount);
@@ -149,6 +153,32 @@
             this.pnlMenuSidebar.Padding = new System.Windows.Forms.Padding(10, 0, 10, 5);
             this.pnlMenuSidebar.Size = new System.Drawing.Size(70, 707);
             this.pnlMenuSidebar.TabIndex = 4;
+            // 
+            // btnCustomerOrder
+            // 
+            this.btnCustomerOrder.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCustomerOrder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomerOrder.FlatAppearance.BorderSize = 0;
+            this.btnCustomerOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomerOrder.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomerOrder.Image = global::App.Properties.Resources.icons8_create_order_24;
+            this.btnCustomerOrder.Location = new System.Drawing.Point(10, 385);
+            this.btnCustomerOrder.Name = "btnCustomerOrder";
+            this.btnCustomerOrder.Size = new System.Drawing.Size(50, 45);
+            this.btnCustomerOrder.TabIndex = 22;
+            this.tpMain.SetToolTip(this.btnCustomerOrder, "Data Reports\r\n\r\nGenerate data reports to display \r\ninformation, forecasts, and an" +
+        "alyses \r\nfor making business decisions.");
+            this.btnCustomerOrder.UseVisualStyleBackColor = false;
+            this.btnCustomerOrder.Click += new System.EventHandler(this.btnCustomerOrder_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(10, 375);
+            this.panel7.Name = "panel7";
+            this.panel7.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel7.Size = new System.Drawing.Size(50, 10);
+            this.panel7.TabIndex = 21;
             // 
             // btnReports
             // 
@@ -391,5 +421,7 @@
         private System.Windows.Forms.ToolTip tpMain;
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnCustomerOrder;
+        private System.Windows.Forms.Panel panel7;
     }
 }

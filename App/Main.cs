@@ -15,6 +15,7 @@ namespace App
         private static readonly string REPORTS = "&Reports";
         private static readonly string ACCOUNT = "Pro&file";
         private static readonly string SETTING = "Se&ttings";
+        private static readonly string CUSTOMERORDER = "Customer &Order";
 
         private static readonly int MIN_WIDTH = 70;
         private static readonly int MAX_WIDTH = 230;
@@ -55,6 +56,10 @@ namespace App
         {
             this.openFormModule(new Supplier.frmSupplier());
         }
+        private void btnCustomerOrder_Click(object sender, EventArgs e)
+        {
+            this.openFormModule(new App.Customer_Order.frmCustomerOrder());
+        }
 
         private void openFormModule(Form formModule)
         {
@@ -93,6 +98,7 @@ namespace App
                 btnReports.Text = REPORTS;
                 btnAccount.Text = ACCOUNT;
                 btnSetting.Text = SETTING;
+                btnCustomerOrder.Text = CUSTOMERORDER;
             }
 
             if (pnlMenuSidebar.Width == MAX_WIDTH)
