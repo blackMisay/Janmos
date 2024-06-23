@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Customer Order Details\frmCustomerOrderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer Order Details\frmCustomerOrderDetails.Designer.cs">
+      <DependentUpon>frmCustomerOrderDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer Order\frmCustomerOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <Compile Include="Supplier\frmSupplierModal.Designer.cs">
       <DependentUpon>frmSupplierModal.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Customer Order Details\frmCustomerOrderDetails.resx">
+      <DependentUpon>frmCustomerOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer Order\frmCustomerOrder.resx">
       <DependentUpon>frmCustomerOrder.cs</DependentUpon>
     </EmbeddedResource>

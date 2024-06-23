@@ -36,6 +36,7 @@ namespace Core.System.Repository
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
+
         public CustomerOrder FetchCustomerOrderData(int customerorderId)//fetching data from database to form
         {
             DataTable dt = new DataTable();
@@ -50,28 +51,20 @@ namespace Core.System.Repository
                     customerOrder.Customer = new Customer() { Id = Convert.ToInt32(row["customer"]) };
                     customerOrder.OrderDate = row["orderdate"].ToString();
                     customerOrder.Status = new StatusType();
-                    customerOrder.TotalPrice = decimal.Parse(row["totalprice"].ToString());
+                    customerOrder.TotalPrice = row["totalprice"].ToString();
                 }
                 return customerOrder;
             }
             return null;
         }
-        public bool Save(CustomerOrder customerOrder)//saving data entry
+
+        public int Save(CustomerOrder customerOrder)//saving data entry
         {
+            int result = 0;
             string query;
 
-            if (customerOrder.Id > 0) //for updating existing record
+            Dictionary<string, string> customerOrderParameters = new Dictionary<string, string>()
             {
-                query = "UPDATE dbjanmos.customerorder SET customer=@Customer,status=@Status,orderdate=@OrderDate,totalprice=@TotalPrice WHERE id=@Id;";
-            }
-            else //for add new record
-            {
-                query = "INSERT INTO dbjanmos.customerorder(customer,status,orderdate,totalprice) VALUES(@Customer,@Status,@OrderDate,@TotalPrice);";
-            }
-
-            Dictionary<string, string> inventoryParameters = new Dictionary<string, string>()
-            {
-                {"@Id", customerOrder.Id.ToString()},
                 {"@Customer", customerOrder.Customer.Id.ToString()},
                 {"@Status", customerOrder.Status.ToString()},
                 {"@OrderDate", customerOrder.OrderDate},
@@ -79,9 +72,26 @@ namespace Core.System.Repository
             };
 
             upgradeManager = new UpgradeManager();
-            if (upgradeManager.ExecuteQuery(query, inventoryParameters))
-                return true;
-            return false;
+
+            if (customerOrder.Id > 0) //for updating existing record
+            {
+                query = "UPDATE dbjanmos.customerorder SET customer=@Customer,status=@Status,orderdate=@OrderDate,totalprice=@TotalPrice WHERE id=@Id;";
+                customerOrderParameters.Add("@Id", customerOrder.Id.ToString());
+
+                if (upgradeManager.ExecuteQuery(query, customerOrderParameters))
+                    result = customerOrder.Id;
+            }
+            else //for add new record
+            {
+                query = "INSERT INTO dbjanmos.customerorder(customer,status,orderdate,totalprice) VALUES(@Customer,@Status,@OrderDate,@TotalPrice); ";
+
+                long newId = upgradeManager.InsertAndGetId(query, customerOrderParameters);
+                if (newId > 0)
+                {
+                    result = (int)newId;
+                }
+            }
+            return result;
         }
     }
 }

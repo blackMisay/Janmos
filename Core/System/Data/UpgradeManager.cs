@@ -3,6 +3,8 @@ using System.Data;
 using System.Collections.Generic;
 
 using MySqlConnector;
+using System.Collections;
+using Core.System.Data.Model;
 
 
 namespace Core
@@ -207,6 +209,48 @@ namespace Core
                 throw new Exception($"Unexpected error: {e.Message}");
             }
             finally { this.connection.Close(); }
+        }
+
+        public int ExecuteScalar(string query)
+        {
+            this.Connect();
+            using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+            {
+                int result = Convert.ToInt32(cmd.ExecuteScalar());
+                return result;
+            }
+        }
+
+        public int InsertAndGetId(string query, Dictionary<string, string> parameters)
+        {
+            int lastInsertedId = 0;
+            try
+            {
+                this.Connect();
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (KeyValuePair<string, string> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                    }
+                    cmd.ExecuteNonQuery();
+                }
+                string idQuery = "SELECT LAST_INSERT_ID();";
+                using (MySqlCommand idCmd = new MySqlCommand(idQuery, this.connection))
+                {
+                    lastInsertedId = Convert.ToInt32(idCmd.ExecuteScalar());
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+            return lastInsertedId;
         }
     }
 }

@@ -159,6 +159,7 @@
             this.dgvCustomerOrder.Size = new System.Drawing.Size(1127, 538);
             this.dgvCustomerOrder.TabIndex = 84;
             this.dgvCustomerOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerOrder_CellClick);
+            this.dgvCustomerOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomerOrder_CellDoubleClick);
             // 
             // cmbRecordCount
             // 
@@ -250,7 +251,7 @@
             this.Controls.Add(this.dgvCustomerOrder);
             this.Controls.Add(this.panel2);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCustomerOrder";
             this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
             this.Text = "CustomerOrder";

@@ -1,4 +1,5 @@
-﻿using Core.System.Repository;
+﻿using App.Customer_Order_Details;
+using Core.System.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,19 @@ namespace App.Customer_Order
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (selectedCustomerOrderId != 0)
+            {
+                if (MessageBox.Show("Do you want to add order in selected record?", "Add Customer Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question)==DialogResult.Yes)
+                {
+                    using (frmCustomerOrderModal frmCO = new frmCustomerOrderModal(this.selectedCustomerOrderId))
+                    {
+                        frmCO.ShowDialog();
+                        selectedCustomerOrderId = 0;
+                    }
+                    this.LoadCustomerOrderData();
+                    return;
+                }
+            }
             using (frmCustomerOrderModal frmCO = new frmCustomerOrderModal())
             {
                 frmCO.ShowDialog();
@@ -97,6 +111,20 @@ namespace App.Customer_Order
         {
             customerorderRepository = new CustomerOrderRepository();
             dgvCustomerOrder.DataSource = customerorderRepository.LoadCustomerOrderData(txtSearch.Text);
+        }
+
+        private void dgvCustomerOrder_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvCustomerOrder.RowCount > 0)
+            {
+                int selectedRowIndex = dgvCustomerOrder.SelectedCells[0].RowIndex;
+                this.selectedCustomerOrderId = Convert.ToInt32(dgvCustomerOrder.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+
+                using (frmCustomerOrderDetails frmCOD = new frmCustomerOrderDetails(this.selectedCustomerOrderId))
+                {
+                    frmCOD.ShowDialog();
+                }
+            }
         }
     }
 }
