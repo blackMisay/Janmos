@@ -33,6 +33,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +64,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\ChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.Designer.cs">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Account\FindAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account\FindAccount.Designer.cs">
+      <DependentUpon>FindAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.Designer.cs">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer Order Details\frmCustomerOrderDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,17 +94,48 @@
     <Compile Include="Customer Order\frmCustomerOrder.Designer.cs">
       <DependentUpon>frmCustomerOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer Order\frmCustomerOrderItemQuantity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer Order\frmCustomerOrderItemQuantity.Designer.cs">
+      <DependentUpon>frmCustomerOrderItemQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer Order\frmCustomerOrderModal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Customer Order\frmCustomerOrderModal.Designer.cs">
       <DependentUpon>frmCustomerOrderModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagementModule\ManagementModule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagementModule\ManagementModule.Designer.cs">
+      <DependentUpon>ManagementModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Supplier Order\frmSupplierOrderModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier Order\frmSupplierOrderModal.Designer.cs">
+      <DependentUpon>frmSupplierOrderModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\frmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Customer\frmCustomer.Designer.cs">
       <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\frmCustomerBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\frmCustomerBranch.Designer.cs">
+      <DependentUpon>frmCustomerBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer\frmCustomerModal.cs">
       <SubType>Form</SubType>
@@ -87,6 +154,12 @@
     </Compile>
     <Compile Include="Inventory\frmInventory.Designer.cs">
       <DependentUpon>frmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\frmInventoryBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventory\frmInventoryBranch.Designer.cs">
+      <DependentUpon>frmInventoryBranch.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory\frmInventoryModal.cs">
       <SubType>Form</SubType>
@@ -120,6 +193,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier Order\frmSupplierOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Supplier Order\frmSupplierOrder.Designer.cs">
+      <DependentUpon>frmSupplierOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Supplier\frmSupplier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,17 +216,44 @@
     <Compile Include="Supplier\frmSupplierModal.Designer.cs">
       <DependentUpon>frmSupplierModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserManagement\frmUserInfoModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement\frmUserInfoModal.Designer.cs">
+      <DependentUpon>frmUserInfoModal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\frmUserManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserManagement\frmUserManagement.Designer.cs">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Account\ChangePassword.resx">
+      <DependentUpon>ChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Account\FindAccount.resx">
+      <DependentUpon>FindAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Account\ResetPassword.resx">
+      <DependentUpon>ResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer Order Details\frmCustomerOrderDetails.resx">
       <DependentUpon>frmCustomerOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer Order\frmCustomerOrder.resx">
       <DependentUpon>frmCustomerOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Customer Order\frmCustomerOrderItemQuantity.resx">
+      <DependentUpon>frmCustomerOrderItemQuantity.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Customer Order\frmCustomerOrderModal.resx">
       <DependentUpon>frmCustomerOrderModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\frmCustomerBranch.resx">
+      <DependentUpon>frmCustomerBranch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\frmCustomerModal.resx">
       <DependentUpon>frmCustomerModal.cs</DependentUpon>
@@ -152,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmInventory.resx">
       <DependentUpon>frmInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventory\frmInventoryBranch.resx">
+      <DependentUpon>frmInventoryBranch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory\frmInventoryModal.resx">
       <DependentUpon>frmInventoryModal.cs</DependentUpon>
@@ -170,20 +284,31 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="Report\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier Order\frmSupplierOrder.resx">
+      <DependentUpon>frmSupplierOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Supplier Order\frmSupplierOrderModal.resx">
+      <DependentUpon>frmSupplierOrderModal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplier.resx">
       <DependentUpon>frmSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Supplier\frmSupplierModal.resx">
       <DependentUpon>frmSupplierModal.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement\frmUserInfoModal.resx">
+      <DependentUpon>frmUserInfoModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserManagement\frmUserManagement.resx">
+      <DependentUpon>frmUserManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -269,5 +394,22 @@
   <ItemGroup>
     <None Include="Resources\icons8-create-order-48 %281%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\j-anmos_logo.jpg" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

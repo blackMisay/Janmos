@@ -42,7 +42,7 @@ namespace App.Product
                 lblRequiredName.Visible = false;
             }
 
-            if (string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrWhiteSpace(txtDescription.Text))
+            /*if (string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrWhiteSpace(txtDescription.Text))
             {
                 lblRequiredDescription.Visible = true;
                 validated = false;
@@ -50,7 +50,7 @@ namespace App.Product
             else
             {
                 lblRequiredDescription.Visible = false;
-            }
+            }*/
 
             if (string.IsNullOrEmpty(txtMetricValue.Text) || string.IsNullOrWhiteSpace(txtMetricValue.Text))
             {
@@ -149,10 +149,7 @@ namespace App.Product
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close this form without saving the product?", "Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }
+            this.Dispose();
         }
 
         private void lblResetFields_Click(object sender, EventArgs e)

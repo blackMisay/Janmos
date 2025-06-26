@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.linkResetPassword = new System.Windows.Forms.LinkLabel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +48,7 @@
             this.txtUsername.Location = new System.Drawing.Point(53, 274);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(308, 30);
+            this.txtUsername.Size = new System.Drawing.Size(308, 26);
             this.txtUsername.TabIndex = 0;
             // 
             // txtPassword
@@ -57,7 +58,7 @@
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
-            this.txtPassword.Size = new System.Drawing.Size(308, 30);
+            this.txtPassword.Size = new System.Drawing.Size(308, 26);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
@@ -74,6 +75,7 @@
             this.btnLogin.Text = "&Log in";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnLogin_KeyDown);
             // 
             // lblTitle
             // 
@@ -93,7 +95,7 @@
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(65)))), ((int)(((byte)(124)))));
             this.lblUsername.Location = new System.Drawing.Point(49, 247);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(87, 23);
+            this.lblUsername.Size = new System.Drawing.Size(71, 19);
             this.lblUsername.TabIndex = 4;
             this.lblUsername.Text = "Username";
             // 
@@ -103,7 +105,7 @@
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(65)))), ((int)(((byte)(124)))));
             this.lblPassword.Location = new System.Drawing.Point(49, 318);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(80, 23);
+            this.lblPassword.Size = new System.Drawing.Size(67, 19);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password";
             // 
@@ -138,12 +140,24 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // linkResetPassword
+            // 
+            this.linkResetPassword.AutoSize = true;
+            this.linkResetPassword.Location = new System.Drawing.Point(148, 476);
+            this.linkResetPassword.Name = "linkResetPassword";
+            this.linkResetPassword.Size = new System.Drawing.Size(112, 19);
+            this.linkResetPassword.TabIndex = 13;
+            this.linkResetPassword.TabStop = true;
+            this.linkResetPassword.Text = "Forgot Password";
+            this.linkResetPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkResetPassword_LinkClicked);
+            // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(410, 543);
+            this.Controls.Add(this.linkResetPassword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panel1);
@@ -159,6 +173,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JSAI App";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -178,6 +193,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.LinkLabel linkResetPassword;
     }
 }
 

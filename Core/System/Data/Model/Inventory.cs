@@ -15,6 +15,7 @@ namespace Core.System.Data.Model
         private double _Price;
         public string Price { get { return _Price.ToString(); } set { if (double.TryParse(value, out double result)) { _Price = result; } } }
         public int Quantity {  get; set; }
+        public string EntryDate { get; set; }
 
         private string expiration;
         public string Expiration { get { return expiration; } set { expiration = value; } }

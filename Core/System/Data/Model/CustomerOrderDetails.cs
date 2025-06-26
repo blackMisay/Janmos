@@ -8,11 +8,11 @@ namespace Core.System.Data.Model
 {
     public class CustomerOrderDetails
     {
-        public int Id { get; set; }
-        public CustomerOrder CustomerOrderID { get; set; }
-        public Product ProductID { get; set; }
+        public CustomerOrder CustomerOrderNumber { get; set; }
+        public Inventory InventoryID { get; set; }
         public int Quantity {  get; set; }
         public double UnitPrice {  get; set; }
-        public double TotalPrice {  get; set; }
+        public double TotalAmount {  get; set; }
+        public StatusRecord.Type Status { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace App.Customer
     public partial class CustomerModal : Form
     {
         private readonly int Id = 0;
+        Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
         CustomerRepository customerRepository;
         public CustomerModal()
         {
@@ -34,10 +35,7 @@ namespace App.Customer
 
         private void btn_Cancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close this form without saving the customer?", "Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }
+            this.Dispose();
         }
 
         private void CustomerModal_Load(object sender, EventArgs e)
@@ -50,8 +48,14 @@ namespace App.Customer
         {
             customerRepository = new CustomerRepository();
 
-            cmbEntity.DataSource = Enum.GetValues(typeof(Entity));
+            cmbEntity.DataSource = Enum.GetValues(typeof(Entity)); //Populating cmbEntity with enum values
             cmbEntity.SelectedIndex = -1;
+            cmbEntity.SelectedIndexChanged += cmbEntity_SelectedIndexChanged;
+
+            if (cmbEntity.SelectedIndex == -1)
+            {
+                txtEntityName.Enabled = false;
+            }
 
             cmbRegion.DataSource = customerRepository.LoadDataList("SELECT DISTINCT region.id, region.`name`, region.`description` FROM region;");
             cmbRegion.ValueMember = "id";
@@ -124,7 +128,7 @@ namespace App.Customer
             customer = customerRepository.FetchCustomerData(this.Id);
 
             this.txtCustomerName.Text = customer.Name;
-            cmbEntity.SelectedItem = customer.Entity.ToString();
+            cmbEntity.SelectedItem = customer.Entity;
             this.txtEntityName.Text = customer.Entityname;
             this.txtMobileNumber.Text = customer.Mobilenum;
             this.txtPhoneNumber.Text = customer.Telenum;
@@ -178,50 +182,6 @@ namespace App.Customer
             else
             {
                 lblRequireMobile.Visible = false;
-            }
-
-            //phone
-            if (string.IsNullOrEmpty(txtPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
-            {
-                lblRequirePhone.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequirePhone.Visible = false;
-            }
-
-            //extension
-            if (string.IsNullOrEmpty(txtPhoneNumberExtension.Text) || string.IsNullOrWhiteSpace(txtPhoneNumberExtension.Text))
-            {
-                lblRequireExtension.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireExtension.Visible = false;
-            }
-
-            //email
-            if (string.IsNullOrEmpty(txtEmailAddress.Text) || string.IsNullOrWhiteSpace(txtEmailAddress.Text))
-            {
-                lblRequireEmail.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireEmail.Visible = false;
-            }
-
-            //socialnetid
-            if (string.IsNullOrEmpty(txtSocialNetworkID.Text) || string.IsNullOrWhiteSpace(txtSocialNetworkID.Text))
-            {
-                lblRequireSocial.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireSocial.Visible = false;
             }
 
             //region
@@ -279,17 +239,6 @@ namespace App.Customer
                 lblRequireAddress.Visible = false;
             }
 
-            //postal
-            if (string.IsNullOrEmpty(txtPostalCode.Text) || string.IsNullOrWhiteSpace(txtPostalCode.Text))
-            {
-                lblRequirePostal.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequirePostal.Visible = false;
-            }
-
             if (!validate)
             {
                 return;
@@ -324,6 +273,26 @@ namespace App.Customer
                 else
                 {
                     MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void cmbEntity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbEntity.SelectedItem != null)
+            {
+                if (cmbEntity.SelectedIndex == 0)
+                {
+                    txtEntityName.Enabled = false;
+                }
+                else if (cmbEntity.SelectedIndex == 1 || cmbEntity.SelectedIndex == 2)
+                {
+                    txtEntityName.Enabled = true;
+                }
+
+                if (customer != null)
+                {
+                    customer.Entity = (Entity)cmbEntity.SelectedItem;
                 }
             }
         }

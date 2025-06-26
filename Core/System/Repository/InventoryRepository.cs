@@ -18,7 +18,7 @@ namespace Core.System.Repository
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE product.`name` LIKE @val AND inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
+            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE product.`name` LIKE @val AND inventory.`status` = 'Active' OR inventory.id LIKE @val AND inventory.`status` = 'Active' OR inventory.description LIKE @val AND inventory.`status` = 'Active' OR inventory.availability LIKE @val AND inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
@@ -28,6 +28,7 @@ namespace Core.System.Repository
 
             return upgradeManager.Load(query, inventoryParams);
         }
+
         public bool DeleteInventoryData(int inventoryId)//for deleting selected record
         {
             string query = "UPDATE inventory SET `status` = 'Deleted' WHERE id = @id";
@@ -75,11 +76,11 @@ namespace Core.System.Repository
 
             if (inventory.Id > 0) //for updating existing record
             {
-                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,expiration=@Expiration,day=@Day,availability=@Availability,status=@Status WHERE id=@Id;";
+                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,entrydate=@EntryDate,expiration=@Expiration,day=@Day,availability=@Availability,status=@Status WHERE id=@Id;";
             }
             else //for add new record
             {
-                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@Expiration,@Day,@Availability,@Status);";
+                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,entrydate,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@EntryDate,@Expiration,@Day,@Availability,@Status);";
             }
 
             Dictionary<string, string> inventoryParameters = new Dictionary<string, string>()
@@ -89,6 +90,7 @@ namespace Core.System.Repository
                 {"@Description", inventory.Description},
                 {"@Price", inventory.Price},
                 {"@Quantity", inventory.Quantity.ToString()},
+                {"@EntryDate", inventory.EntryDate },
                 {"@Expiration", inventory.Expiration},
                 {"@Day", inventory.Day.ToString() },
                 {"@Availability", inventory.Availability.ToString()},

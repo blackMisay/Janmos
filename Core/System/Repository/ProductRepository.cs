@@ -10,22 +10,50 @@ namespace Core.System.Repository
         UpgradeManager upgradeManager;
         public DataTable LoadProductData()
         {
-            string query = "SELECT product.id AS `Product Id`, product.name AS `Product Name`, product.description AS `Description`, category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.`status` = 'Active' ORDER BY product.id DESC;";
+            string query = "SELECT p.id AS `Product Id`, p.`name` AS `Product Name`, p.`description` AS `Description`, c.`description` AS `Category`, CONCAT('(',mu.symbol, ') ', mu.`name`) AS `Unit Measurement`, CONCAT(p.metricValue, ' ', mu.symbol) AS `Metric Value` FROM product p JOIN category c ON p.category = c.id JOIN metricunit mu ON p.metricUnit = mu.id WHERE p.`status` = 'Active' ORDER BY p.id DESC;";
+
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
-
-        public DataTable LoadProductData(string searchValue)
+        public DataTable LoadProductData(int selectedCategoryId)
         {
-            string query = "SELECT product.id AS `Product Number`, product.name AS `Product Name`, product.description AS `Description`, category.description AS `Category`, CONCAT(metricunit.`name`, ' (',metricunit.`symbol`,')') AS `Metric Unit`, CONCAT(product.metricValue, ' (', metricunit.symbol, ')') AS `Metric Value` FROM product JOIN category ON product.category = category.id JOIN metricunit ON product.metricUnit = metricunit.id WHERE product.name LIKE @val AND product.`status` = 'Active' ORDER BY product.id DESC;";
-            upgradeManager = new UpgradeManager();
+            string query = "SELECT p.id AS `Product Id`, p.`name` AS `Product Name`, p.`description` AS `Description`, c.`description` AS `Category`, CONCAT('(',mu.symbol, ') ', mu.`name`) AS `Unit Measurement`, CONCAT(p.metricValue, ' ', mu.symbol) AS `Metric Value` FROM product p JOIN category c ON p.category = c.id JOIN metricunit mu ON p.metricUnit = mu.id WHERE c.id = @CategoryId AND p.`status` = 'Active' ORDER BY p.id DESC;";
 
+            upgradeManager = new UpgradeManager();
             Dictionary<string, string> productParams = new Dictionary<string, string>()
-            { 
-                { "@val", "%" + searchValue + "%" }
-            };
-            
+                {
+                    { "@CategoryId", selectedCategoryId.ToString() }
+                };
             return upgradeManager.Load(query, productParams);
+        }
+        public DataTable LoadProductDataViaSearch(string searchValue)
+        {
+            upgradeManager = new UpgradeManager();
+            string query = "SELECT p.id AS `Product Id`, p.`name` AS `Product Name`, p.`description` AS `Description`, c.`description` AS `Category`, CONCAT('(',mu.symbol, ') ', mu.`name`) AS `Unit Measurement`, CONCAT(p.metricValue, ' ', mu.symbol) AS `Metric Value` FROM product p JOIN category c ON p.category = c.id JOIN metricunit mu ON p.metricUnit = mu.id WHERE p.id LIKE @val AND p.`status` = 'Active' OR p.`name` LIKE @val AND p.`status` = 'Active' OR p.`description` LIKE @val AND p.`status` = 'Active' OR c.`description` LIKE @val AND p.`status` = 'Active' OR mu.`name` LIKE @val AND p.`status` = 'Active' ORDER BY p.id DESC;";
+            Dictionary<string, string> productParams = new Dictionary<string, string>()
+                {
+                    { "@val", "%" + searchValue + "%" }
+                };
+
+            return upgradeManager.Load(query, productParams);
+        }
+        public DataTable LoadProductDataViaSearch(string searchValue, int selectedCategoryId)
+        {
+            upgradeManager = new UpgradeManager();
+            string query = "SELECT p.id AS `Product Id`, p.`name` AS `Product Name`, p.`description` AS `Description`, c.`description` AS `Category`, CONCAT('(',mu.symbol, ') ', mu.`name`) AS `Unit Measurement`, CONCAT(p.metricValue, ' ', mu.symbol) AS `Metric Value` FROM product p JOIN category c ON p.category = c.id JOIN metricunit mu ON p.metricUnit = mu.id WHERE p.id LIKE @val AND c.id = @CategoryId AND p.`status` = 'Active' OR p.`name` LIKE @val AND c.id = @CategoryId AND p.`status` = 'Active' OR p.`description` LIKE @val AND c.id = @CategoryId AND p.`status` = 'Active' OR c.`description` LIKE @val AND c.id = @CategoryId AND p.`status` = 'Active' OR mu.`name` LIKE @val AND c.id = @CategoryId AND p.`status` = 'Active' ORDER BY p.id DESC;";
+            Dictionary<string, string> productParams = new Dictionary<string, string>()
+                {
+                    { "@val", "%" + searchValue + "%"},
+                    { "CategoryId", selectedCategoryId.ToString()}
+                };
+
+            return upgradeManager.Load(query, productParams);
+        }
+
+        public List<KeyValuePair<int, string>> PopulateCombobox(string query)
+        {
+            upgradeManager = new UpgradeManager();
+            return upgradeManager.Populate(query);
         }
 
         public bool DeleteProductData(int productId)

@@ -37,25 +37,36 @@
             this.pnlProductContainer = new System.Windows.Forms.Panel();
             this.pnlDashboardContainer = new System.Windows.Forms.Panel();
             this.pnlMenuSidebar = new System.Windows.Forms.Panel();
-            this.btnCustomerOrder = new System.Windows.Forms.Button();
+            this.btnManagementModule = new System.Windows.Forms.Button();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnUserManagement = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.btnReport = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.btnInventory = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.btnReports = new System.Windows.Forms.Button();
+            this.btnProduct = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnAccount = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnSetting = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnCustomer = new System.Windows.Forms.Button();
+            this.btnSupplierOrder = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnInventory = new System.Windows.Forms.Button();
-            this.btnProduct = new System.Windows.Forms.Button();
+            this.btnCustomer = new System.Windows.Forms.Button();
+            this.btnCustomerOrder = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.btnToggle = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tpMain = new System.Windows.Forms.ToolTip(this.components);
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblDateTime = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
+            this.tmrDateTime = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.pnlMenuSidebar.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -104,10 +115,10 @@
             // pnlModule
             // 
             this.pnlModule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(250)))), ((int)(((byte)(252)))));
-            this.pnlModule.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlModule.Location = new System.Drawing.Point(70, 42);
+            this.pnlModule.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlModule.Location = new System.Drawing.Point(70, 92);
             this.pnlModule.Name = "pnlModule";
-            this.pnlModule.Size = new System.Drawing.Size(1126, 692);
+            this.pnlModule.Size = new System.Drawing.Size(1126, 642);
             this.pnlModule.TabIndex = 3;
             // 
             // pnlProductContainer
@@ -130,20 +141,26 @@
             // 
             // pnlMenuSidebar
             // 
-            this.pnlMenuSidebar.Controls.Add(this.btnCustomerOrder);
+            this.pnlMenuSidebar.Controls.Add(this.btnManagementModule);
+            this.pnlMenuSidebar.Controls.Add(this.panel10);
+            this.pnlMenuSidebar.Controls.Add(this.btnUserManagement);
+            this.pnlMenuSidebar.Controls.Add(this.panel9);
+            this.pnlMenuSidebar.Controls.Add(this.btnReport);
+            this.pnlMenuSidebar.Controls.Add(this.panel8);
+            this.pnlMenuSidebar.Controls.Add(this.btnInventory);
             this.pnlMenuSidebar.Controls.Add(this.panel7);
-            this.pnlMenuSidebar.Controls.Add(this.btnReports);
+            this.pnlMenuSidebar.Controls.Add(this.btnProduct);
             this.pnlMenuSidebar.Controls.Add(this.panel6);
             this.pnlMenuSidebar.Controls.Add(this.btnAccount);
             this.pnlMenuSidebar.Controls.Add(this.panel5);
             this.pnlMenuSidebar.Controls.Add(this.btnSetting);
             this.pnlMenuSidebar.Controls.Add(this.btnSupplier);
             this.pnlMenuSidebar.Controls.Add(this.panel4);
-            this.pnlMenuSidebar.Controls.Add(this.btnCustomer);
+            this.pnlMenuSidebar.Controls.Add(this.btnSupplierOrder);
             this.pnlMenuSidebar.Controls.Add(this.panel3);
-            this.pnlMenuSidebar.Controls.Add(this.btnInventory);
+            this.pnlMenuSidebar.Controls.Add(this.btnCustomer);
             this.pnlMenuSidebar.Controls.Add(this.pnlProductContainer);
-            this.pnlMenuSidebar.Controls.Add(this.btnProduct);
+            this.pnlMenuSidebar.Controls.Add(this.btnCustomerOrder);
             this.pnlMenuSidebar.Controls.Add(this.pnlDashboardContainer);
             this.pnlMenuSidebar.Controls.Add(this.btnDashboard);
             this.pnlMenuSidebar.Controls.Add(this.btnToggle);
@@ -154,22 +171,99 @@
             this.pnlMenuSidebar.Size = new System.Drawing.Size(70, 707);
             this.pnlMenuSidebar.TabIndex = 4;
             // 
-            // btnCustomerOrder
+            // btnManagementModule
             // 
-            this.btnCustomerOrder.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomerOrder.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCustomerOrder.FlatAppearance.BorderSize = 0;
-            this.btnCustomerOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomerOrder.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomerOrder.Image = global::App.Properties.Resources.icons8_create_order_24;
-            this.btnCustomerOrder.Location = new System.Drawing.Point(10, 385);
-            this.btnCustomerOrder.Name = "btnCustomerOrder";
-            this.btnCustomerOrder.Size = new System.Drawing.Size(50, 45);
-            this.btnCustomerOrder.TabIndex = 22;
-            this.tpMain.SetToolTip(this.btnCustomerOrder, "Data Reports\r\n\r\nGenerate data reports to display \r\ninformation, forecasts, and an" +
+            this.btnManagementModule.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnManagementModule.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnManagementModule.FlatAppearance.BorderSize = 0;
+            this.btnManagementModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManagementModule.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManagementModule.Image = ((System.Drawing.Image)(resources.GetObject("btnManagementModule.Image")));
+            this.btnManagementModule.Location = new System.Drawing.Point(10, 550);
+            this.btnManagementModule.Name = "btnManagementModule";
+            this.btnManagementModule.Size = new System.Drawing.Size(50, 45);
+            this.btnManagementModule.TabIndex = 28;
+            this.tpMain.SetToolTip(this.btnManagementModule, "Management Module\r\n\r\nOversee business operations \r\nand configure system settings." +
+        "");
+            this.btnManagementModule.UseVisualStyleBackColor = false;
+            this.btnManagementModule.Click += new System.EventHandler(this.btnManagementModule_Click);
+            // 
+            // panel10
+            // 
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel10.Location = new System.Drawing.Point(10, 540);
+            this.panel10.Name = "panel10";
+            this.panel10.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel10.Size = new System.Drawing.Size(50, 10);
+            this.panel10.TabIndex = 27;
+            // 
+            // btnUserManagement
+            // 
+            this.btnUserManagement.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnUserManagement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUserManagement.FlatAppearance.BorderSize = 0;
+            this.btnUserManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUserManagement.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUserManagement.Image = ((System.Drawing.Image)(resources.GetObject("btnUserManagement.Image")));
+            this.btnUserManagement.Location = new System.Drawing.Point(10, 495);
+            this.btnUserManagement.Name = "btnUserManagement";
+            this.btnUserManagement.Size = new System.Drawing.Size(50, 45);
+            this.btnUserManagement.TabIndex = 26;
+            this.tpMain.SetToolTip(this.btnUserManagement, "User Management\r\n\r\nManage user accounts, roles, and\r\npermissions for secure acces" +
+        "s.");
+            this.btnUserManagement.UseVisualStyleBackColor = false;
+            this.btnUserManagement.Click += new System.EventHandler(this.btnUserManagement_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(10, 485);
+            this.panel9.Name = "panel9";
+            this.panel9.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel9.Size = new System.Drawing.Size(50, 10);
+            this.panel9.TabIndex = 25;
+            // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnReport.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReport.FlatAppearance.BorderSize = 0;
+            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReport.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.Image")));
+            this.btnReport.Location = new System.Drawing.Point(10, 440);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(50, 45);
+            this.btnReport.TabIndex = 24;
+            this.tpMain.SetToolTip(this.btnReport, "Data Reports\r\n\r\nGenerate data reports to display \r\ninformation, forecasts, and an" +
         "alyses \r\nfor making business decisions.");
-            this.btnCustomerOrder.UseVisualStyleBackColor = false;
-            this.btnCustomerOrder.Click += new System.EventHandler(this.btnCustomerOrder_Click);
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(10, 430);
+            this.panel8.Name = "panel8";
+            this.panel8.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
+            this.panel8.Size = new System.Drawing.Size(50, 10);
+            this.panel8.TabIndex = 23;
+            // 
+            // btnInventory
+            // 
+            this.btnInventory.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnInventory.FlatAppearance.BorderSize = 0;
+            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInventory.Image = ((System.Drawing.Image)(resources.GetObject("btnInventory.Image")));
+            this.btnInventory.Location = new System.Drawing.Point(10, 385);
+            this.btnInventory.Name = "btnInventory";
+            this.btnInventory.Size = new System.Drawing.Size(50, 45);
+            this.btnInventory.TabIndex = 22;
+            this.tpMain.SetToolTip(this.btnInventory, "Inventory\r\n\r\nManage and track stock of items");
+            this.btnInventory.UseVisualStyleBackColor = false;
+            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
             // panel7
             // 
@@ -180,21 +274,21 @@
             this.panel7.Size = new System.Drawing.Size(50, 10);
             this.panel7.TabIndex = 21;
             // 
-            // btnReports
+            // btnProduct
             // 
-            this.btnReports.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnReports.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReports.FlatAppearance.BorderSize = 0;
-            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReports.Image = global::App.Properties.Resources.reports_24px;
-            this.btnReports.Location = new System.Drawing.Point(10, 330);
-            this.btnReports.Name = "btnReports";
-            this.btnReports.Size = new System.Drawing.Size(50, 45);
-            this.btnReports.TabIndex = 20;
-            this.tpMain.SetToolTip(this.btnReports, "Data Reports\r\n\r\nGenerate data reports to display \r\ninformation, forecasts, and an" +
-        "alyses \r\nfor making business decisions.");
-            this.btnReports.UseVisualStyleBackColor = false;
+            this.btnProduct.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnProduct.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProduct.FlatAppearance.BorderSize = 0;
+            this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProduct.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProduct.Image = ((System.Drawing.Image)(resources.GetObject("btnProduct.Image")));
+            this.btnProduct.Location = new System.Drawing.Point(10, 330);
+            this.btnProduct.Name = "btnProduct";
+            this.btnProduct.Size = new System.Drawing.Size(50, 45);
+            this.btnProduct.TabIndex = 20;
+            this.tpMain.SetToolTip(this.btnProduct, "Product\r\n\r\nView, Search, Add, and Modify product records.");
+            this.btnProduct.UseVisualStyleBackColor = false;
+            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
             // 
             // panel6
             // 
@@ -213,7 +307,7 @@
             this.btnAccount.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccount.Image = global::App.Properties.Resources.account_24px;
+            this.btnAccount.Image = ((System.Drawing.Image)(resources.GetObject("btnAccount.Image")));
             this.btnAccount.Location = new System.Drawing.Point(10, 602);
             this.btnAccount.Name = "btnAccount";
             this.btnAccount.Size = new System.Drawing.Size(50, 45);
@@ -238,7 +332,7 @@
             this.btnSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetting.Image = global::App.Properties.Resources.settings_24px;
+            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
             this.btnSetting.Location = new System.Drawing.Point(10, 657);
             this.btnSetting.Name = "btnSetting";
             this.btnSetting.Size = new System.Drawing.Size(50, 45);
@@ -254,7 +348,7 @@
             this.btnSupplier.FlatAppearance.BorderSize = 0;
             this.btnSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSupplier.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSupplier.Image = global::App.Properties.Resources.supplier_24px;
+            this.btnSupplier.Image = ((System.Drawing.Image)(resources.GetObject("btnSupplier.Image")));
             this.btnSupplier.Location = new System.Drawing.Point(10, 275);
             this.btnSupplier.Name = "btnSupplier";
             this.btnSupplier.Size = new System.Drawing.Size(50, 45);
@@ -273,21 +367,21 @@
             this.panel4.Size = new System.Drawing.Size(50, 10);
             this.panel4.TabIndex = 14;
             // 
-            // btnCustomer
+            // btnSupplierOrder
             // 
-            this.btnCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomer.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnCustomer.FlatAppearance.BorderSize = 0;
-            this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCustomer.Image = global::App.Properties.Resources.customer_24px;
-            this.btnCustomer.Location = new System.Drawing.Point(10, 220);
-            this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(50, 45);
-            this.btnCustomer.TabIndex = 2;
-            this.tpMain.SetToolTip(this.btnCustomer, "Customer\r\n\r\nFacilitates customer, and order information.  ");
-            this.btnCustomer.UseVisualStyleBackColor = false;
-            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+            this.btnSupplierOrder.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSupplierOrder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnSupplierOrder.FlatAppearance.BorderSize = 0;
+            this.btnSupplierOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSupplierOrder.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupplierOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnSupplierOrder.Image")));
+            this.btnSupplierOrder.Location = new System.Drawing.Point(10, 220);
+            this.btnSupplierOrder.Name = "btnSupplierOrder";
+            this.btnSupplierOrder.Size = new System.Drawing.Size(50, 45);
+            this.btnSupplierOrder.TabIndex = 2;
+            this.tpMain.SetToolTip(this.btnSupplierOrder, "Supplier Order\r\n\r\nMonitor and process supplier orders\r\nand manage order history.");
+            this.btnSupplierOrder.UseVisualStyleBackColor = false;
+            this.btnSupplierOrder.Click += new System.EventHandler(this.btnSupplierOrder_Click);
             // 
             // panel3
             // 
@@ -298,37 +392,38 @@
             this.panel3.Size = new System.Drawing.Size(50, 10);
             this.panel3.TabIndex = 13;
             // 
-            // btnInventory
+            // btnCustomer
             // 
-            this.btnInventory.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnInventory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnInventory.FlatAppearance.BorderSize = 0;
-            this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInventory.Image = global::App.Properties.Resources.inventory_24px;
-            this.btnInventory.Location = new System.Drawing.Point(10, 165);
-            this.btnInventory.Name = "btnInventory";
-            this.btnInventory.Size = new System.Drawing.Size(50, 45);
-            this.btnInventory.TabIndex = 12;
-            this.tpMain.SetToolTip(this.btnInventory, "Inventory\r\n\r\nManage and track stock of items");
-            this.btnInventory.UseVisualStyleBackColor = false;
-            this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
+            this.btnCustomer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCustomer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomer.FlatAppearance.BorderSize = 0;
+            this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomer.Image")));
+            this.btnCustomer.Location = new System.Drawing.Point(10, 165);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(50, 45);
+            this.btnCustomer.TabIndex = 12;
+            this.tpMain.SetToolTip(this.btnCustomer, "Customer\r\n\r\nFacilitates customer, and order information.  ");
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
             // 
-            // btnProduct
+            // btnCustomerOrder
             // 
-            this.btnProduct.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnProduct.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnProduct.FlatAppearance.BorderSize = 0;
-            this.btnProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProduct.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProduct.Image = global::App.Properties.Resources.product_24p;
-            this.btnProduct.Location = new System.Drawing.Point(10, 110);
-            this.btnProduct.Name = "btnProduct";
-            this.btnProduct.Size = new System.Drawing.Size(50, 45);
-            this.btnProduct.TabIndex = 1;
-            this.tpMain.SetToolTip(this.btnProduct, "Product\r\n\r\nView, Search, Add, and Modify product records.");
-            this.btnProduct.UseVisualStyleBackColor = false;
-            this.btnProduct.Click += new System.EventHandler(this.btnProduct_Click);
+            this.btnCustomerOrder.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCustomerOrder.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomerOrder.FlatAppearance.BorderSize = 0;
+            this.btnCustomerOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomerOrder.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomerOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomerOrder.Image")));
+            this.btnCustomerOrder.Location = new System.Drawing.Point(10, 110);
+            this.btnCustomerOrder.Name = "btnCustomerOrder";
+            this.btnCustomerOrder.Size = new System.Drawing.Size(50, 45);
+            this.btnCustomerOrder.TabIndex = 1;
+            this.tpMain.SetToolTip(this.btnCustomerOrder, "Customer Order\r\n\r\nDisplay and manage customer orders,\r\ntrack order status, and vi" +
+        "ew order\r\ndetails.");
+            this.btnCustomerOrder.UseVisualStyleBackColor = false;
+            this.btnCustomerOrder.Click += new System.EventHandler(this.btnCustomerOrder_Click);
             // 
             // btnDashboard
             // 
@@ -338,7 +433,7 @@
             this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.Color.Black;
-            this.btnDashboard.Image = global::App.Properties.Resources.dashboard_24px;
+            this.btnDashboard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashboard.Image")));
             this.btnDashboard.Location = new System.Drawing.Point(10, 50);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Size = new System.Drawing.Size(50, 50);
@@ -375,12 +470,52 @@
             this.panel1.Size = new System.Drawing.Size(1126, 15);
             this.panel1.TabIndex = 5;
             // 
+            // panel11
+            // 
+            this.panel11.Controls.Add(this.lblDateTime);
+            this.panel11.Controls.Add(this.lblUser);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel11.Location = new System.Drawing.Point(70, 42);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1126, 50);
+            this.panel11.TabIndex = 6;
+            // 
+            // lblDateTime
+            // 
+            this.lblDateTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDateTime.AutoSize = true;
+            this.lblDateTime.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateTime.Location = new System.Drawing.Point(940, 15);
+            this.lblDateTime.Name = "lblDateTime";
+            this.lblDateTime.Size = new System.Drawing.Size(54, 21);
+            this.lblDateTime.TabIndex = 1;
+            this.lblDateTime.Text = "label2";
+            // 
+            // lblUser
+            // 
+            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Location = new System.Drawing.Point(18, 15);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(51, 21);
+            this.lblUser.TabIndex = 0;
+            this.lblUser.Text = "label1";
+            // 
+            // tmrDateTime
+            // 
+            this.tmrDateTime.Enabled = true;
+            this.tmrDateTime.Tick += new System.EventHandler(this.tmrDateTime_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1196, 749);
+            this.Controls.Add(this.panel11);
             this.Controls.Add(this.pnlModule);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlMenuSidebar);
@@ -391,9 +526,12 @@
             this.Name = "Main";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlMenuSidebar.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -401,8 +539,8 @@
         #endregion
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlModule;
-        private System.Windows.Forms.Button btnProduct;
-        private System.Windows.Forms.Button btnCustomer;
+        private System.Windows.Forms.Button btnCustomerOrder;
+        private System.Windows.Forms.Button btnSupplierOrder;
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Panel pnlDashboardContainer;
         private System.Windows.Forms.Panel pnlProductContainer;
@@ -410,7 +548,7 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Panel pnlMenuSidebar;
         private System.Windows.Forms.Button btnSupplier;
-        private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSetting;
@@ -419,9 +557,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolTip tpMain;
-        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnProduct;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Button btnCustomerOrder;
+        private System.Windows.Forms.Button btnInventory;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button btnReport;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button btnManagementModule;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Button btnUserManagement;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label lblUser;
+        private System.Windows.Forms.Label lblDateTime;
+        private System.Windows.Forms.Timer tmrDateTime;
     }
 }

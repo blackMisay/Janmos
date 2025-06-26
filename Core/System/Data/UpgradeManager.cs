@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using MySqlConnector;
 using System.Collections;
 using Core.System.Data.Model;
+using System.Runtime.Remoting.Messaging;
 
 
 namespace Core
@@ -211,34 +212,18 @@ namespace Core
             finally { this.connection.Close(); }
         }
 
-        public int ExecuteScalar(string query)
+        //GETTING THE LAST INSERTED ORDER NUMBER VALUE USING SQL QUERY
+        //CONVERTING OBJECT VALUE TO STRING TO LONG DATATYPE
+        //RETURN THE LAST INSERTED ORDER NUMBER VALUE IN LONG DATATYPE
+        public long ExecuteScalarForLongResult(string query)
         {
-            this.Connect();
-            using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
-            {
-                int result = Convert.ToInt32(cmd.ExecuteScalar());
-                return result;
-            }
-        }
-
-        public int InsertAndGetId(string query, Dictionary<string, string> parameters)
-        {
-            int lastInsertedId = 0;
             try
             {
                 this.Connect();
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
-                    foreach (KeyValuePair<string, string> kvp in parameters)
-                    {
-                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
-                    }
-                    cmd.ExecuteNonQuery();
-                }
-                string idQuery = "SELECT LAST_INSERT_ID();";
-                using (MySqlCommand idCmd = new MySqlCommand(idQuery, this.connection))
-                {
-                    lastInsertedId = Convert.ToInt32(idCmd.ExecuteScalar());
+                    object result = cmd.ExecuteScalar();
+                    return result != null && long.TryParse(result.ToString(), out long parsedResult)? parsedResult : 0;
                 }
             }
             catch (MySqlException ex)
@@ -250,7 +235,113 @@ namespace Core
                 throw new Exception($"Unexpected error: {e.Message}");
             }
             finally { this.connection.Close(); }
-            return lastInsertedId;
+        }
+
+        public string GetStringExecuteScalar(string query, Dictionary<string, string> parameters)
+        {
+            try
+            {
+                this.Connect();
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (var param in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(param.Key, param.Value);
+                    }
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? result.ToString() : string.Empty;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+        public object ExecuteScalar(string query)
+        {
+            return this.ExecuteScalar(query, null);
+        }
+        public object ExecuteScalar(string query, Dictionary<string, string> parameters)
+        {
+            try
+            {
+                this.Connect();
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                        return cmd.ExecuteScalar();
+                    }
+                    else
+                    {
+                        return cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+
+        public List<CustomerOrderDetails> GetCustomerOrderProduct(string query, Dictionary<string, string> GCOParams)
+        {
+            List<CustomerOrderDetails> orders = new List<CustomerOrderDetails>();
+            try
+            {
+                this.Connect();
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (var param in GCOParams)
+                    {
+                        cmd.Parameters.AddWithValue(param.Key, param.Value);
+                    }
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            CustomerOrderDetails order = new CustomerOrderDetails
+                            {
+                                InventoryID = new Core.System.Data.Model.Inventory {
+                                    Id = dr.GetInt32(0),
+                                    Name = new Core.System.Data.Model.Product
+                                    {
+                                        Name = dr.GetString(1),
+                                    }
+                                },
+                                Quantity = dr.GetInt32(2),
+                                UnitPrice = dr.GetDouble(3),
+                                TotalAmount = dr.GetDouble(4)
+                            };
+                            orders.Add(order);
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+            return orders;
         }
     }
 }
