@@ -17,12 +17,8 @@ namespace App
         private static readonly string PRODUCT = "&Product";
         private static readonly string INVENTORY = "&Inventory";
         private static readonly string CUSTOMER = "&Customer";
-        private static readonly string SUPPLIER = "&Supplier";
         private static readonly string REPORTS = "&Reports";
-        private static readonly string ACCOUNT = "Pro&file";
-        private static readonly string SETTING = "Se&ttings";
         private static readonly string CUSTOMERORDER = "Customer &Order";
-        private static readonly string SUPPLIERORDER = "Supp&lier Order";
         private static readonly string USERMANAGEMENT = "&User Management";
         private static readonly string MANAGEMENTMODULE = "&Management Module";
 
@@ -79,8 +75,6 @@ namespace App
             {
                 if (currentRole == "Employee")
                 {
-                    btnSupplierOrder.Enabled = false;
-                    btnSupplier.Enabled = false;
                     btnProduct.Enabled = false;
                     btnInventory.Enabled = false;
                     btnReport.Enabled = false;
@@ -120,19 +114,9 @@ namespace App
         {
             this.openFormModule(new App.Inventory.frmInventory());
         }
-
-        private void btnSupplier_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new Supplier.frmSupplier());
-        }
         private void btnCustomerOrder_Click(object sender, EventArgs e)
         {
             this.openFormModule(new App.Customer_Order.frmCustomerOrder());
-        }
-
-        private void btnSupplierOrder_Click(object sender, EventArgs e)
-        {
-            this.openFormModule(new Supplier_Order.frmSupplierOrder());
         }
 
         private void btnUserManagement_Click(object sender, EventArgs e)
@@ -182,11 +166,7 @@ namespace App
                 btnDashboard.Text = DASHBOARD;
                 btnCustomerOrder.Text = CUSTOMERORDER;
                 btnCustomer.Text = CUSTOMER;
-                btnSupplierOrder.Text = SUPPLIERORDER;
-                btnSupplier.Text = SUPPLIER;
                 btnProduct.Text = PRODUCT;
-                btnAccount.Text = ACCOUNT;
-                btnSetting.Text = SETTING;
                 btnInventory.Text = INVENTORY;
                 btnReport.Text = REPORTS;
                 btnUserManagement.Text = USERMANAGEMENT;

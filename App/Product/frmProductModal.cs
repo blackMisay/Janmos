@@ -82,6 +82,26 @@ namespace App.Product
                 lblRequiredMetricUnit.Visible = false;
             }
 
+            if (string.IsNullOrWhiteSpace(txtReOrderPoint.Text))
+            {
+                lblRequiredReOrderPoint.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredReOrderPoint.Visible = false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtMaxStockLevel.Text))
+            {
+                lblRequiredMaxStockLevel.Visible = true;
+                validated = false;
+            }
+            else
+            {
+                lblRequiredMaxStockLevel.Visible = false;
+            }
+
             if (!validated)
                 return;
 
@@ -93,6 +113,8 @@ namespace App.Product
             product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
             product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
             product.MetricValue = this.txtMetricValue.Text;
+            product.ReOrderPoint = Convert.ToInt32(this.txtReOrderPoint.Text);
+            product.MaxStockLevel = Convert.ToInt32(this.txtMaxStockLevel.Text);
             product.Status = StatusRecord.Type.Active;
 
             productRepository = new ProductRepository();
@@ -145,6 +167,8 @@ namespace App.Product
             this.cmbCategory.SelectedValue = product.Category.Id;
             this.cmbMetricUnit.SelectedValue = product.MetricUnit.Id;
             this.txtMetricValue.Text = product.MetricValue;
+            this.txtReOrderPoint.Text = product.ReOrderPoint.ToString(); ;
+            this.txtMaxStockLevel.Text = product.MaxStockLevel.ToString();
         }
 
         private void btnCancel_Click_1(object sender, EventArgs e)
@@ -161,6 +185,8 @@ namespace App.Product
                 cmbCategory.SelectedIndex = -1;
                 cmbMetricUnit.SelectedIndex = -1;
                 txtMetricValue.Clear();
+                txtReOrderPoint.Clear();
+                txtMaxStockLevel.Clear();
             }
         }
     }

@@ -47,9 +47,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnProduct = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.btnAccount = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnSetting = new System.Windows.Forms.Button();
             this.btnSupplier = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnSupplierOrder = new System.Windows.Forms.Button();
@@ -151,9 +148,6 @@
             this.pnlMenuSidebar.Controls.Add(this.panel7);
             this.pnlMenuSidebar.Controls.Add(this.btnProduct);
             this.pnlMenuSidebar.Controls.Add(this.panel6);
-            this.pnlMenuSidebar.Controls.Add(this.btnAccount);
-            this.pnlMenuSidebar.Controls.Add(this.panel5);
-            this.pnlMenuSidebar.Controls.Add(this.btnSetting);
             this.pnlMenuSidebar.Controls.Add(this.btnSupplier);
             this.pnlMenuSidebar.Controls.Add(this.panel4);
             this.pnlMenuSidebar.Controls.Add(this.btnSupplierOrder);
@@ -299,48 +293,6 @@
             this.panel6.Size = new System.Drawing.Size(50, 10);
             this.panel6.TabIndex = 19;
             // 
-            // btnAccount
-            // 
-            this.btnAccount.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnAccount.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnAccount.FlatAppearance.BorderSize = 0;
-            this.btnAccount.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAccount.Image = ((System.Drawing.Image)(resources.GetObject("btnAccount.Image")));
-            this.btnAccount.Location = new System.Drawing.Point(10, 602);
-            this.btnAccount.Name = "btnAccount";
-            this.btnAccount.Size = new System.Drawing.Size(50, 45);
-            this.btnAccount.TabIndex = 18;
-            this.tpMain.SetToolTip(this.btnAccount, "Account Profile\r\n\r\nManage account information.");
-            this.btnAccount.UseVisualStyleBackColor = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(10, 647);
-            this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(13, 5, 13, 0);
-            this.panel5.Size = new System.Drawing.Size(50, 10);
-            this.panel5.TabIndex = 17;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSetting.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnSetting.FlatAppearance.BorderSize = 0;
-            this.btnSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetting.Image = ((System.Drawing.Image)(resources.GetObject("btnSetting.Image")));
-            this.btnSetting.Location = new System.Drawing.Point(10, 657);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(50, 45);
-            this.btnSetting.TabIndex = 16;
-            this.tpMain.SetToolTip(this.btnSetting, "Settings\r\n\r\nConfigure options or adjust application\'s default settings or behavio" +
-        "ur.");
-            this.btnSetting.UseVisualStyleBackColor = false;
-            // 
             // btnSupplier
             // 
             this.btnSupplier.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -356,7 +308,6 @@
             this.tpMain.SetToolTip(this.btnSupplier, "Supplier\r\n\r\nFacilitates supplier information \r\nand tracks supply chain transactio" +
         "ns.");
             this.btnSupplier.UseVisualStyleBackColor = false;
-            this.btnSupplier.Click += new System.EventHandler(this.btnSupplier_Click);
             // 
             // panel4
             // 
@@ -381,7 +332,6 @@
             this.btnSupplierOrder.TabIndex = 2;
             this.tpMain.SetToolTip(this.btnSupplierOrder, "Supplier Order\r\n\r\nMonitor and process supplier orders\r\nand manage order history.");
             this.btnSupplierOrder.UseVisualStyleBackColor = false;
-            this.btnSupplierOrder.Click += new System.EventHandler(this.btnSupplierOrder_Click);
             // 
             // panel3
             // 
@@ -551,9 +501,6 @@
         private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnSetting;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button btnAccount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolTip tpMain;

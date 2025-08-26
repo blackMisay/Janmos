@@ -28,6 +28,24 @@ namespace Core.System.Repository
 
             return upgradeManager.Load(query, inventoryParams);
         }
+        public bool UpdateInventoryStock(int productId, int quantity)
+        {
+            string query = @"
+                UPDATE inventory
+                SET quantity = quantity - @Qty
+                WHERE `name` = @ProductId;
+            ";
+
+            upgradeManager = new UpgradeManager();
+
+            Dictionary<string, string> stockParams = new Dictionary<string, string>()
+            {
+                { "@Qty", quantity.ToString() },
+                { "@ProductId", productId.ToString() }
+            };
+
+            return upgradeManager.ExecuteQuery(query, stockParams);
+        }
 
         public bool DeleteInventoryData(int inventoryId)//for deleting selected record
         {

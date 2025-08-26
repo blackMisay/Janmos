@@ -38,10 +38,12 @@ namespace App.Customer_Order
         private string lastThreeDigits = "000";
         private int numericalValue = 0;
         private bool productOrderValidate = true;
+        private string userName = "";
 
         //FOR NEW CUSTOMER ORDER
-        public frmCustomerOrderModal() 
+        public frmCustomerOrderModal(string username) 
         {
+            this.userName = username;
             InitializeComponent();
             InitializeComponentsData();
             FieldEnabling(enable);
@@ -290,6 +292,33 @@ namespace App.Customer_Order
                             customerOrderDetailsRepository.Delete(orderDetails);
                         }
                     }
+
+                    InventoryRepository inventoryRepo = new InventoryRepository();
+                    InventoryMovementRepository inventoryMovementRepo = new InventoryMovementRepository();
+
+                    int currentUserId = GetLoggedInUserId();
+
+                    foreach (CustomerOrderDetails orderDetails in orderDetailsList)
+                    {
+                        int productId = orderDetails.InventoryID.Id;
+                        int qty = orderDetails.Quantity;
+
+                        bool stockUpdated = inventoryRepo.UpdateInventoryStock(productId, qty);
+
+                        bool movementLogged = inventoryMovementRepo.InsertInventoryMovement(
+                            productId,
+                            qty,
+                            "OUT",
+                            $"Customer Order #{customerOrder.OrderNumber}",
+                            currentUserId
+                        );
+
+                        if (!stockUpdated || !movementLogged)
+                        {
+                            MessageBox.Show("Inventory update or movement log failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
                     MessageBox.Show("Save Successfully", "Customer Order", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }

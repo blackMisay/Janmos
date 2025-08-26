@@ -20,11 +20,13 @@ namespace App.Customer_Order
         private string selectedCustomer = "";
         private string selectedItem = "";
         private readonly int defaultRowCount = 20;
-        public frmCustomerOrder()
+        private string userName = "";
+        public frmCustomerOrder(string username)
         {
             InitializeComponent();
             cmbRecordCount.SelectedItem = defaultRowCount.ToString();
             InitializeComponentsData();
+            this.userName = username;
         }
 
         //FORM LOAD
@@ -77,7 +79,7 @@ namespace App.Customer_Order
             }
             //FOR NEW CUSTOMER ORDER
             //DIRECTING FRMCUSTOMERORDERMODAL FORM
-            using (frmCustomerOrderModal frmCOM = new frmCustomerOrderModal())
+            using (frmCustomerOrderModal frmCOM = new frmCustomerOrderModal(this.userName))
             {
                 frmCOM.ShowDialog();
             }

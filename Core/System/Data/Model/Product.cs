@@ -26,6 +26,8 @@ namespace Core.System.Data.Model
                 }
             }
         }
+        public int ReOrderPoint { get; set; }
+        public int MaxStockLevel { get; set; }
         public StatusRecord.Type Status { get; set; }
     }
 }
