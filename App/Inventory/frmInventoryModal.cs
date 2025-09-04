@@ -1,6 +1,7 @@
 ﻿using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace App.Inventory
@@ -77,10 +78,7 @@ namespace App.Inventory
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close this form without saving?", "Inventory", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }
+            this.Dispose();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -109,9 +107,23 @@ namespace App.Inventory
         {
             inventoryRepository = new InventoryRepository();
 
-            cmbProduct.DataSource = inventoryRepository.LoadDataList("SELECT product.id, product.`name` FROM product ORDER BY product.`name`;");
+            DataTable dt = inventoryRepository.LoadDataList("SELECT product.id, product.`name`, product.metricValue, metricunit.symbol FROM product JOIN metricunit ON product.metricUnit = metricunit.id ORDER BY product.`name`;");
+
+            // Add a new column to hold the combined display string
+            dt.Columns.Add("DisplayText", typeof(string));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string name = row["name"].ToString();
+                string metricValue = row["metricValue"].ToString();
+                string metricUnit = row["symbol"].ToString();
+
+                row["DisplayText"] = $"{name} - {metricValue} {metricUnit}";
+            }
+
+            cmbProduct.DataSource = dt;
             cmbProduct.ValueMember = "id";
-            cmbProduct.DisplayMember = "name";
+            cmbProduct.DisplayMember = "DisplayText";
         }
 
         private void FieldValidate()
@@ -213,6 +225,7 @@ namespace App.Inventory
             inventory.Description = this.txtDescription.Text;
             inventory.Price = this.txtPrice.Text;
             inventory.Quantity = Convert.ToInt32(this.txtQuantity.Text);
+            inventory.EntryDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             inventory.Expiration = this.str_date;
             if (Id == 0)
             {
@@ -239,20 +252,14 @@ namespace App.Inventory
 
             inventoryRepository = new InventoryRepository();
 
-            if (MessageBox.Show("Are you sure you want to save inventory record?", "Save Inventory Record", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (inventoryRepository.Save(inventory))
             {
-                if (inventoryRepository.Save(inventory))
-                {
-                    MessageBox.Show("Save Successfully", "Inventory", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
-                }
-                else
-                {
-                    MessageBox.Show("Inventory failed to save", "Inventory", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Save Successfully", "Inventory", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
             }
             else
             {
+                MessageBox.Show("Inventory failed to save", "Inventory", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

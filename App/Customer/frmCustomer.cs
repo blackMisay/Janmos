@@ -19,6 +19,7 @@ namespace App.Customer
         {
             cmbRecordCount.SelectedItem = "20";
             this.LoadCustomerData();
+            FieldEnabling();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace App.Customer
             {
                 cmodal.ShowDialog();
             }
+            FieldEnabling();
             this.LoadCustomerData();
         }
 
@@ -34,13 +36,14 @@ namespace App.Customer
         {
             customerRepository = new CustomerRepository();
             dgvCustomer.DataSource = customerRepository.LoadCustomerData();
+            this.dgvCustomer.Columns["Customer ID"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvCustomer.Columns["Mobile Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvCustomer.Columns["Phone Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private void btnEdit_Click_1(object sender, EventArgs e)
         {
-            if (selectedCustomerId != 0)
+            if (this.selectedCustomerId != 0)
             {
                 if (MessageBox.Show("Do you want to edit the selected customer?", "Edit Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -55,18 +58,19 @@ namespace App.Customer
             {
                 MessageBox.Show("Please select a customer to update.", "Update customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            FieldEnabling();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         { 
-            if(selectedCustomerId > 0)
+            if(this.selectedCustomerId > 0)
             {
-                    if (MessageBox.Show("Do you want to delete the selected customer?", "Delete Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("Do you want to delete the selected customer?", "Delete Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         customerRepository = new CustomerRepository();
-                        customerRepository.DeleteCustomerData(selectedCustomerId);
+                        customerRepository.DeleteCustomerData(this.selectedCustomerId);
                         this.LoadCustomerData();
-                        selectedCustomerId = 0;
+                        this.selectedCustomerId = 0;
                         MessageBox.Show("Delete Successfully.", "Delete Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
             }
@@ -74,6 +78,7 @@ namespace App.Customer
             {
                 MessageBox.Show("Please select a customer to delete.", "Delete Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            FieldEnabling();
         }
 
         private void txtSearch_TextChanged_1(object sender, EventArgs e)
@@ -88,6 +93,30 @@ namespace App.Customer
             {
                 int selectedRowIndex = dgvCustomer.SelectedCells[0].RowIndex;
                 this.selectedCustomerId = Convert.ToInt32(dgvCustomer.Rows[selectedRowIndex].Cells[0].Value?.ToString());
+            }
+            FieldEnabling();
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+            this.selectedCustomerId = 0;
+        }
+
+        private void Customer_Click(object sender, EventArgs e)
+        {
+            this.selectedCustomerId = 0;
+        }
+        private void FieldEnabling()
+        {
+            btnEdit.Enabled = btnDelete.Enabled = false;
+
+            if (this.selectedCustomerId != 0)
+            {
+                btnEdit.Enabled = btnDelete.Enabled = true;
+            }
+            else
+            {
+                return;
             }
         }
     }

@@ -52,10 +52,7 @@ namespace App.Supplier
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to close this form without saving the supplier?", "Supplier", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }
+            this.Dispose();
         }
 
         private void InitializeComponentsData()

@@ -54,6 +54,12 @@
             this.lblRequiredMetricUnit = new System.Windows.Forms.Label();
             this.lblRequiredDescription = new System.Windows.Forms.Label();
             this.lblRequiredMetricValue = new System.Windows.Forms.Label();
+            this.lblRequiredReOrderPoint = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtReOrderPoint = new System.Windows.Forms.TextBox();
+            this.lblRequiredMaxStockLevel = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMaxStockLevel = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -77,7 +83,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblName.Location = new System.Drawing.Point(25, 168);
+            this.lblName.Location = new System.Drawing.Point(24, 155);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(45, 19);
             this.lblName.TabIndex = 96;
@@ -86,9 +92,9 @@
             // txtProductName
             // 
             this.txtProductName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProductName.Location = new System.Drawing.Point(29, 194);
+            this.txtProductName.Location = new System.Drawing.Point(28, 181);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(365, 26);
+            this.txtProductName.Size = new System.Drawing.Size(406, 26);
             this.txtProductName.TabIndex = 97;
             this.tipProducts.SetToolTip(this.txtProductName, "This specifies the product\'s name or title.");
             // 
@@ -97,7 +103,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(25, 246);
+            this.label1.Location = new System.Drawing.Point(24, 266);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 19);
             this.label1.TabIndex = 99;
@@ -108,7 +114,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(425, 168);
+            this.label2.Location = new System.Drawing.Point(436, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 19);
             this.label2.TabIndex = 100;
@@ -119,7 +125,7 @@
             this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(429, 194);
+            this.cmbCategory.Location = new System.Drawing.Point(440, 181);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(200, 27);
             this.cmbCategory.TabIndex = 101;
@@ -130,7 +136,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(425, 246);
+            this.label3.Location = new System.Drawing.Point(24, 210);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 19);
             this.label3.TabIndex = 102;
@@ -141,7 +147,7 @@
             this.cmbMetricUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMetricUnit.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.cmbMetricUnit.FormattingEnabled = true;
-            this.cmbMetricUnit.Location = new System.Drawing.Point(429, 272);
+            this.cmbMetricUnit.Location = new System.Drawing.Point(28, 236);
             this.cmbMetricUnit.Name = "cmbMetricUnit";
             this.cmbMetricUnit.Size = new System.Drawing.Size(200, 27);
             this.cmbMetricUnit.TabIndex = 103;
@@ -151,9 +157,10 @@
             // txtMetricValue
             // 
             this.txtMetricValue.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMetricValue.Location = new System.Drawing.Point(429, 347);
+            this.txtMetricValue.Location = new System.Drawing.Point(234, 236);
+            this.txtMetricValue.Multiline = true;
             this.txtMetricValue.Name = "txtMetricValue";
-            this.txtMetricValue.Size = new System.Drawing.Size(200, 26);
+            this.txtMetricValue.Size = new System.Drawing.Size(200, 27);
             this.txtMetricValue.TabIndex = 104;
             this.tipProducts.SetToolTip(this.txtMetricValue, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
         "he unit specified by the \r\n\"metric_unit\".");
@@ -163,7 +170,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(425, 321);
+            this.label4.Location = new System.Drawing.Point(230, 210);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 19);
             this.label4.TabIndex = 105;
@@ -277,9 +284,9 @@
             this.txtDescription.BackColor = System.Drawing.Color.WhiteSmoke;
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtDescription.Location = new System.Drawing.Point(29, 272);
+            this.txtDescription.Location = new System.Drawing.Point(28, 292);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(365, 105);
+            this.txtDescription.Size = new System.Drawing.Size(406, 114);
             this.txtDescription.TabIndex = 98;
             this.txtDescription.Text = "";
             this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
@@ -289,7 +296,7 @@
             this.lblRequiredName.AutoSize = true;
             this.lblRequiredName.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredName.ForeColor = System.Drawing.Color.Red;
-            this.lblRequiredName.Location = new System.Drawing.Point(76, 171);
+            this.lblRequiredName.Location = new System.Drawing.Point(75, 158);
             this.lblRequiredName.Name = "lblRequiredName";
             this.lblRequiredName.Size = new System.Drawing.Size(56, 15);
             this.lblRequiredName.TabIndex = 113;
@@ -301,7 +308,7 @@
             this.lblRequiredCategory.AutoSize = true;
             this.lblRequiredCategory.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredCategory.ForeColor = System.Drawing.Color.Red;
-            this.lblRequiredCategory.Location = new System.Drawing.Point(496, 171);
+            this.lblRequiredCategory.Location = new System.Drawing.Point(507, 158);
             this.lblRequiredCategory.Name = "lblRequiredCategory";
             this.lblRequiredCategory.Size = new System.Drawing.Size(56, 15);
             this.lblRequiredCategory.TabIndex = 114;
@@ -313,7 +320,7 @@
             this.lblRequiredMetricUnit.AutoSize = true;
             this.lblRequiredMetricUnit.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredMetricUnit.ForeColor = System.Drawing.Color.Red;
-            this.lblRequiredMetricUnit.Location = new System.Drawing.Point(509, 249);
+            this.lblRequiredMetricUnit.Location = new System.Drawing.Point(108, 213);
             this.lblRequiredMetricUnit.Name = "lblRequiredMetricUnit";
             this.lblRequiredMetricUnit.Size = new System.Drawing.Size(56, 15);
             this.lblRequiredMetricUnit.TabIndex = 115;
@@ -325,7 +332,7 @@
             this.lblRequiredDescription.AutoSize = true;
             this.lblRequiredDescription.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredDescription.ForeColor = System.Drawing.Color.Red;
-            this.lblRequiredDescription.Location = new System.Drawing.Point(109, 249);
+            this.lblRequiredDescription.Location = new System.Drawing.Point(108, 269);
             this.lblRequiredDescription.Name = "lblRequiredDescription";
             this.lblRequiredDescription.Size = new System.Drawing.Size(56, 15);
             this.lblRequiredDescription.TabIndex = 116;
@@ -337,12 +344,80 @@
             this.lblRequiredMetricValue.AutoSize = true;
             this.lblRequiredMetricValue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRequiredMetricValue.ForeColor = System.Drawing.Color.Red;
-            this.lblRequiredMetricValue.Location = new System.Drawing.Point(516, 324);
+            this.lblRequiredMetricValue.Location = new System.Drawing.Point(321, 213);
             this.lblRequiredMetricValue.Name = "lblRequiredMetricValue";
             this.lblRequiredMetricValue.Size = new System.Drawing.Size(56, 15);
             this.lblRequiredMetricValue.TabIndex = 117;
             this.lblRequiredMetricValue.Text = "*required";
             this.lblRequiredMetricValue.Visible = false;
+            // 
+            // lblRequiredReOrderPoint
+            // 
+            this.lblRequiredReOrderPoint.AutoSize = true;
+            this.lblRequiredReOrderPoint.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredReOrderPoint.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredReOrderPoint.Location = new System.Drawing.Point(543, 213);
+            this.lblRequiredReOrderPoint.Name = "lblRequiredReOrderPoint";
+            this.lblRequiredReOrderPoint.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredReOrderPoint.TabIndex = 120;
+            this.lblRequiredReOrderPoint.Text = "*required";
+            this.lblRequiredReOrderPoint.Visible = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(436, 210);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(101, 19);
+            this.label8.TabIndex = 119;
+            this.label8.Text = "Re-Order Point";
+            // 
+            // txtReOrderPoint
+            // 
+            this.txtReOrderPoint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReOrderPoint.Location = new System.Drawing.Point(440, 236);
+            this.txtReOrderPoint.Multiline = true;
+            this.txtReOrderPoint.Name = "txtReOrderPoint";
+            this.txtReOrderPoint.Size = new System.Drawing.Size(200, 27);
+            this.txtReOrderPoint.TabIndex = 118;
+            this.tipProducts.SetToolTip(this.txtReOrderPoint, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
+        "he unit specified by the \r\n\"metric_unit\".");
+            // 
+            // lblRequiredMaxStockLevel
+            // 
+            this.lblRequiredMaxStockLevel.AutoSize = true;
+            this.lblRequiredMaxStockLevel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredMaxStockLevel.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredMaxStockLevel.Location = new System.Drawing.Point(549, 269);
+            this.lblRequiredMaxStockLevel.Name = "lblRequiredMaxStockLevel";
+            this.lblRequiredMaxStockLevel.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredMaxStockLevel.TabIndex = 123;
+            this.lblRequiredMaxStockLevel.Text = "*required";
+            this.lblRequiredMaxStockLevel.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(436, 266);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(107, 19);
+            this.label10.TabIndex = 122;
+            this.label10.Text = "Max Stock Level";
+            // 
+            // txtMaxStockLevel
+            // 
+            this.txtMaxStockLevel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaxStockLevel.Location = new System.Drawing.Point(440, 292);
+            this.txtMaxStockLevel.Multiline = true;
+            this.txtMaxStockLevel.Name = "txtMaxStockLevel";
+            this.txtMaxStockLevel.Size = new System.Drawing.Size(200, 27);
+            this.txtMaxStockLevel.TabIndex = 121;
+            this.tipProducts.SetToolTip(this.txtMaxStockLevel, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
+        "he unit specified by the \r\n\"metric_unit\".");
             // 
             // frmProductModal
             // 
@@ -350,6 +425,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(663, 481);
+            this.Controls.Add(this.lblRequiredMaxStockLevel);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtMaxStockLevel);
+            this.Controls.Add(this.lblRequiredReOrderPoint);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtReOrderPoint);
             this.Controls.Add(this.lblRequiredMetricValue);
             this.Controls.Add(this.lblRequiredDescription);
             this.Controls.Add(this.lblRequiredMetricUnit);
@@ -412,5 +493,11 @@
         private System.Windows.Forms.Label lblRequiredDescription;
         private System.Windows.Forms.Label lblRequiredMetricValue;
         private System.Windows.Forms.RichTextBox txtDescription;
+        private System.Windows.Forms.Label lblRequiredReOrderPoint;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtReOrderPoint;
+        private System.Windows.Forms.Label lblRequiredMaxStockLevel;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtMaxStockLevel;
     }
 }

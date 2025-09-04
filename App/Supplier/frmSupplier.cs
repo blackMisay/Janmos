@@ -73,6 +73,7 @@ namespace App.Supplier
         {
             SupplierRepository supplierRepository = new SupplierRepository();
             dgvSupplier.DataSource = supplierRepository.LoadSupplierData();
+            this.dgvSupplier.Columns["Supplier Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvSupplier.Columns["Mobile Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             this.dgvSupplier.Columns["Phone Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
@@ -90,6 +91,16 @@ namespace App.Supplier
         {
             SupplierRepository supplierRepository = new SupplierRepository();
             dgvSupplier.DataSource = supplierRepository.LoadSupplierData(txtSearch.Text);
+        }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+            this.selectedSupplierId = 0;
+        }
+
+        private void frmSupplier_Click(object sender, EventArgs e)
+        {
+            this.selectedSupplierId = 0;    
         }
     }
 }

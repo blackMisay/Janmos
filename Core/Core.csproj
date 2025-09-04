@@ -72,6 +72,7 @@
     <Compile Include="System\Data\Model\Customer.cs" />
     <Compile Include="System\Data\Model\CustomerOrder.cs" />
     <Compile Include="System\Data\Model\CustomerOrderDetails.cs" />
+    <Compile Include="System\Data\Model\CustomerOrderStatus.cs" />
     <Compile Include="System\Data\Model\Inventory.cs" />
     <Compile Include="System\Data\Model\MetricUnitCategory.cs" />
     <Compile Include="System\Data\Model\MetricUnit.cs" />
@@ -79,8 +80,11 @@
     <Compile Include="System\Data\Model\Product.cs" />
     <Compile Include="System\Data\Model\Province.cs" />
     <Compile Include="System\Data\Model\Region.cs" />
+    <Compile Include="System\Data\Model\Roles.cs" />
     <Compile Include="System\Data\Model\StatusRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Data\Model\UserInfo.cs" />
+    <Compile Include="System\Repository\CustomerBranchRepository.cs" />
     <Compile Include="System\Repository\CustomerOrderDetailsRepository.cs" />
     <Compile Include="System\Repository\CustomerOrderRepository.cs" />
     <Compile Include="System\Repository\CustomerRepository.cs" />
@@ -89,9 +93,15 @@
     <Compile Include="System\Data\Model\User.cs" />
     <Compile Include="System\Data\UpgradeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Repository\InventoryMovementRepository.cs" />
+    <Compile Include="System\Repository\InventoryBranchRepository.cs" />
     <Compile Include="System\Repository\InventoryRepository.cs" />
+    <Compile Include="System\Repository\ManagementModuleRepository.cs" />
     <Compile Include="System\Repository\ProductRepository.cs" />
+    <Compile Include="System\Repository\ReportRepository.cs" />
+    <Compile Include="System\Repository\SupplierOrderRepository.cs" />
     <Compile Include="System\Repository\SupplierRepository.cs" />
+    <Compile Include="System\Repository\UserManagementRepository.cs" />
     <Compile Include="System\Security\SecureHash.cs" />
     <Compile Include="System\Security\UserAuthentication.cs" />
   </ItemGroup>

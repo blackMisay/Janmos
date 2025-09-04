@@ -63,6 +63,8 @@
             // dgvCustomer
             // 
             this.dgvCustomer.AllowUserToAddRows = false;
+            this.dgvCustomer.AllowUserToResizeColumns = false;
+            this.dgvCustomer.AllowUserToResizeRows = false;
             this.dgvCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -70,35 +72,35 @@
             this.dgvCustomer.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvCustomer.Location = new System.Drawing.Point(20, 171);
+            this.dgvCustomer.Location = new System.Drawing.Point(20, 137);
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.RowHeadersVisible = false;
             this.dgvCustomer.RowHeadersWidth = 51;
             this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCustomer.Size = new System.Drawing.Size(1127, 538);
+            this.dgvCustomer.Size = new System.Drawing.Size(1127, 572);
             this.dgvCustomer.TabIndex = 0;
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
             // 
             // lblSearch
             // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(923, 78);
+            this.lblSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearch.Location = new System.Drawing.Point(3, 44);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(49, 19);
+            this.lblSearch.Size = new System.Drawing.Size(55, 20);
             this.lblSearch.TabIndex = 63;
             this.lblSearch.Text = "Search";
             // 
             // btnNew
             // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(195)))), ((int)(((byte)(112)))));
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Location = new System.Drawing.Point(0, 92);
+            this.btnNew.Location = new System.Drawing.Point(811, 51);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(143, 45);
             this.btnNew.TabIndex = 64;
@@ -118,18 +120,19 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(20, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 140);
+            this.panel1.Size = new System.Drawing.Size(1127, 106);
             this.panel1.TabIndex = 67;
+            this.panel1.Click += new System.EventHandler(this.panel1_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(149, 92);
+            this.btnEdit.Location = new System.Drawing.Point(960, 51);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(79, 45);
             this.btnEdit.TabIndex = 69;
@@ -139,13 +142,13 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(234, 92);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(1045, 51);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(79, 45);
             this.btnDelete.TabIndex = 68;
@@ -155,11 +158,12 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(927, 104);
+            this.txtSearch.Location = new System.Drawing.Point(7, 70);
+            this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 26);
+            this.txtSearch.Size = new System.Drawing.Size(275, 30);
             this.txtSearch.TabIndex = 65;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
             // 
@@ -193,7 +197,7 @@
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
             this.btnLastPage.Location = new System.Drawing.Point(622, 715);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
+            this.btnLastPage.Size = new System.Drawing.Size(30, 27);
             this.btnLastPage.TabIndex = 87;
             this.btnLastPage.UseVisualStyleBackColor = false;
             // 
@@ -207,7 +211,7 @@
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
             this.btnFirstPage.Location = new System.Drawing.Point(490, 715);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
+            this.btnFirstPage.Size = new System.Drawing.Size(30, 27);
             this.btnFirstPage.TabIndex = 86;
             this.btnFirstPage.UseVisualStyleBackColor = false;
             // 
@@ -221,7 +225,7 @@
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
             this.btnPrevious.Location = new System.Drawing.Point(534, 715);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.Size = new System.Drawing.Size(30, 27);
             this.btnPrevious.TabIndex = 85;
             this.btnPrevious.UseVisualStyleBackColor = false;
             // 
@@ -235,7 +239,7 @@
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
             this.btnNext.Location = new System.Drawing.Point(578, 715);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
             this.btnNext.TabIndex = 84;
             this.btnNext.UseVisualStyleBackColor = false;
             // 
@@ -258,6 +262,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
             this.Text = "Customer";
             this.Load += new System.EventHandler(this.Customer_Load);
+            this.Click += new System.EventHandler(this.Customer_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

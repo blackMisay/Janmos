@@ -31,12 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProduct));
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnNew = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnNew = new System.Windows.Forms.Button();
             this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.btnLastPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
@@ -50,27 +51,41 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmbCategory);
             this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.btnNew);
+            this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.btnNew);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(20, 25);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1127, 140);
+            this.panel2.Size = new System.Drawing.Size(1127, 106);
             this.panel2.TabIndex = 68;
+            this.panel2.Click += new System.EventHandler(this.panel2_Click);
+            // 
+            // cmbCategory
+            // 
+            this.cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cmbCategory.FormattingEnabled = true;
+            this.cmbCategory.Location = new System.Drawing.Point(605, 70);
+            this.cmbCategory.Name = "cmbCategory";
+            this.cmbCategory.Size = new System.Drawing.Size(200, 27);
+            this.cmbCategory.TabIndex = 103;
+            this.cmbCategory.SelectedIndexChanged += new System.EventHandler(this.cmbCategory_SelectedIndexChanged);
             // 
             // btnEdit
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEdit.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
-            this.btnEdit.Location = new System.Drawing.Point(149, 92);
+            this.btnEdit.Location = new System.Drawing.Point(960, 52);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(79, 45);
             this.btnEdit.TabIndex = 67;
@@ -79,30 +94,14 @@
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.Black;
-            this.btnDelete.Location = new System.Drawing.Point(234, 92);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(79, 45);
-            this.btnDelete.TabIndex = 66;
-            this.btnDelete.Text = "&Delete";
-            this.tipProduct.SetToolTip(this.btnDelete, "Delete a product");
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(927, 104);
+            this.txtSearch.Location = new System.Drawing.Point(7, 68);
+            this.txtSearch.Multiline = true;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 26);
+            this.txtSearch.Size = new System.Drawing.Size(275, 30);
             this.txtSearch.TabIndex = 65;
             this.tipProduct.SetToolTip(this.txtSearch, "Search a product by name");
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -119,15 +118,43 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Manage Products";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(1045, 52);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(79, 45);
+            this.btnDelete.TabIndex = 66;
+            this.btnDelete.Text = "&Delete";
+            this.tipProduct.SetToolTip(this.btnDelete, "Delete a product");
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 20);
+            this.label2.TabIndex = 63;
+            this.label2.Text = "Search:";
+            // 
             // btnNew
             // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(98)))), ((int)(((byte)(195)))), ((int)(((byte)(112)))));
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNew.ForeColor = System.Drawing.Color.White;
-            this.btnNew.Location = new System.Drawing.Point(0, 92);
+            this.btnNew.Location = new System.Drawing.Point(811, 52);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(143, 45);
             this.btnNew.TabIndex = 64;
@@ -135,17 +162,6 @@
             this.tipProduct.SetToolTip(this.btnNew, "Create a new product");
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(923, 78);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(166, 19);
-            this.label2.TabIndex = 63;
-            this.label2.Text = "Search by (Product name)";
             // 
             // dgvProduct
             // 
@@ -157,12 +173,12 @@
             this.dgvProduct.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProduct.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvProduct.Location = new System.Drawing.Point(20, 171);
+            this.dgvProduct.Location = new System.Drawing.Point(20, 137);
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.RowHeadersVisible = false;
             this.dgvProduct.RowHeadersWidth = 51;
             this.dgvProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProduct.Size = new System.Drawing.Size(1127, 538);
+            this.dgvProduct.Size = new System.Drawing.Size(1127, 572);
             this.dgvProduct.TabIndex = 66;
             this.dgvProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellClick);
             // 
@@ -176,7 +192,7 @@
             this.btnLastPage.Image = global::App.Properties.Resources.lastpage_16px;
             this.btnLastPage.Location = new System.Drawing.Point(622, 715);
             this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
+            this.btnLastPage.Size = new System.Drawing.Size(30, 27);
             this.btnLastPage.TabIndex = 76;
             this.tipProduct.SetToolTip(this.btnLastPage, "Last page");
             this.btnLastPage.UseVisualStyleBackColor = false;
@@ -191,7 +207,7 @@
             this.btnFirstPage.Image = global::App.Properties.Resources.firstpage_16px;
             this.btnFirstPage.Location = new System.Drawing.Point(490, 715);
             this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
+            this.btnFirstPage.Size = new System.Drawing.Size(30, 27);
             this.btnFirstPage.TabIndex = 75;
             this.tipProduct.SetToolTip(this.btnFirstPage, "First page");
             this.btnFirstPage.UseVisualStyleBackColor = false;
@@ -206,7 +222,7 @@
             this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
             this.btnPrevious.Location = new System.Drawing.Point(534, 715);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(30, 30);
+            this.btnPrevious.Size = new System.Drawing.Size(30, 27);
             this.btnPrevious.TabIndex = 74;
             this.tipProduct.SetToolTip(this.btnPrevious, "Previous page");
             this.btnPrevious.UseVisualStyleBackColor = false;
@@ -221,7 +237,7 @@
             this.btnNext.Image = ((System.Drawing.Image)(resources.GetObject("btnNext.Image")));
             this.btnNext.Location = new System.Drawing.Point(578, 715);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(30, 30);
+            this.btnNext.Size = new System.Drawing.Size(30, 27);
             this.btnNext.TabIndex = 73;
             this.tipProduct.SetToolTip(this.btnNext, "Next page");
             this.btnNext.UseVisualStyleBackColor = false;
@@ -266,6 +282,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 25, 20, 0);
             this.Text = "Product";
             this.Load += new System.EventHandler(this.frmProduct_Load);
+            this.Click += new System.EventHandler(this.frmProduct_Click);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
@@ -288,5 +305,6 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.ComboBox cmbRecordCount;
         private System.Windows.Forms.ToolTip tipProduct;
+        private System.Windows.Forms.ComboBox cmbCategory;
     }
 }

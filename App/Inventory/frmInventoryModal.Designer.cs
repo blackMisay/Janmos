@@ -110,7 +110,7 @@
             this.dtpExpiration.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpExpiration.Location = new System.Drawing.Point(429, 357);
             this.dtpExpiration.Name = "dtpExpiration";
-            this.dtpExpiration.Size = new System.Drawing.Size(200, 20);
+            this.dtpExpiration.Size = new System.Drawing.Size(200, 22);
             this.dtpExpiration.TabIndex = 117;
             // 
             // txtPrice
@@ -372,7 +372,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(663, 481);
             this.ControlBox = false;
             this.Controls.Add(this.lblRequiredDescription);
@@ -396,6 +396,7 @@
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.dtpExpiration);
             this.Controls.Add(this.panel2);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmInventoryModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmInventoryModal";

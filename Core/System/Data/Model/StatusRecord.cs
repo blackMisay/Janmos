@@ -8,6 +8,6 @@ namespace Core.System.Data.Model
 {
     public static class StatusRecord
     {
-        public enum Type { Active, Deleted }
+        public enum Type { Active, Deleted , Inactive}
     }
 }
