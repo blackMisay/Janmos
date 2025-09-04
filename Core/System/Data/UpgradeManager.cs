@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using MySqlConnector;
 using System.Collections;
 using Core.System.Data.Model;
-using System.Runtime.Remoting.Messaging;
-
 
 namespace Core
 {
     internal class UpgradeManager
     {
         internal MySqlConnection connection;
-        private string connectionString;
 
+        private readonly string connectionString;
+        private readonly string qryReturnId = "SELECT LAST_INSERT_ID();";
+
+        public int LastInsertedId { get; private set; }
 
         /// <summary>
         /// This constructor initializes the UpgradeManager object with default connection parameters.
@@ -22,12 +23,16 @@ namespace Core
         /// <returns>None</returns>
         public UpgradeManager()
         {
-            string server = "localhost";
-            string userid = "root";
-            string password = "";
-            string database = "dbjanmos";
-            this.connectionString = String.Format("server={0};database={1};userid={2};password={3};",
-                server, database, userid, password);
+            string[] connectionParameters =
+            { 
+                "localhost",
+                "dbjanmos",
+                "root",
+                ""
+            };
+
+            this.connectionString = String.Format("server={0};database={1};userid={2};password={3};", 
+                connectionParameters[0], connectionParameters[1], connectionParameters[2], connectionParameters[3]);
         }
 
 
@@ -75,20 +80,29 @@ namespace Core
         /// </summary>
         /// <param name="query">A string representing the SQL query to execute.</param>
         /// <param name="parameters">A dictionary containing parameter names and their corresponding values.</param>
+        /// <param name="returnId">A boolean representing if the query should return the last inserted id. Default value is false</param>>
         /// <returns>True if the query execution is successful, otherwise false.</returns>
         /// <exception cref="Exception">It catches any exceptions that occur during the execution of the query and rethrows them with a new exception containing the error message.</exception>
-        public bool ExecuteQuery(string query, Dictionary<string, string> parameters)
+        public bool ExecuteQuery(string query, Dictionary<string, string> parameters, bool returnId=false)
         {
             try
             {
                 this.Connect();
+
+                if (returnId)
+                    String.Concat(query, this.qryReturnId);
+                
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
                     foreach (KeyValuePair<string, string> kvp in parameters)
                     {
                         cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                     }
-                    cmd.ExecuteNonQuery();
+
+                    if (returnId)
+                        this.LastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
+                    else
+                        cmd.ExecuteNonQuery();
 
                     return true;
                 }
@@ -203,57 +217,6 @@ namespace Core
             catch (MySqlException ex)
             {
                 // Log or handle specific MySql errors here
-                throw new Exception($"Error executing query: {ex.Message}");
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Unexpected error: {e.Message}");
-            }
-            finally { this.connection.Close(); }
-        }
-
-        //GETTING THE LAST INSERTED ORDER NUMBER VALUE USING SQL QUERY
-        //CONVERTING OBJECT VALUE TO STRING TO LONG DATATYPE
-        //RETURN THE LAST INSERTED ORDER NUMBER VALUE IN LONG DATATYPE
-        public long ExecuteScalarForLongResult(string query)
-        {
-            try
-            {
-                this.Connect();
-                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
-                {
-                    object result = cmd.ExecuteScalar();
-                    return result != null && long.TryParse(result.ToString(), out long parsedResult)? parsedResult : 0;
-                }
-            }
-            catch (MySqlException ex)
-            {
-                throw new Exception($"Error executing query: {ex.Message}");
-            }
-            catch (Exception e)
-            {
-                throw new Exception($"Unexpected error: {e.Message}");
-            }
-            finally { this.connection.Close(); }
-        }
-
-        public string GetStringExecuteScalar(string query, Dictionary<string, string> parameters)
-        {
-            try
-            {
-                this.Connect();
-                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
-                {
-                    foreach (var param in parameters)
-                    {
-                        cmd.Parameters.AddWithValue(param.Key, param.Value);
-                    }
-                    object result = cmd.ExecuteScalar();
-                    return result != null ? result.ToString() : string.Empty;
-                }
-            }
-            catch (MySqlException ex)
-            {
                 throw new Exception($"Error executing query: {ex.Message}");
             }
             catch (Exception e)
