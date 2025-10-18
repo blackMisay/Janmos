@@ -49,6 +49,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tipProducts = new System.Windows.Forms.ToolTip(this.components);
             this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.txtReOrderPoint = new System.Windows.Forms.TextBox();
+            this.txtMaxStockLevel = new System.Windows.Forms.TextBox();
+            this.cmbTaxType = new System.Windows.Forms.ComboBox();
             this.lblRequiredName = new System.Windows.Forms.Label();
             this.lblRequiredCategory = new System.Windows.Forms.Label();
             this.lblRequiredMetricUnit = new System.Windows.Forms.Label();
@@ -56,10 +59,10 @@
             this.lblRequiredMetricValue = new System.Windows.Forms.Label();
             this.lblRequiredReOrderPoint = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtReOrderPoint = new System.Windows.Forms.TextBox();
             this.lblRequiredMaxStockLevel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtMaxStockLevel = new System.Windows.Forms.TextBox();
+            this.lblRequiredTaxType = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -291,6 +294,40 @@
             this.txtDescription.Text = "";
             this.tipProducts.SetToolTip(this.txtDescription, "This contains the brief description \r\nor summary of the product.");
             // 
+            // txtReOrderPoint
+            // 
+            this.txtReOrderPoint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReOrderPoint.Location = new System.Drawing.Point(440, 236);
+            this.txtReOrderPoint.Multiline = true;
+            this.txtReOrderPoint.Name = "txtReOrderPoint";
+            this.txtReOrderPoint.Size = new System.Drawing.Size(200, 27);
+            this.txtReOrderPoint.TabIndex = 118;
+            this.tipProducts.SetToolTip(this.txtReOrderPoint, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
+        "he unit specified by the \r\n\"metric_unit\".");
+            // 
+            // txtMaxStockLevel
+            // 
+            this.txtMaxStockLevel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMaxStockLevel.Location = new System.Drawing.Point(440, 292);
+            this.txtMaxStockLevel.Multiline = true;
+            this.txtMaxStockLevel.Name = "txtMaxStockLevel";
+            this.txtMaxStockLevel.Size = new System.Drawing.Size(200, 27);
+            this.txtMaxStockLevel.TabIndex = 121;
+            this.tipProducts.SetToolTip(this.txtMaxStockLevel, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
+        "he unit specified by the \r\n\"metric_unit\".");
+            // 
+            // cmbTaxType
+            // 
+            this.cmbTaxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTaxType.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.cmbTaxType.FormattingEnabled = true;
+            this.cmbTaxType.Location = new System.Drawing.Point(440, 348);
+            this.cmbTaxType.Name = "cmbTaxType";
+            this.cmbTaxType.Size = new System.Drawing.Size(200, 27);
+            this.cmbTaxType.TabIndex = 124;
+            this.tipProducts.SetToolTip(this.cmbTaxType, "This categorize the products \r\nto a specific type of tax.");
+            this.cmbTaxType.SelectedValueChanged += new System.EventHandler(this.cmbTaxType_SelectedValueChanged);
+            // 
             // lblRequiredName
             // 
             this.lblRequiredName.AutoSize = true;
@@ -374,17 +411,6 @@
             this.label8.TabIndex = 119;
             this.label8.Text = "Re-Order Point";
             // 
-            // txtReOrderPoint
-            // 
-            this.txtReOrderPoint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReOrderPoint.Location = new System.Drawing.Point(440, 236);
-            this.txtReOrderPoint.Multiline = true;
-            this.txtReOrderPoint.Name = "txtReOrderPoint";
-            this.txtReOrderPoint.Size = new System.Drawing.Size(200, 27);
-            this.txtReOrderPoint.TabIndex = 118;
-            this.tipProducts.SetToolTip(this.txtReOrderPoint, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
-        "he unit specified by the \r\n\"metric_unit\".");
-            // 
             // lblRequiredMaxStockLevel
             // 
             this.lblRequiredMaxStockLevel.AutoSize = true;
@@ -408,16 +434,28 @@
             this.label10.TabIndex = 122;
             this.label10.Text = "Max Stock Level";
             // 
-            // txtMaxStockLevel
+            // lblRequiredTaxType
             // 
-            this.txtMaxStockLevel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaxStockLevel.Location = new System.Drawing.Point(440, 292);
-            this.txtMaxStockLevel.Multiline = true;
-            this.txtMaxStockLevel.Name = "txtMaxStockLevel";
-            this.txtMaxStockLevel.Size = new System.Drawing.Size(200, 27);
-            this.txtMaxStockLevel.TabIndex = 121;
-            this.tipProducts.SetToolTip(this.txtMaxStockLevel, "This is the value of \r\nthe product attribute or \r\ncharacteristic, measured in \r\nt" +
-        "he unit specified by the \r\n\"metric_unit\".");
+            this.lblRequiredTaxType.AutoSize = true;
+            this.lblRequiredTaxType.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequiredTaxType.ForeColor = System.Drawing.Color.Red;
+            this.lblRequiredTaxType.Location = new System.Drawing.Point(549, 325);
+            this.lblRequiredTaxType.Name = "lblRequiredTaxType";
+            this.lblRequiredTaxType.Size = new System.Drawing.Size(56, 15);
+            this.lblRequiredTaxType.TabIndex = 126;
+            this.lblRequiredTaxType.Text = "*required";
+            this.lblRequiredTaxType.Visible = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label9.Location = new System.Drawing.Point(436, 322);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 19);
+            this.label9.TabIndex = 125;
+            this.label9.Text = "Tax Type";
             // 
             // frmProductModal
             // 
@@ -425,6 +463,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(663, 481);
+            this.Controls.Add(this.lblRequiredTaxType);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cmbTaxType);
             this.Controls.Add(this.lblRequiredMaxStockLevel);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtMaxStockLevel);
@@ -457,6 +498,7 @@
             this.MinimizeBox = false;
             this.Name = "frmProductModal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmProductModal_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -499,5 +541,8 @@
         private System.Windows.Forms.Label lblRequiredMaxStockLevel;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtMaxStockLevel;
+        private System.Windows.Forms.ComboBox cmbTaxType;
+        private System.Windows.Forms.Label lblRequiredTaxType;
+        private System.Windows.Forms.Label label9;
     }
 }

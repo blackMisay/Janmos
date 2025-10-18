@@ -52,31 +52,6 @@ namespace Core.System.Repository
         {
             return this.LoadCustomerOrderData(null, selectedOrderStatus);
         }
-        /*public DataTable LoadCustomerOrderDataViaOrderStatus(string selectedOrderStatus)
-        {
-            string query = "SELECT co.id AS `Customer Order Id`, co.ordernumber AS `Customer Order Number`, c.`name` AS `Customer`, co.orderdate AS `Order Date`, `cos`.orderstatus AS `Order Status`, co.totalprice AS `Total Price` FROM customerorder co JOIN customer c ON co.customer = c.id JOIN customerorderstatus `cos` ON co.orderstatus = `cos`.id WHERE `cos`.orderstatus = @OrderStatus AND co.`status` = 'Active' ORDER BY co.id DESC;";
-            upgradeManager = new UpgradeManager();
-
-            Dictionary<string, string> customerorderparams = new Dictionary<string, string>()
-            {
-                { "@OrderStatus", selectedOrderStatus}
-            };
-
-            return upgradeManager.Load(query, customerorderparams);
-        }
-        public DataTable LoadCustomerOrderDataViaOrderStatusAndSearchBox(string selectedOrderStatus, string searchValue)
-        {
-            string query = "SELECT co.id AS `Customer Order Id`, co.ordernumber AS `Customer Order Number`, c.`name` AS `Customer`, co.orderdate AS `Order Date`, `cos`.orderstatus AS `Order Status`, co.totalprice AS `Total Price` FROM customerorder co JOIN customer c ON co.customer = c.id JOIN customerorderstatus `cos` ON co.orderstatus = `cos`.id WHERE c.`name` LIKE @val AND `cos`.orderstatus = @OrderStatus AND co.`status` = 'Active' OR co.ordernumber LIKE @val AND `cos`.orderstatus = @OrderStatus AND co.`status` = 'Active' OR co.id LIKE @val AND `cos`.orderstatus = @OrderStatus AND co.`status` = 'Active' OR co.orderdate LIKE @val AND `cos`.orderstatus = @OrderStatus AND co.`status` = 'Active' ORDER BY co.id DESC;";
-            upgradeManager = new UpgradeManager();
-
-            Dictionary<string, string> customerorderparams = new Dictionary<string, string>()
-            {
-                { "@val", "%" + searchValue + "%"},
-                { "@OrderStatus", selectedOrderStatus}
-            };
-
-            return upgradeManager.Load(query, customerorderparams);
-        }*/
 
         public int VerifyCustomerOrder(string orderNumber)
         {

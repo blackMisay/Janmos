@@ -33,5 +33,11 @@ namespace Core.System.Repository
             };
             return manager.Load(query, inventoryChartParams);
         }
+        public DataTable LoadAuditLog()
+        {
+            string query = "SELECT al.id AS `Id`, CONCAT(r.roletitle, ' - ', ui.givenname, ' ', ui.lastname) AS `User`, al.actiontype AS `Type of Action`, al.tablename AS `Name of Table`, al.recordid AS `Record Id`, al.oldvalue AS `Old Value`, al.newvalue AS `New Value`, al.`description` AS `Description`, al.`timestamp` AS `TimeStamp` FROM auditlog al LEFT JOIN `user` u ON al.userid = u.id LEFT JOIN roles r ON u.roleid = r.id LEFT JOIN userinfo ui ON u.userinfoid = ui.id ORDER BY al.`timestamp` DESC;";
+            manager = new UpgradeManager();
+            return manager.Load(query);
+        }
     }
 }

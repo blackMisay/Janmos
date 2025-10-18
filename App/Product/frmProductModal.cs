@@ -3,22 +3,34 @@ using Core.System.Data.Model;
 using Core.System.Repository;
 using System.Windows.Forms;
 using System.ComponentModel;
+using System.Data;
+using System.Xml.Schema;
+using Core.System.Security;
+using System.Data.Odbc;
 
 namespace App.Product
 {
     public partial class frmProductModal : Form
     {
+        private readonly User user = new User();
+        private static Core.System.Data.Model.Product oldProduct = new Core.System.Data.Model.Product();
+        private Core.System.Data.Model.Product updProduct = new Core.System.Data.Model.Product();
+
         private readonly int Id = 0;
+        private int count = 0;
+        private int newCount = 0;
         ProductRepository productRepository;
 
-        public frmProductModal()
+        public frmProductModal(User user)
         {
+            this.user = user;
             InitializeComponent();
             InitializeComponentsData();
         }
 
-        public frmProductModal(int productId)
+        public frmProductModal(int productId, User user)
         {
+            this.user = user;
             InitializeComponent();
             this.Id = productId;
             InitializeSelectedProductData();
@@ -28,115 +40,95 @@ namespace App.Product
         {
             FieldValidate();
         }
-        public void FieldValidate()
+        private void FieldValidate()
         {
             bool validated = true;
 
-            if (string.IsNullOrEmpty(txtProductName.Text) || string.IsNullOrWhiteSpace(txtProductName.Text))
+            bool ValidateTextBox(TextBox txt, Label lbl)
             {
-                lblRequiredName.Visible = true;
-                validated = false;
+                bool invalid = string.IsNullOrWhiteSpace(txt.Text);
+                lbl.Visible = invalid;
+                return !invalid;
             }
-            else
+            bool ValidateComboBox(ComboBox cmb, Label lbl)
             {
-                lblRequiredName.Visible = false;
-            }
-
-            /*if (string.IsNullOrEmpty(txtDescription.Text) || string.IsNullOrWhiteSpace(txtDescription.Text))
-            {
-                lblRequiredDescription.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredDescription.Visible = false;
-            }*/
-
-            if (string.IsNullOrEmpty(txtMetricValue.Text) || string.IsNullOrWhiteSpace(txtMetricValue.Text))
-            {
-                lblRequiredMetricValue.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredMetricValue.Visible = false;
+                bool invalid = cmb.SelectedIndex == -1;
+                lbl.Visible = invalid;
+                return !invalid;
             }
 
-            if (cmbCategory.SelectedIndex == -1)
-            {
-                lblRequiredCategory.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredCategory.Visible = false;
-            }
+            validated &= ValidateTextBox(txtProductName, lblRequiredName);
+            validated &= ValidateTextBox(txtMetricValue, lblRequiredMetricValue);
+            validated &= ValidateTextBox(txtReOrderPoint, lblRequiredReOrderPoint);
+            validated &= ValidateTextBox(txtMaxStockLevel, lblRequiredMaxStockLevel);
 
-            if (cmbMetricUnit.SelectedIndex == -1)
-            {
-                lblRequiredMetricUnit.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredMetricUnit.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtReOrderPoint.Text))
-            {
-                lblRequiredReOrderPoint.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredReOrderPoint.Visible = false;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtMaxStockLevel.Text))
-            {
-                lblRequiredMaxStockLevel.Visible = true;
-                validated = false;
-            }
-            else
-            {
-                lblRequiredMaxStockLevel.Visible = false;
-            }
+            validated &= ValidateComboBox(cmbCategory, lblRequiredCategory);
+            validated &= ValidateComboBox(cmbMetricUnit, lblRequiredMetricUnit);
+            validated &= ValidateComboBox(cmbTaxType, lblRequiredTaxType);
 
             if (!validated)
                 return;
 
             productRepository = new ProductRepository();
-            Core.System.Data.Model.Product product = new Core.System.Data.Model.Product();
-            product.Id = this.Id;
-            product.Name = this.txtProductName.Text;
-            product.Description = this.txtDescription.Text;
-            product.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
-            product.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
-            product.MetricValue = this.txtMetricValue.Text;
-            product.ReOrderPoint = Convert.ToInt32(this.txtReOrderPoint.Text);
-            product.MaxStockLevel = Convert.ToInt32(this.txtMaxStockLevel.Text);
-            product.Status = StatusRecord.Type.Active;
-
-            productRepository = new ProductRepository();
-
-            if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            if (productRepository.Save(product))
+            if (this.Id != 0) //update
             {
-                MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
-            }
-            else
-            {
-                if (productRepository.Save(product))
+                if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
-                }
-                else
-                {
-                    MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Core.System.Data.Model.Product updProduct = SaveProduct();
+                    var (oldJson, newJson, desc) = AuditHelper.GetDifferences(oldProduct, updProduct);
+                    AuditLog log = new AuditLog
+                    {
+                        UserId = new User() { Id = Convert.ToInt32(this.user.Id)},
+                        ActionType = "UPDATE",
+                        TableName = "Product",
+                        RecordId = updProduct.Id,
+                        OldValue = oldJson,
+                        NewValue = newJson,
+                        Description = desc
+                    };
+                    if (productRepository.Save(log, SaveProduct(), this.user))
+                    {
+                        MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
+            else //insert
+            {
+                if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (productRepository.Save(null, SaveProduct(), this.user))
+                    {
+                        MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private Core.System.Data.Model.Product SaveProduct()
+        {
+            updProduct.Id = this.Id;
+            updProduct.Name = this.txtProductName.Text;
+            updProduct.Description = this.txtDescription.Text;
+            updProduct.Category = new Category() { Id = Convert.ToInt32(cmbCategory.SelectedValue) };
+            updProduct.MetricUnit = new MetricUnit() { Id = Convert.ToInt32(cmbMetricUnit.SelectedValue) };
+            updProduct.MetricValue = this.txtMetricValue.Text;
+            updProduct.ReOrderPoint = Convert.ToInt32(this.txtReOrderPoint.Text);
+            updProduct.MaxStockLevel = Convert.ToInt32(this.txtMaxStockLevel.Text);
+            updProduct.TaxTypeId = new TaxType() { Id = Convert.ToInt32(cmbTaxType.SelectedValue) };
+            updProduct.CreatedBy = new User() { Id = Convert.ToInt32(this.user.Id) };
+            updProduct.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            updProduct.Status = StatusRecord.Type.Active;
+
+            return updProduct;
         }
 
         private void InitializeComponentsData()
@@ -151,6 +143,20 @@ namespace App.Product
             cmbMetricUnit.ValueMember = "id";
             cmbMetricUnit.DisplayMember = "name";
             cmbMetricUnit.SelectedIndex = -1;
+
+            DataTable dt = productRepository.LoadDataList("SELECT taxtype.id AS `Id`, taxtype.taxname AS `Name` FROM taxtype;");
+            cmbTaxType.ValueMember = "Id";
+            cmbTaxType.DisplayMember = "Name";
+            cmbTaxType.DataSource = dt;
+
+            this.count = cmbTaxType.Items.Count;
+            DataRow newRow = dt.NewRow();
+            this.newCount = this.count + 1;
+            newRow["Id"] = newCount;
+            newRow["Name"] = "--Add Tax Type--";
+            dt.Rows.InsertAt(newRow, newCount);
+
+            cmbTaxType.SelectedIndex = -1;
         }
 
         private void InitializeSelectedProductData()
@@ -159,16 +165,17 @@ namespace App.Product
 
             productRepository = new ProductRepository();
             
-            Core.System.Data.Model.Product product = new Core.System.Data.Model.Product();
-            product = productRepository.FetchProductData(this.Id);
+            updProduct = productRepository.FetchProductData(this.Id);
+            oldProduct = updProduct;
 
-            this.txtProductName.Text = product.Name;
-            this.txtDescription.Text = product.Description;
-            this.cmbCategory.SelectedValue = product.Category.Id;
-            this.cmbMetricUnit.SelectedValue = product.MetricUnit.Id;
-            this.txtMetricValue.Text = product.MetricValue;
-            this.txtReOrderPoint.Text = product.ReOrderPoint.ToString(); ;
-            this.txtMaxStockLevel.Text = product.MaxStockLevel.ToString();
+            this.txtProductName.Text = updProduct.Name;
+            this.txtDescription.Text = updProduct.Description;
+            this.cmbCategory.SelectedValue = updProduct.Category.Id;
+            this.cmbMetricUnit.SelectedValue = updProduct.MetricUnit.Id;
+            this.txtMetricValue.Text = updProduct.MetricValue;
+            this.txtReOrderPoint.Text = updProduct.ReOrderPoint.ToString();
+            this.txtMaxStockLevel.Text = updProduct.MaxStockLevel.ToString();
+            this.cmbTaxType.SelectedValue = updProduct.TaxTypeId.Id;
         }
 
         private void btnCancel_Click_1(object sender, EventArgs e)
@@ -188,6 +195,31 @@ namespace App.Product
                 txtReOrderPoint.Clear();
                 txtMaxStockLevel.Clear();
             }
+        }
+
+        private void cmbTaxType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            int selectedvalue = Convert.ToInt32(cmbTaxType.SelectedValue);
+            if (cmbTaxType.SelectedIndex >= 0)
+            {
+                if (selectedvalue == this.newCount)
+                {
+                    using (frmTaxTypeModal ttm = new frmTaxTypeModal(this.user))
+                    {
+                        ttm.ShowDialog();
+                        LoadProductModalData();
+                    }
+                }
+            }
+        }
+
+        private void frmProductModal_Load(object sender, EventArgs e)
+        {
+            this.LoadProductModalData();
+        }
+        private void LoadProductModalData()
+        {
+            InitializeComponentsData();
         }
     }
 }

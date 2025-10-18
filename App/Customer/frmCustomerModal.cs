@@ -1,5 +1,6 @@
 ﻿using Core.System.Data.Model;
 using Core.System.Repository;
+using Core.System.Security;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,19 +17,24 @@ namespace App.Customer
 {
     public partial class CustomerModal : Form
     {
+        private readonly User user = new User();
+        private static Core.System.Data.Model.Customer oldCustomer = new Core.System.Data.Model.Customer();
+        private Core.System.Data.Model.Customer updCustomer = new Core.System.Data.Model.Customer();
+
         private readonly int Id = 0;
-        Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
         CustomerRepository customerRepository;
-        public CustomerModal()
+        public CustomerModal(User user)
         {
+            this.user = user;
             InitializeComponent();
             InitializeComponentsData();
             cmbEntity.DataSource = Enum.GetValues(typeof(Entity));
             cmbEntity.SelectedIndex = -1;
         }
 
-        public CustomerModal(int customerId)
+        public CustomerModal(int customerId, User user)
         {
+            this.user = user;
             InitializeComponent();
             this.Id = customerId;
             InitializeSelectedCustomerData();
@@ -87,60 +94,28 @@ namespace App.Customer
             cmbDistrict.SelectedIndex = -1;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
-            customer.Id = this.Id;
-            customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new Entity();
-            customer.Entityname = this.txtEntityName.Text;
-            customer.Mobilenum = this.txtMobileNumber.Text;
-            customer.Telenum = this.txtPhoneNumber.Text;
-            customer.Extension = this.txtPhoneNumberExtension.Text;
-            customer.Email = this.txtEmailAddress.Text;
-            customer.Socialnetid= this.txtSocialNetworkID.Text;
-            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
-            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
-            customer.Municipality= new Municipality() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
-            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
-            customer.Postal = this.txtPostalCode.Text;
-            customer.Housenum = this.txtAddress.Text;
-            customer.Status = StatusRecord.Type.Active;
-
-            customerRepository = new CustomerRepository();
-            if (customerRepository.Save(customer))
-            {
-                MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
-            }
-            else
-            {
-                MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void InitializeSelectedCustomerData()
         {
             InitializeComponentsData();
             customerRepository = new CustomerRepository();
 
-            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
-            customer = customerRepository.FetchCustomerData(this.Id);
+            updCustomer = customerRepository.FetchCustomerData(this.Id);
+            oldCustomer = updCustomer;
 
-            this.txtCustomerName.Text = customer.Name;
-            cmbEntity.SelectedItem = customer.Entity;
-            this.txtEntityName.Text = customer.Entityname;
-            this.txtMobileNumber.Text = customer.Mobilenum;
-            this.txtPhoneNumber.Text = customer.Telenum;
-            this.txtPhoneNumberExtension.Text = customer.Extension;
-            this.txtEmailAddress.Text = customer.Email;
-            this.txtSocialNetworkID.Text = customer.Socialnetid;
-            cmbRegion.SelectedValue = customer.Region.Id;
-            cmbProvince.SelectedValue = customer.Province.Id;
-            cmbCity.SelectedValue = customer.Municipality.Id;
-            cmbDistrict.SelectedValue = customer.Baranggay.Id;
-            this.txtAddress.Text = customer.Housenum;
-            this.txtPostalCode.Text = customer.Postal;
+            this.txtCustomerName.Text = updCustomer.Name;
+            cmbEntity.SelectedItem = updCustomer.Entity;
+            this.txtEntityName.Text = updCustomer.Entityname;
+            this.txtMobileNumber.Text = updCustomer.Mobilenum;
+            this.txtPhoneNumber.Text = updCustomer.Telenum;
+            this.txtPhoneNumberExtension.Text = updCustomer.Extension;
+            this.txtEmailAddress.Text = updCustomer.Email;
+            this.txtSocialNetworkID.Text = updCustomer.Socialnetid;
+            cmbRegion.SelectedValue = updCustomer.Region.Id;
+            cmbProvince.SelectedValue = updCustomer.Province.Id;
+            cmbCity.SelectedValue = updCustomer.Municipality.Id;
+            cmbDistrict.SelectedValue = updCustomer.Baranggay.Id;
+            this.txtAddress.Text = updCustomer.Housenum;
+            this.txtPostalCode.Text = updCustomer.Postal;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -149,136 +124,112 @@ namespace App.Customer
         }
         private void FieldValidate()
         {
-            bool validate = true;
+            bool validated = true;
 
-            //customer name
-            if (string.IsNullOrEmpty(txtCustomerName.Text) || string.IsNullOrWhiteSpace(txtCustomerName.Text))
+            bool ValidateTextBox(TextBox txt, Label lbl)
             {
-                lblRequireName.Visible = true;
-                validate = false;
+                bool invalid = string.IsNullOrWhiteSpace(txt.Text);
+                lbl.Visible = invalid;
+                return !invalid;
             }
-            else
+            bool ValidateComboBox(ComboBox cmb, Label lbl)
             {
-                lblRequireName.Visible = false;
+                bool invalid = cmb.SelectedIndex == -1;
+                lbl.Visible = invalid;
+                return !invalid;
             }
-
-            //entity
-            if (cmbEntity.SelectedIndex == -1)
+            bool ValidateRichTextBox(RichTextBox txt, Label lbl)
             {
-                lblRequireEntity.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireEntity.Visible = false;
+                bool invalid = string.IsNullOrWhiteSpace(txt.Text);
+                lbl.Visible = invalid;
+                return !invalid;
             }
 
-            //mobile
-            if (string.IsNullOrEmpty(txtMobileNumber.Text) || string.IsNullOrWhiteSpace(txtMobileNumber.Text))
-            {
-                lblRequireMobile.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireMobile.Visible = false;
-            }
+            validated &= ValidateTextBox(txtCustomerName, lblRequireName);
+            validated &= ValidateTextBox(txtMobileNumber, lblRequireMobile);
 
-            //region
-            if (cmbRegion.SelectedIndex == -1)
-            {
-                lblRequireRegion.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireRegion.Visible = false;
-            }
+            validated &= ValidateRichTextBox(txtAddress, lblRequireAddress);
 
-            //province
-            if (cmbProvince.SelectedIndex == -1)
-            {
-                lblRequireProvince.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireProvince.Visible = false;
-            }
+            validated &= ValidateComboBox(cmbEntity, lblRequireEntity);
+            validated &= ValidateComboBox(cmbRegion, lblRequireRegion);
+            validated &= ValidateComboBox(cmbProvince, lblRequireProvince);
+            validated &= ValidateComboBox(cmbCity, lblRequireCity);
+            validated &= ValidateComboBox(cmbDistrict, lblRequireDistrict);
 
-            //municipality
-            if (cmbCity.SelectedIndex == -1)
-            {
-                lblRequireCity.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireCity.Visible = false;
-            }
-
-            //baranggay
-            if (cmbDistrict.SelectedIndex == -1)
-            {
-                lblRequireDistrict.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireDistrict.Visible = false;
-            }
-
-            //housenum
-            if (string.IsNullOrEmpty(txtAddress.Text) || string.IsNullOrWhiteSpace(txtAddress.Text))
-            {
-                lblRequireAddress.Visible = true;
-                validate = false;
-            }
-            else
-            {
-                lblRequireAddress.Visible = false;
-            }
-
-            if (!validate)
-            {
+            if (!validated)
                 return;
-            }
-
-            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
-            customer.Id = this.Id;
-            customer.Name = this.txtCustomerName.Text;
-            customer.Entity = new Entity();
-            customer.Entityname = this.txtEntityName.Text;
-            customer.Mobilenum = this.txtMobileNumber.Text;
-            customer.Telenum = this.txtPhoneNumber.Text;
-            customer.Extension = this.txtPhoneNumberExtension.Text;
-            customer.Email = this.txtEmailAddress.Text;
-            customer.Socialnetid = this.txtSocialNetworkID.Text;
-            customer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
-            customer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
-            customer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbCity.SelectedValue) };
-            customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
-            customer.Postal = this.txtPostalCode.Text;
-            customer.Housenum = this.txtAddress.Text;
-            customer.Status = StatusRecord.Type.Active;
 
             customerRepository = new CustomerRepository();
-            if (MessageBox.Show("Do you want to save the customer data?", "Save Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (this.Id != 0) //update
             {
-                if (customerRepository.Save(customer))
+                if (MessageBox.Show("Do you want to save the product data?", "Save Product", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Save Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
-                }
-                else
-                {
-                    MessageBox.Show("Customer failed to save", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Core.System.Data.Model.Customer updCustomer = SaveCustomer();
+                    var (oldJson, newJson, desc) = AuditHelper.GetDifferences(oldCustomer, updCustomer);
+                    AuditLog log = new AuditLog
+                    {
+                        UserId = new User() { Id = Convert.ToInt32(this.user.Id) },
+                        ActionType = "UPDATE",
+                        TableName = "Product",
+                        RecordId = updCustomer.Id,
+                        OldValue = oldJson,
+                        NewValue = newJson,
+                        Description = desc
+                    };
+                    if (customerRepository.Save(log, SaveCustomer(), this.user))
+                    {
+                        MessageBox.Show("Record saved Successfully", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to save the customer record. Please try again later or contact support for assistance.\r\n", "Customer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
+            else //insert
+            {
+                if (MessageBox.Show("Do you want to save the customer data?", "Save Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (customerRepository.Save(null, SaveCustomer(), this.user))
+                    {
+                        MessageBox.Show("Record saved Successfully", "Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Unable to save the product record. Please try again later or contact support for assistance.\r\n", "Product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        private Core.System.Data.Model.Customer SaveCustomer()
+        {
+            updCustomer.Id = this.Id;
+            updCustomer.Name = this.txtCustomerName.Text;
+            updCustomer.Entity = new Entity();
+            updCustomer.Entityname = this.txtEntityName.Text;
+            updCustomer.Mobilenum = this.txtMobileNumber.Text;
+            updCustomer.Telenum = this.txtPhoneNumber.Text;
+            updCustomer.Extension = this.txtPhoneNumberExtension.Text;
+            updCustomer.Email = this.txtEmailAddress.Text;
+            updCustomer.Socialnetid = this.txtSocialNetworkID.Text;
+            updCustomer.Region = new Core.System.Data.Model.Region() { Id = Convert.ToInt32(cmbRegion.SelectedValue) };
+            updCustomer.Province = new Province() { Id = Convert.ToInt32(cmbProvince.SelectedValue) };
+            updCustomer.Municipality = new Municipality() { Id = Convert.ToInt32(cmbCity.SelectedValue) };
+            updCustomer.Baranggay = new Baranggay() { Id = Convert.ToInt32(cmbDistrict.SelectedValue) };
+            updCustomer.Postal = this.txtPostalCode.Text;
+            updCustomer.Housenum = this.txtAddress.Text;
+            updCustomer.CreatedBy = new User() { Id = Convert.ToInt32(this.user.Id) };
+            updCustomer.CreatedDate = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
+            updCustomer.Status = StatusRecord.Type.Active;
+
+            return updCustomer;
         }
 
         private void cmbEntity_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Core.System.Data.Model.Customer customer = new Core.System.Data.Model.Customer();
             if (cmbEntity.SelectedItem != null)
             {
                 if (cmbEntity.SelectedIndex == 0)

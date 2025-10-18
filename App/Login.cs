@@ -33,8 +33,8 @@ namespace App
             }
             string datetime = DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss");
             User Account = new User() { Username = txtUsername.Text, Password = txtPassword.Text };
-            UserAuthentication ua = new UserAuthentication();
-
+            
+            //UserAuthentication ua = new UserAuthentication();
             //ua.CreateUserAccountHardCoded(Account); This is only use to create new account hardcodedly.
 
             if (!UserAuthentication.IsAuthenticated(Account))
@@ -43,9 +43,14 @@ namespace App
                 return;
             }
 
-            using (Main main = new Main(Account))
+            User user = new User();
+            UserAuthentication ua = new UserAuthentication();
+            user = ua.FetchUserData(Account.Username);
+
+            using (Main main = new Main(user))
             {
                 this.Hide();
+                AuditManager.Log(user, ActionType.LOGIN, description: "The user logged into system.");
                 main.ShowDialog();
                 txtPassword.Clear();
             }

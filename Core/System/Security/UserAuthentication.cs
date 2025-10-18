@@ -142,5 +142,26 @@ namespace Core.System.Security
                 { "@Status", account.Status.ToString() },
             });
         }*/
+
+        public User FetchUserData(string username)
+        {
+            DataTable dt = new DataTable();
+            UpgradeManager manager = new UpgradeManager();
+            dt = manager.Load("SELECT * FROM dbjanmos.`user` WHERE `user`.username = '" + username + "';");
+
+            if (dt.Rows.Count > 0)
+            {
+                User user = new User();
+                foreach (DataRow row in dt.Rows)
+                {
+                    user.Id = Convert.ToInt32(row["id"]);
+                    user.RolesId = new Roles() { Id = Convert.ToInt32(row["roleid"])};
+                    user.UserInfoId = new UserInfo() { Id = Convert.ToInt32(row["userinfoid"]) };
+                    user.Username = row["username"].ToString();
+                }
+                return user;
+            }
+            return null;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Core.System.Data.Model;
 using Core.System.Repository;
+using Core.System.Security;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,7 +10,7 @@ namespace App
 {
     public partial class Main : Form
     {
-        private readonly string username = "";
+        private readonly User user = new User();
         private string userRole = "";
         private string userFullname = "";
 
@@ -31,10 +32,10 @@ namespace App
         {
             InitializeComponent();
         }
-        public Main(User account)
+        public Main(User user)
         {
+            this.user = user;
             InitializeComponent();
-            this.username = account.Username;
         }
         private void InitializeUserData(string Username)
         {
@@ -66,8 +67,8 @@ namespace App
 
         private void Main_Load(object sender, EventArgs e)
         {
-            InitializeUserData(this.username);
-            CheckUserRole(this.userRole);
+            InitializeUserData(this.user.Username);
+            CheckUserRole(this.user.RolesId.RoleTitle);
         }
         private void CheckUserRole(string currentRole)
         {
@@ -97,41 +98,49 @@ namespace App
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Dashboard.Dashboard());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Dashboard", description: "The user opened dashboard page.");
+            this.openFormModule(new App.Dashboard.Dashboard(this.user));
         }
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Product.frmProduct());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Product", description: "The user opened product page.");
+            this.openFormModule(new App.Product.frmProduct(this.user));
         }
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Customer.Customer());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Customer", description: "The user opened customer page.");
+            this.openFormModule(new App.Customer.Customer(this.user));
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Inventory.frmInventory());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Inventory", description: "The user opened inventory page.");
+            this.openFormModule(new App.Inventory.frmInventory(this.user));
         }
         private void btnCustomerOrder_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new App.Customer_Order.frmCustomerOrder());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Customer Order", description: "The user opened customer order page.");
+            this.openFormModule(new App.Customer_Order.frmCustomerOrder(this.user));
         }
 
         private void btnUserManagement_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new UserManagement.frmUserManagement(this.username));
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "User Management", description: "The user opened user management page.");
+            this.openFormModule(new UserManagement.frmUserManagement(this.user));
         }
 
         private void btnManagementModule_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new ManagementModule.ManagementModule());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "System Administration", description: "The user opened system administration page.");
+            this.openFormModule(new ManagementModule.ManagementModule(this.user));
         }
 
         private void btnReport_Click(object sender, EventArgs e)
         {
-            this.openFormModule(new Report.frmReport());
+            AuditManager.Log(this.user, ActionType.VIEW, tableName: "Reports", description: "The user opened reports page.");
+            this.openFormModule(new Report.frmReport(this.user));
         }
 
         private void openFormModule(Form formModule)
@@ -192,6 +201,7 @@ namespace App
         {
             if (MessageBox.Show("Are you sure you want to log out?", "Confirm to logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                AuditManager.Log(this.user, ActionType.LOGOUT, description: "The user logged out of the system.");
                 this.Dispose();
             }
         }

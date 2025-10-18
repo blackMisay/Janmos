@@ -28,6 +28,10 @@ namespace Core.System.Data.Model
         }
         public int ReOrderPoint { get; set; }
         public int MaxStockLevel { get; set; }
+        public TaxType TaxTypeId { get; set; }
+        public User CreatedBy { get; set; }
+        public String CreatedDate { get; set; }
+        
         public StatusRecord.Type Status { get; set; }
     }
 }

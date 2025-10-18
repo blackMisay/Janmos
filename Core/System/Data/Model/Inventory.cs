@@ -21,6 +21,7 @@ namespace Core.System.Data.Model
         public string Expiration { get { return expiration; } set { expiration = value; } }
         public string Day {  get; set; }
         public Availability Availability { get; set; }
+        public User CreatedBy { get; set; }
         public StatusRecord.Type Status { get; set; }
     }
     public enum Availability

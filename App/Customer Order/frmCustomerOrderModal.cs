@@ -24,6 +24,7 @@ namespace App.Customer_Order
         CustomerOrderRepository customerOrderRepository;
         CustomerOrderDetailsRepository customerOrderDetailsRepository;
         private List<CustomerOrderDetails> tempOrderDetails;
+        private readonly User user = new User();
         private readonly int Id = 0;
         private readonly int enable = 0;
         private int selectedCustomerId = 0;
@@ -41,9 +42,9 @@ namespace App.Customer_Order
         private string userName = "";
 
         //FOR NEW CUSTOMER ORDER
-        public frmCustomerOrderModal(string username) 
+        public frmCustomerOrderModal(User user) 
         {
-            this.userName = username;
+            this.user = user;
             InitializeComponent();
             InitializeComponentsData();
             FieldEnabling(enable);
@@ -296,7 +297,7 @@ namespace App.Customer_Order
                     InventoryRepository inventoryRepo = new InventoryRepository();
                     InventoryMovementRepository inventoryMovementRepo = new InventoryMovementRepository();
 
-                    int currentUserId = GetLoggedInUserId();
+                    int currentUserId = GetLoggedInUserId(this.userName);
 
                     foreach (CustomerOrderDetails orderDetails in orderDetailsList)
                     {
@@ -306,11 +307,7 @@ namespace App.Customer_Order
                         bool stockUpdated = inventoryRepo.UpdateInventoryStock(productId, qty);
 
                         bool movementLogged = inventoryMovementRepo.InsertInventoryMovement(
-                            productId,
-                            qty,
-                            "OUT",
-                            $"Customer Order #{customerOrder.OrderNumber}",
-                            currentUserId
+                            productId, qty, "OUT", $"Customer Order #{customerOrder.OrderNumber}", currentUserId
                         );
 
                         if (!stockUpdated || !movementLogged)
@@ -327,6 +324,15 @@ namespace App.Customer_Order
                     MessageBox.Show("Customer order failed to save", "Customer Order", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+        private int GetLoggedInUserId(string username)
+        {
+            customerOrderRepository = new CustomerOrderRepository();
+            string query = "SELECT u.id FROM `user` u WHERE u.username = @Username;";
+            return int.Parse(customerOrderRepository.GetStringValue(query, new Dictionary<string, string>
+            {
+                {"@Username", username}
+            }));
         }
 
         //CUSTOMER ORDER MODAL CANCEL BUTTON
