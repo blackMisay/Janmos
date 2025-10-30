@@ -1,5 +1,8 @@
-﻿using Core.System.Repository;
+﻿using Core.System.Data.Model;
+using Core.System.Repository;
+using Core.System.Security;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace App.Inventory
@@ -7,12 +10,14 @@ namespace App.Inventory
     public partial class frmInventory : Form
     {
         InventoryRepository inventoryRepository;
+        private readonly User user = new User();
         private int selectedInventoryId = 0;
         private string selectedInventoryDayRemainingExpiration = "";
         private int expired = 0;
         private readonly int defaultRowCount = 20;
-        public frmInventory()
+        public frmInventory(User user)
         {
+            this.user = user;
             InitializeComponent();
             cmbRecordCount.SelectedItem = defaultRowCount.ToString();
         }
@@ -36,6 +41,10 @@ namespace App.Inventory
 
             this.dgvInventory.Columns["Price"].DefaultCellStyle.Format = "N2";
 
+            UpdateDayExpireColumn();
+        }
+        private void UpdateDayExpireColumn()
+        {
             foreach (DataGridViewRow row in dgvInventory.Rows)
             {
                 DateTime expirationValue = DateTime.Parse(row.Cells["Expiration"].Value.ToString());
@@ -67,7 +76,7 @@ namespace App.Inventory
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (frmInventoryModal frmIM = new frmInventoryModal())
+            using (frmInventoryModal frmIM = new frmInventoryModal(this.user))
             {
                 frmIM.ShowDialog();
             }
@@ -81,8 +90,9 @@ namespace App.Inventory
             {
                 if (MessageBox.Show("Do you want to edit the selected inventory data?", "Edit Inventory Data", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (frmInventoryModal frmIM = new frmInventoryModal(this.selectedInventoryId, this.selectedInventoryDayRemainingExpiration))
+                    using (frmInventoryModal frmIM = new frmInventoryModal(this.selectedInventoryId, this.selectedInventoryDayRemainingExpiration, this.user))
                     {
+                        AuditManager.Log(this.user, ActionType.VIEW, tableName: "Inventory", recordId: this.selectedInventoryId, description: "The user opened inventory data.");
                         frmIM.ShowDialog();
                     }
                     this.LoadInventoryData();
@@ -102,7 +112,8 @@ namespace App.Inventory
                 if (MessageBox.Show("Do you want to delete the selected inventory data?", "Delete Inventory Data", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     inventoryRepository = new InventoryRepository();
-                    inventoryRepository.DeleteInventoryData(this.selectedInventoryId);
+                    if (inventoryRepository.DeleteInventoryData(this.selectedInventoryId))
+                        AuditManager.Log(this.user, ActionType.DELETE, tableName: "Inventory", recordId: this.selectedInventoryId, description: "The user delete a inventory data.");
                     this.selectedInventoryId = 0;
                     this.LoadInventoryData();
 

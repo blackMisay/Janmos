@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using Core.System.Data.Model;
-using System.Data;
+﻿using Core.System.Data.Model;
+using Core.System.Security;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Core.System.Repository
@@ -9,17 +10,17 @@ namespace Core.System.Repository
     public class CustomerRepository
     {
         UpgradeManager upgradeManager;
-
+        private User user = new User();
         public DataTable LoadCustomerData()
         {
-            string query = "SELECT customer.id AS `Customer ID`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, ', ', customer.entityname) AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.regionID = region.id JOIN province ON customer.provinceID = province.id JOIN municipality ON customer.municipalityID = municipality.id JOIN baranggay ON customer.baranggayID = baranggay.id WHERE customer.`status` = 'Active' ORDER BY customer.id DESC;";
+            string query = "SELECT c.id AS `Customer ID`, c.`name` AS `Customer Name`, CONCAT(c.entity, ', ', c.entityname) AS `Entity`, c.mobilenum AS `Mobile Number`, CONCAT(c.phonenum, ' Ext. ', c.extension) AS `Phone Number`, c.primaryemail AS `Email Address`, c.socialnetid AS 'Social Network Id', CONCAT(c.housenum, ', ', b.`name`, ', ', m.`name`, ', ', p.`name`, ', ', r.`name`, ', ', c.postal) AS 'Address', CONCAT(ro.roletitle, ' - ', ui.givenname, ' ', ui.lastname) AS `Created By`, c.createddate AS `Created Date` FROM customer c JOIN region r ON c.regionID = r.id JOIN province p ON c.provinceID = p.id JOIN municipality m ON c.municipalityID = m.id JOIN baranggay b ON c.baranggayID = b.id JOIN `user` u ON c.createdby = u.id JOIN roles ro ON u.roleid = ro.id JOIN userinfo ui ON u.userinfoid = ui.id WHERE c.`status` = 'Active' ORDER BY c.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadCustomerData(string searchValue)
         {
-            string query = "SELECT customer.id AS `Customer Number`, customer.`name` AS `Customer Name`, CONCAT(customer.entity, ', ', customer.entityname) AS `Entity`, customer.mobilenum AS `Mobile Number`, CONCAT(customer.phonenum, ' Ext. ', customer.extension) AS `Phone Number`, customer.primaryemail AS `Email Address`, customer.socialnetid AS 'Social Network Id', CONCAT(customer.housenum, ', ', baranggay.`name`, ', ', municipality.`name`, ', ', province.`name`, ', ', region.`name`, ', ', customer.postal) AS 'Address' FROM customer JOIN region ON customer.regionID = region.id JOIN province ON customer.provinceID = province.id JOIN municipality ON customer.municipalityID = municipality.id JOIN baranggay ON customer.baranggayID = baranggay.id WHERE customer.name LIKE @val AND customer.`status` = 'Active' OR customer.id LIKE @val AND customer.`status` = 'Active' OR customer.entity LIKE @val AND customer.`status` = 'Active' OR customer.entityname LIKE @val AND customer.`status` = 'Active' OR customer.mobilenum LIKE @val AND customer.`status` = 'Active' OR customer.phonenum LIKE @val AND customer.`status` = 'Active' OR customer.housenum LIKE @val AND customer.`status` = 'Active' ORDER BY customer.id DESC;";
+            string query = "SELECT c.id AS `Customer ID`, c.`name` AS `Customer Name`, CONCAT(c.entity, ', ', c.entityname) AS `Entity`, c.mobilenum AS `Mobile Number`, CONCAT(c.phonenum, ' Ext. ', c.extension) AS `Phone Number`, c.primaryemail AS `Email Address`, c.socialnetid AS 'Social Network Id', CONCAT(c.housenum, ', ', b.`name`, ', ', m.`name`, ', ', p.`name`, ', ', r.`name`, ', ', c.postal) AS 'Address', CONCAT(ro.roletitle, ' - ', ui.givenname, ' ', ui.lastname) AS `Created By`, c.createddate AS `Created Date` FROM customer c JOIN region r ON c.regionID = r.id JOIN province p ON c.provinceID = p.id JOIN municipality m ON c.municipalityID = m.id JOIN baranggay b ON c.baranggayID = b.id JOIN `user` u ON c.createdby = u.id JOIN roles ro ON u.roleid = ro.id JOIN userinfo ui ON u.userinfoid = ui.id WHERE c.`status` = 'Active' AND(c.`name` LIKE @val OR c.id LIKE @val OR c.entity LIKE @val OR c.entityname LIKE @val OR c.mobilenum LIKE @val OR c.phonenum LIKE @val OR CONCAT(c.housenum, ', ', b.`name`, ', ', m.`name`, ', ', p.`name`, ', ', r.`name`, ', ', c.postal) LIKE @val OR CONCAT(ui.givenname, ' ', ui.lastname) LIKE @val) ORDER BY c.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> customerParams = new Dictionary<string, string>()
@@ -67,6 +68,8 @@ namespace Core.System.Repository
                     customer.Baranggay = new Baranggay() { Id = Convert.ToInt32(row["baranggayID"]) };
                     customer.Housenum = row["housenum"].ToString();
                     customer.Postal = row["postal"].ToString();
+                    customer.CreatedBy = new User() { Id = Convert.ToInt32(row["createdby"]) };
+                    customer.CreatedDate = row["createddate"].ToString();
                 }
                 return customer;
             }
@@ -79,43 +82,60 @@ namespace Core.System.Repository
             return this.upgradeManager.Load(query);
         }
 
-        public bool Save(Customer customer)
+        public bool Save(AuditLog log, Customer updCustomer, User user)
         {
+            this.user = user;
             string query;
 
-            if (customer.Id > 0)
+            if (updCustomer.Id > 0)
             {
-                query = "UPDATE dbjanmos.customer SET name=@Name, entity=@Entity, entityname=@Entityname, mobilenum=@Mobilenum, phonenum=@Telenum, extension=@Extension, primaryemail=@Email, socialnetid=@Socialnetid, regionID=@Region, provinceID=@Province, municipalityID=@Municipality, baranggayID=@Baranggay, housenum=@Housenum, postal=@Postal, status=@Status WHERE id=@Id;";
+                query = "UPDATE dbjanmos.customer SET name=@Name, entity=@Entity, entityname=@Entityname, mobilenum=@Mobilenum, phonenum=@Telenum, extension=@Extension, primaryemail=@Email, socialnetid=@Socialnetid, regionID=@Region, provinceID=@Province, municipalityID=@Municipality, baranggayID=@Baranggay, housenum=@Housenum, postal=@Postal, createdby=@UserId, createddate=@CreatedDate, status=@Status WHERE id=@Id;";
             }
             else
             {
-                query = "INSERT INTO dbjanmos.customer(name, entity, entityname, mobilenum, phonenum, extension, primaryemail, socialnetid, regionID, provinceID, municipalityID, baranggayID, housenum, postal, status) VALUES(@Name, @Entity, @Entityname, @Mobilenum, @Telenum, @Extension, @Email, @Socialnetid, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal, @Status);";
+                query = "INSERT INTO dbjanmos.customer(name, entity, entityname, mobilenum, phonenum, extension, primaryemail, socialnetid, regionID, provinceID, municipalityID, baranggayID, housenum, postal, createdby, createddate, status) VALUES(@Name, @Entity, @Entityname, @Mobilenum, @Telenum, @Extension, @Email, @Socialnetid, @Region, @Province, @Municipality, @Baranggay, @Housenum, @Postal, @UserId, @CreatedDate, @Status);";
             }
 
             Dictionary<string, string> customerParameters = new Dictionary<string, string>()
             {
-                {"@Id", customer.Id.ToString()},
-                {"@Name", customer.Name},
-                {"@Entity", customer.Entity.ToString()},
-                {"@Entityname", customer.Entityname},
-                {"@Mobilenum", customer.Mobilenum},
-                {"@Telenum", customer.Telenum},
-                {"@Extension", customer.Extension},
-                {"@Email", customer.Email},
-                {"@Socialnetid", customer.Socialnetid},
-                {"@Region", customer.Region.Id.ToString()},
-                {"@Province", customer.Province.Id.ToString()},
-                {"@Municipality", customer.Municipality.Id.ToString()},
-                {"@Baranggay", customer.Baranggay.Id.ToString()},
-                {"@Housenum", customer.Housenum},
-                {"@Postal", customer.Postal},
-                {"@Status", customer.Status.ToString()}
+                {"@Id", updCustomer.Id.ToString()},
+                {"@Name", updCustomer.Name},
+                {"@Entity", updCustomer.Entity.ToString()},
+                {"@Entityname", updCustomer.Entityname},
+                {"@Mobilenum", updCustomer.Mobilenum},
+                {"@Telenum", updCustomer.Telenum},
+                {"@Extension", updCustomer.Extension},
+                {"@Email", updCustomer.Email},
+                {"@Socialnetid", updCustomer.Socialnetid},
+                {"@Region", updCustomer.Region.Id.ToString()},
+                {"@Province", updCustomer.Province.Id.ToString()},
+                {"@Municipality", updCustomer.Municipality.Id.ToString()},
+                {"@Baranggay", updCustomer.Baranggay.Id.ToString()},
+                {"@Housenum", updCustomer.Housenum},
+                {"@Postal", updCustomer.Postal},
+                {"@UserId", updCustomer.CreatedBy.Id.ToString()},
+                {"@CreatedDate", updCustomer.CreatedDate },
+                {"@Status", updCustomer.Status.ToString()}
             };
 
             UpgradeManager upgradeManager = new UpgradeManager();
-            if (upgradeManager.ExecuteQuery(query, customerParameters))
+            if (updCustomer.Id > 0)
+            {
+                if (upgradeManager.ExecuteQuery(query, customerParameters))
+                {
+                    AuditManager.Log(log.UserId, log.ActionType, log.TableName, log.RecordId, log.OldValue, log.NewValue, log.Description);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                int newId = upgradeManager.ExecuteQuery(query, customerParameters, true);
+                if (newId == 0)
+                    return false;
+                AuditManager.Log(this.user, ActionType.CREATE, tableName: "Customer", recordId: newId, description: "The user added new customer '" + updCustomer.Name + "'.");
                 return true;
-            return false;
+            }
         }
     }
 }

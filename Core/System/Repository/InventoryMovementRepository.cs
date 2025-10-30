@@ -12,12 +12,9 @@ namespace Core.System.Repository
 
         public bool InsertInventoryMovement(int productId, int quantity, string transactionType, string remarks, int userId)
         {
-            string query = @"
-                INSERT INTO inventory_movement 
-                (product_id, quantity, transaction_type, date_entry, remarks, user_id)
-                VALUES
-                (@ProductId, @Qty, @Type, NOW(), @Remarks, @UserId);
-            ";
+            string query = @" INSERT INTO inventory_movement (product_id, quantity, transaction_type, date_entry, remarks, user_id)
+                VALUES (@ProductId, @Qty, @Type, NOW(), @Remarks, @UserId);"
+            ;
 
             Dictionary<string, string> movementParams = new Dictionary<string, string>()
             {

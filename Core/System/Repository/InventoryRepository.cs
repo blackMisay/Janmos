@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using Core.System.Data.Model;
-using System.Data;
+﻿using Core.System.Data.Model;
+using Core.System.Security;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Core.System.Repository
@@ -9,16 +10,17 @@ namespace Core.System.Repository
     public class InventoryRepository
     {
         UpgradeManager upgradeManager;//for database connection
+        private User user = new User();
         public DataTable LoadInventoryData()//for record load
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
+            string query = "SELECT i.id AS `Inventory ID`, p.`name` AS `Product Name`, i.`description` AS `Description`, i.price AS `Price`, i.quantity AS `Quantity`, i.`expiration` AS `Expiration`, i.`day` AS `Day/s Remaining`, i.availability AS `Availability`, CONCAT(r.roletitle, ' - ', ui.givenname, ' ', ui.lastname) AS `Created By` FROM inventory i JOIN product p ON i.`name` = p.id JOIN `user` u ON i.createdby = u.id JOIN roles r ON u.roleid = r.id JOIN userinfo ui ON u.userinfoid = ui.id WHERE i.`status` = 'Active' ORDER BY i.id DESC;";
             upgradeManager = new UpgradeManager();
             return upgradeManager.Load(query);
         }
 
         public DataTable LoadInventoryData(string searchValue)//for record load while searching
         {
-            string query = "SELECT inventory.id AS `Inventory ID`, product.`name` AS `Product Name`, inventory.`description` AS `Description`, inventory.price AS `Price`, inventory.quantity AS `Quantity`, inventory.`expiration` AS `Expiration`, inventory.day AS `Day/s Remaining`, inventory.availability AS `Availability` FROM inventory JOIN product ON inventory.`name` = product.id WHERE product.`name` LIKE @val AND inventory.`status` = 'Active' OR inventory.id LIKE @val AND inventory.`status` = 'Active' OR inventory.description LIKE @val AND inventory.`status` = 'Active' OR inventory.availability LIKE @val AND inventory.`status` = 'Active' ORDER BY inventory.id DESC;";
+            string query = "SELECT i.id AS `Inventory ID`, p.`name` AS `Product Name`, i.`description` AS `Description`, i.price AS `Price`, i.quantity AS `Quantity`, i.`expiration` AS `Expiration`, i.`day` AS `Day/s Remaining`, i.availability AS `Availability`, CONCAT(r.roletitle, ' - ', ui.givenname, ' ', ui.lastname) AS `Created By` FROM inventory i JOIN product p ON i.`name` = p.id JOIN `user` u ON i.createdby = u.id JOIN roles r ON u.roleid = r.id JOIN userinfo ui ON u.userinfoid = ui.id WHERE i.`status` = 'Active' AND(p.`name` LIKE @val OR i.id LIKE @val OR i.`description` LIKE @val OR i.availability LIKE @val OR CONCAT(ui.givenname, ' ', ui.lastname) LIKE @val) ORDER BY i.id DESC;";
             upgradeManager = new UpgradeManager();
 
             Dictionary<string, string> inventoryParams = new Dictionary<string, string>()
@@ -76,6 +78,7 @@ namespace Core.System.Repository
                     inventory.Expiration = row["expiration"].ToString();
                     inventory.Day = row["day"].ToString();
                     inventory.Availability = new Availability();
+                    inventory.CreatedBy = new User() { Id = Convert.ToInt32(row["createdby"]) };
                 }
                 return inventory;
             }
@@ -88,37 +91,51 @@ namespace Core.System.Repository
             return upgradeManager.Load(query);
         }
 
-        public bool Save(Inventory inventory)//saving data entry
+        public bool Save(AuditLog log, Inventory updInventory, User user)//saving data entry
         {
+            this.user = user;
             string query;
 
-            if (inventory.Id > 0) //for updating existing record
+            if (updInventory.Id > 0) //for updating existing record
             {
-                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,entrydate=@EntryDate,expiration=@Expiration,day=@Day,availability=@Availability,status=@Status WHERE id=@Id;";
+                query = "UPDATE dbjanmos.inventory SET name=@Name,description=@Description,price=@Price,quantity=@Quantity,entrydate=@EntryDate,expiration=@Expiration,day=@Day,availability=@Availability,createdby=@UserId,status=@Status WHERE id=@Id;";
             }
             else //for add new record
             {
-                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,entrydate,expiration,day,availability,status) VALUES(@Name,@Description,@Price,@Quantity,@EntryDate,@Expiration,@Day,@Availability,@Status);";
+                query = "INSERT INTO dbjanmos.inventory(name,description,price,quantity,entrydate,expiration,day,availability,createdby,status) VALUES(@Name,@Description,@Price,@Quantity,@EntryDate,@Expiration,@Day,@Availability,@UserId,@Status);";
             }
 
             Dictionary<string, string> inventoryParameters = new Dictionary<string, string>()
             {
-                {"@Id", inventory.Id.ToString()},
-                {"@Name", inventory.Name.Id.ToString()},
-                {"@Description", inventory.Description},
-                {"@Price", inventory.Price},
-                {"@Quantity", inventory.Quantity.ToString()},
-                {"@EntryDate", inventory.EntryDate },
-                {"@Expiration", inventory.Expiration},
-                {"@Day", inventory.Day.ToString() },
-                {"@Availability", inventory.Availability.ToString()},
-                {"@Status", inventory.Status.ToString()}
+                {"@Id", updInventory.Id.ToString()},
+                {"@Name", updInventory.Name.Id.ToString()},
+                {"@Description", updInventory.Description},
+                {"@Price", updInventory.Price},
+                {"@Quantity", updInventory.Quantity.ToString()},
+                {"@EntryDate", updInventory.EntryDate },
+                {"@Expiration", updInventory.Expiration},
+                {"@Day", updInventory.Day.ToString() },
+                {"@Availability", updInventory.Availability.ToString()},
+                {"@UserId",updInventory.CreatedBy.Id.ToString()},
+                {"@Status", updInventory.Status.ToString()}
             };
-
-            upgradeManager = new UpgradeManager();
-            if (upgradeManager.ExecuteQuery(query, inventoryParameters))
+            if (updInventory.Id > 0)
+            {
+                if (upgradeManager.ExecuteQuery(query, inventoryParameters))
+                {
+                    AuditManager.Log(log.UserId, log.ActionType, log.TableName, log.RecordId, log.OldValue, log.NewValue, log.Description);
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                int newId = upgradeManager.ExecuteQuery(query, inventoryParameters, true);
+                if (newId == 0)
+                    return false;
+                AuditManager.Log(this.user, ActionType.CREATE, tableName: "Inventory", recordId: newId, description: "The user added new product '" + updInventory.Name + "' in inventory.");
                 return true;
-            return false;
+            }
         }
     }
 }

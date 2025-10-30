@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
+using Core.System.Data.Model;
 using Core.System.Repository;
+using Core.System.Security;
 
 namespace App.Product
 {
     public partial class frmProduct : Form
     {
+        private readonly User user = new User();
         ProductRepository productRepository;
         private int selectedProductId = 0;
         private readonly int defaultRowCount = 20;
         private int selectedCategoryId;
-        public frmProduct()
+        public frmProduct(User user)
         {
+            this.user = user;
             InitializeComponent();
             cmbRecordCount.SelectedItem = defaultRowCount.ToString();
             InitializeComponentsData();
@@ -22,15 +27,22 @@ namespace App.Product
         {
             productRepository = new ProductRepository();
 
-            cmbCategory.DataSource = productRepository.LoadDataList("SELECT c.id, c.`description` AS `name` FROM category c;");
-            cmbCategory.ValueMember = "id";
-            cmbCategory.DisplayMember = "name";
-            cmbCategory.SelectedIndex = -1;
+            DataTable dt = productRepository.LoadDataList("SELECT c.id AS `Id`, c.`description` AS `Name` FROM category c;");
+            DataRow newRow = dt.NewRow();
+            newRow["Id"] = 0;
+            newRow["Name"] = "--All Products--";
+            dt.Rows.InsertAt(newRow, 0);
+
+            cmbCategory.ValueMember = "Id";
+            cmbCategory.DisplayMember = "Name";
+            cmbCategory.DataSource = dt;
+
+            cmbCategory.SelectedIndex = 0;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (frmProductModal info = new frmProductModal())
+            using (frmProductModal info = new frmProductModal(this.user))
             {
                 info.ShowDialog();
             }
@@ -42,8 +54,9 @@ namespace App.Product
         {
             if (this.selectedProductId != 0)
             {
-                using (frmProductModal info = new frmProductModal(this.selectedProductId))
+                using (frmProductModal info = new frmProductModal(this.selectedProductId, this.user))
                 {
+                    AuditManager.Log(this.user, ActionType.VIEW, tableName: "Product", recordId: this.selectedProductId, description: "The user opened product data.");
                     info.ShowDialog();
                 }
                 this.LoadProductData();
@@ -74,7 +87,7 @@ namespace App.Product
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             productRepository = new ProductRepository();
-            if (cmbCategory.SelectedValue != null)
+            if (this.selectedCategoryId != 0)
             {
                 dgvProduct.DataSource = productRepository.LoadProductDataViaSearch(txtSearch.Text, this.selectedCategoryId);
             }
@@ -87,7 +100,7 @@ namespace App.Product
         private void LoadProductData()
         {
             productRepository = new ProductRepository();
-            if (cmbCategory.SelectedValue != null)
+            if (this.selectedCategoryId != 0)
             {
                 dgvProduct.DataSource = productRepository.LoadProductData(this.selectedCategoryId);
             }
@@ -107,7 +120,8 @@ namespace App.Product
                 if (MessageBox.Show("Do you want to delete the selected product?", "Delete Product", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     productRepository = new ProductRepository();
-                    productRepository.DeleteProductData(this.selectedProductId);
+                    if (productRepository.DeleteProductData(this.selectedProductId))
+                        AuditManager.Log(this.user, ActionType.DELETE, tableName: "Product", recordId: this.selectedProductId, description: "The user delete a product data.");
                     this.selectedProductId = 0;
                     this.LoadProductData();
 

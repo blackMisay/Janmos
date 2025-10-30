@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using MySqlConnector;
 using System.Collections;
 using Core.System.Data.Model;
+using System.Diagnostics.SymbolStore;
 
 namespace Core
 {
@@ -83,26 +84,19 @@ namespace Core
         /// <param name="returnId">A boolean representing if the query should return the last inserted id. Default value is false</param>>
         /// <returns>True if the query execution is successful, otherwise false.</returns>
         /// <exception cref="Exception">It catches any exceptions that occur during the execution of the query and rethrows them with a new exception containing the error message.</exception>
-        public bool ExecuteQuery(string query, Dictionary<string, string> parameters, bool returnId=false)
+        public bool ExecuteQuery(string query, Dictionary<string, string> parameters)
         {
             try
             {
                 this.Connect();
 
-                if (returnId)
-                    String.Concat(query, this.qryReturnId);
-                
                 using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
                 {
                     foreach (KeyValuePair<string, string> kvp in parameters)
                     {
                         cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
                     }
-
-                    if (returnId)
-                        this.LastInsertedId = Convert.ToInt32(cmd.ExecuteScalar());
-                    else
-                        cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
 
                     return true;
                 }
@@ -110,6 +104,61 @@ namespace Core
             catch (MySqlException ex)
             {
                 // Log or handle specific MySql errors here
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+        public int ExecuteQuery(string query, Dictionary<string, string> parameters, bool returnId)
+        {
+            try
+            {
+                this.Connect();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (KeyValuePair<string, string> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value);
+                    }
+                    cmd.ExecuteNonQuery();
+
+                    return Convert.ToInt32(cmd.LastInsertedId);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Log or handle specific MySql errors here
+                throw new Exception($"Error executing query: {ex.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Unexpected error: {e.Message}");
+            }
+            finally { this.connection.Close(); }
+        }
+        public bool ExecuteQuery(string query, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                this.Connect();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, this.connection))
+                {
+                    foreach (KeyValuePair<string, object> kvp in parameters)
+                    {
+                        cmd.Parameters.AddWithValue(kvp.Key, kvp.Value ?? DBNull.Value);
+                    }
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch (MySqlException ex)
+            {
                 throw new Exception($"Error executing query: {ex.Message}");
             }
             catch (Exception e)

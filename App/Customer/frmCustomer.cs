@@ -1,4 +1,6 @@
-﻿using Core.System.Repository;
+﻿using Core.System.Data.Model;
+using Core.System.Repository;
+using Core.System.Security;
 using System;
 using System.Windows.Forms;
 
@@ -7,10 +9,12 @@ namespace App.Customer
     public partial class Customer : Form
     {
         CustomerRepository customerRepository;
+        private readonly User user = new User();
         private int selectedCustomerId = 0;
         private readonly int defaultRowCount = 20;
-        public Customer()
+        public Customer(User user)
         {
+            this.user = user;
             InitializeComponent();
             cmbRecordCount.SelectedItem = defaultRowCount.ToString();
         }
@@ -24,7 +28,7 @@ namespace App.Customer
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            using (CustomerModal cmodal = new CustomerModal())
+            using (CustomerModal cmodal = new CustomerModal(this.user))
             {
                 cmodal.ShowDialog();
             }
@@ -47,8 +51,9 @@ namespace App.Customer
             {
                 if (MessageBox.Show("Do you want to edit the selected customer?", "Edit Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    using (CustomerModal cmodal = new CustomerModal(this.selectedCustomerId))
+                    using (CustomerModal cmodal = new CustomerModal(this.selectedCustomerId, this.user))
                     {
+                        AuditManager.Log(this.user, ActionType.VIEW, tableName: "Customer", recordId: this.selectedCustomerId, description: "The user opened customer data.");
                         cmodal.ShowDialog();
                     }
                     this.LoadCustomerData();
@@ -68,9 +73,11 @@ namespace App.Customer
                     if (MessageBox.Show("Do you want to delete the selected customer?", "Delete Customer", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         customerRepository = new CustomerRepository();
-                        customerRepository.DeleteCustomerData(this.selectedCustomerId);
+                        if (customerRepository.DeleteCustomerData(this.selectedCustomerId))
+                            AuditManager.Log(this.user, ActionType.DELETE, tableName: "Customer", recordId: this.selectedCustomerId, description: "The user delete a customer data.");
                         this.LoadCustomerData();
                         this.selectedCustomerId = 0;
+
                         MessageBox.Show("Delete Successfully.", "Delete Customer", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
             }
