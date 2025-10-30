@@ -49,7 +49,10 @@
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -107,11 +110,23 @@
     <Compile Include="Customer Order\frmCustomerOrderModal.Designer.cs">
       <DependentUpon>frmCustomerOrderModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="ManagementModule\AuditLog\frmAuditLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagementModule\AuditLog\frmAuditLogs.Designer.cs">
+      <DependentUpon>frmAuditLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="ManagementModule\ManagementModule.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ManagementModule\ManagementModule.Designer.cs">
       <DependentUpon>ManagementModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Product\frmTaxTypeModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product\frmTaxTypeModal.Designer.cs">
+      <DependentUpon>frmTaxTypeModal.cs</DependentUpon>
     </Compile>
     <Compile Include="Report\frmReport.cs">
       <SubType>Form</SubType>
@@ -280,6 +295,9 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManagementModule\AuditLog\frmAuditLogs.resx">
+      <DependentUpon>frmAuditLogs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManagementModule\ManagementModule.resx">
       <DependentUpon>ManagementModule.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product\frmProductModal.resx">
       <DependentUpon>frmProductModal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product\frmTaxTypeModal.resx">
+      <DependentUpon>frmTaxTypeModal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -403,6 +424,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\j-anmos_logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -417,6 +440,5 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

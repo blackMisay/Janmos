@@ -1,4 +1,8 @@
-﻿using Core.System.Repository;
+﻿using App.Customer;
+using App.ManagementModule.AuditLog;
+using Core.System.Data.Model;
+using Core.System.Repository;
+using Core.System.Security;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +19,10 @@ namespace App.ManagementModule
     public partial class ManagementModule : Form
     {
         ManagementModuleRepository repo;
-        public ManagementModule()
+        private readonly User user = new User();
+        public ManagementModule(User user)
         {
+            this.user = user;
             InitializeComponent();
             ManagementModuleData();
         }
@@ -203,6 +209,18 @@ namespace App.ManagementModule
         {
             ConfigureAxisX();
             LoadManagementModule();
+        }
+
+        private void lblViewFullLogs_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to view the full logs?", "View Full Logs", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                using (frmAuditLogs frm = new frmAuditLogs(this.user))
+                {
+                    AuditManager.Log(this.user, ActionType.VIEW, tableName: "Audit Logs", description: "Opened Audit Logs page.");
+                    frm.ShowDialog();
+                }
+            }
         }
     }
 }

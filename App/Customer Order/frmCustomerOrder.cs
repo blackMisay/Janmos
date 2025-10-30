@@ -1,4 +1,5 @@
 ﻿using App.Customer_Order_Details;
+using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,18 +16,19 @@ namespace App.Customer_Order
     public partial class frmCustomerOrder : Form
     {
         CustomerOrderRepository customerorderRepository;
+        private readonly User user = new User();
         private int selectedCustomerOrderId = 0;
         private string selectedCustomerOrderNumber = "";
         private string selectedCustomer = "";
         private string selectedItem = "";
         private readonly int defaultRowCount = 20;
-        private string userName = "";
-        public frmCustomerOrder(string username)
+        //private string userName = "";
+        public frmCustomerOrder(User user)
         {
+            this.user = user;
             InitializeComponent();
             cmbRecordCount.SelectedItem = defaultRowCount.ToString();
             InitializeComponentsData();
-            this.userName = username;
         }
 
         //FORM LOAD
@@ -79,7 +81,7 @@ namespace App.Customer_Order
             }
             //FOR NEW CUSTOMER ORDER
             //DIRECTING FRMCUSTOMERORDERMODAL FORM
-            using (frmCustomerOrderModal frmCOM = new frmCustomerOrderModal(this.userName))
+            using (frmCustomerOrderModal frmCOM = new frmCustomerOrderModal(this.user))
             {
                 frmCOM.ShowDialog();
             }

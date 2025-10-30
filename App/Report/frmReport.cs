@@ -1,4 +1,5 @@
 ﻿using App.Properties;
+using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace App.Report
     {
         PrintDialog printDialog = new PrintDialog();
         ReportRepository reportRepository;
+        private readonly User user = new User();
         private Button b;
         private int currentRowIndex = 0;
         private int totalValue = 0;
@@ -26,8 +28,9 @@ namespace App.Report
         Font boldFont = new Font("Arial", 10, FontStyle.Bold);
         private int lineHeight = 25;
         Image logo = Resources.j_anmos_logo;
-        public frmReport()
+        public frmReport(User user)
         {
+            this.user = user;
             InitializeComponent();
 
             dtpFrom.Value = DateTime.Now.Date;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.System.Data.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,10 @@ namespace App.Dashboard
 {
     public partial class Dashboard : Form
     {
-        public Dashboard()
+        private readonly User user = new User();
+        public Dashboard(User user)
         {
+            this.user = user;
             InitializeComponent();
         }
 

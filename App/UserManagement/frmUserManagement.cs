@@ -1,4 +1,5 @@
 ﻿using App.Product;
+using Core.System.Data.Model;
 using Core.System.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,13 @@ namespace App.UserManagement
     public partial class frmUserManagement : Form
     {
         UserManagementRepository userManagement;
+        private readonly User user = new User();
         private int selectedUserManagementId = 0;
         private string userName = "";
-        public frmUserManagement(string username)
+        public frmUserManagement(User user)
         {
+            this.user = user;
             InitializeComponent();
-            this.userName = username;
             FieldEnabling();
         }
 

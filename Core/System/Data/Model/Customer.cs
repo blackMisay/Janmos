@@ -23,6 +23,8 @@ namespace Core.System.Data.Model
         public Baranggay Baranggay { get; set; }
         public string Housenum { get; set; }
         public string Postal { get; set; }
+        public User CreatedBy { get; set; }
+        public string CreatedDate { get; set; }
         public StatusRecord.Type Status {  get; set; }
     }
     public enum Entity
